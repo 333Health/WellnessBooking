@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>333 — A Home for Healthy Food, Close to You</title>
+<meta name="description" content="Book time slots at the best plant-forward restaurants in LA, NYC, and San Diego. Curated products. Real community.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+#three33-hero-wrap {
+  font-family: "DM Sans", -apple-system, sans-serif;
+}
+
+/* ============================================================
+   333 × MISS GRASS PALETTE
+   ============================================================ */
+:root {
+  --bg: #f8f8f0;
+  --bg-dark: #f8f8f0;
+  --bg-card: #f7f9fa;
+  --text: #000000;
+  --text-light: #4a4a48;
+  --text-muted: rgba(0,0,0,.45);
+  --accent: #e25036;
+  --border: rgba(0,0,0,.1);
+
+  --green-dark: #1a3a2a;
+  --green-mid: #2d5a3d;
+  --ochre: #8b4513;
+  --slate: #1e1e38;
+  --warm-cream: #f2ecdb;
+  --dusty-rose: #e3c3b5;
+  --red-deep: #df2532;
+  --lavender: #abadce;
+
+  --font-head: "DM Sans", -apple-system, sans-serif;
+  --font-sub: "DM Sans", -apple-system, sans-serif;
+  --font-body: "DM Sans", -apple-system, sans-serif;
+}
+
+
+
+
+/* ============================================================
+   SIMPLE NAV — for standalone preview
+   ============================================================ */
+.preview-nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  background:rgba(0,0,0,.92);
+  backdrop-filter:blur(12px);
+  height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;
+  border-bottom:0.5px solid rgba(255,255,255,.08);
+}
+.preview-nav__logo{
+  font-size:18px;font-weight:500;color:#fff;
+  letter-spacing:-.02em;text-decoration:none;
+}
+.preview-nav__links{display:flex;gap:1.5rem;align-items:center;}
+.preview-nav__link{
+  font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;
+  transition:color .12s;
+}
+.preview-nav__link:hover{color:#fff;}
+.preview-nav__link.shop{
+  border:0.5px solid rgba(255,255,255,.25);border-radius:99px;
+  padding:5px 14px;color:rgba(255,255,255,.7);
+}
+.preview-nav__link.shop:hover{background:rgba(255,255,255,.08);color:#fff;}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  background:#f8f8f0;
+  min-height:72vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:120px 2rem 60px;
+  overflow:hidden;
+}
+.hero__bg{display:none;
+  position:absolute;inset:0;
+  background:url('//333.kitchen/cdn/shop/files/Orangesheaders.jpg?v=1708483718') center/cover no-repeat;
+  opacity:.3;
+}
+.hero__inner{position:relative;z-index:1;width:100%;max-width:680px;text-align:center;}
+.hero__eyebrow{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(0,0,0,.4);margin-bottom:1.25rem;
+}
+.hero__title{
+  font-size:clamp(34px,5.5vw,62px);
+  font-weight:400;line-height:1.08;letter-spacing:-.035em;
+  color:#111;margin-bottom:1rem;
+}
+.hero__sub{
+  font-size:15px;color:rgba(0,0,0,.5);
+  margin-bottom:2.75rem;line-height:1.65;
+}
+
+/* Search pill */
+.hero__search{
+  background:rgba(0,0,0,.04);
+  border:0.5px solid rgba(0,0,0,.15);
+  border-radius:999px;
+  display:flex;align-items:center;
+  padding:11px 22px;gap:10px;
+  width:100%;max-width:540px;margin:0 auto 1.5rem;
+  transition:background .15s,border-color .15s;
+}
+.hero__search:focus-within{
+  background:rgba(255,255,255,.11);
+  border-color:rgba(255,255,255,.38);
+}
+.hero__search-icon{color:rgba(0,0,0,.35);font-size:15px;flex-shrink:0;}
+.hero__search-input{
+  flex:1;background:transparent;border:none;outline:none;
+  color:#111;font-size:14px;font-family:var(--font-body);
+}
+.hero__search-input::placeholder{color:rgba(0,0,0,.3);}
+
+/* Filter rows */
+.hero__city-row,.hero__filter-row{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:.6rem;
+}
+.hf-label{
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(0,0,0,.35);display:flex;align-items:center;margin-right:4px;
+}
+.hf-pill{
+  border:0.5px solid rgba(0,0,0,.2);background:transparent;
+  border-radius:999px;padding:5px 14px;font-size:12px;
+  color:rgba(0,0,0,.5);cursor:pointer;
+  font-family:var(--font-body);transition:all .12s;
+}
+.hf-pill:hover{background:rgba(0,0,0,.06);color:#111;}
+.hf-pill.on{background:rgba(0,0,0,.1);color:#111;border-color:rgba(0,0,0,.4);}
+.hf-divider{width:1px;height:16px;background:rgba(0,0,0,.15);align-self:center;}
+.hf-sort{position:relative;}
+.hf-sort-drop{
+  position:absolute;top:calc(100% + 6px);left:0;
+  background:#222;border:0.5px solid rgba(255,255,255,.12);
+  border-radius:8px;padding:5px;min-width:160px;z-index:100;
+  display:none;box-shadow:0 8px 24px rgba(0,0,0,.5);
+}
+.hf-sort-drop.open{display:block;}
+.hf-sort-item{
+  padding:7px 10px;border-radius:5px;font-size:12px;
+  color:rgba(255,255,255,.55);cursor:pointer;
+}
+.hf-sort-item:hover{background:rgba(0,0,0,.06);color:#111;}
+
+/* Dir results */
+.dir-section{background:#f8f8f0;padding:0 2rem 3rem;display:none;}
+.dir-section.open{display:block;}
+.dir-inner{max-width:760px;margin:0 auto;}
+
+/* ============================================================
+   SHOPIFY PLACEHOLDER — Featured Products (top)
+   Paste a Shopify section here in theme editor
+   ============================================================ */
+.shopify-slot{
+  background:var(--bg);
+  padding:80px 2rem;
+  border-top:1px solid var(--border);
+}
+.shopify-slot__label{
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text-muted);text-align:center;margin-bottom:2rem;
+}
+.shopify-slot__placeholder{
+  max-width:1200px;margin:0 auto;
+  min-height:400px;
+  border:1px dashed var(--border);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);font-size:13px;
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee{
+  overflow:hidden;white-space:nowrap;
+  padding:16px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.marquee--light{background:#e9e9e9;}
+.marquee--dark{background:#f8f8f0;}
+.marquee__inner{
+  display:inline-block;
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  font-family:var(--font-sub);
+}
+.marquee--light .marquee__inner{color:var(--text-light);animation:mq 32s linear infinite;}
+.marquee--dark .marquee__inner{color:rgba(0,0,0,.35);animation:mq-r 28s linear infinite;}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes mq-r{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+
+/* ============================================================
+   EDITORIAL BRICKS
+   ============================================================ */
+.brick{display:block;}
+@media(max-width:767px){.brick{grid-template-columns:1fr;}}
+
+.brick__img{position:relative;overflow:hidden;min-height:380px;background:#1a1a1a;}
+.brick__img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+.brick:hover .brick__img img{transform:scale(1.04);}
+.brick__img-placeholder{
+  width:100%;height:100%;min-height:380px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  opacity:.2;
+}
+
+.brick__text{
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:clamp(44px,6vw,84px);
+}
+.brick__eyebrow{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  margin-bottom:1rem;opacity:.5;
+}
+.brick__title{
+  font-size:clamp(28px,3.5vw,48px);
+  font-weight:400;line-height:1.12;letter-spacing:-.03em;
+  margin-bottom:1.25rem;
+}
+.brick__body{
+  font-size:14px;line-height:1.75;opacity:.7;
+  margin-bottom:2.5rem;max-width:400px;
+}
+.brick__cta{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid currentColor;border-radius:999px;
+  padding:11px 24px;font-size:13px;letter-spacing:.02em;
+  text-decoration:none;cursor:pointer;background:transparent;
+  align-self:flex-start;transition:background .15s,color .15s;
+  font-family:var(--font-body);
+}
+.brick__cta:hover{background:currentColor;color:var(--bg);}
+.brick__cta--inv:hover{background:currentColor;color:var(--bg-dark);}
+
+/* Color schemes */
+.s-dark{background:#f8f8f0;color:#fff;}
+.s-green{background:var(--green-mid);color:#fff;}
+.s-green-dark{background:var(--green-dark);color:#fff;}
+.s-ochre{background:var(--ochre);color:#fff;}
+.s-slate{background:var(--slate);color:#fff;}
+.s-cream{background:var(--warm-cream);color:#000;}
+.s-rose{background:var(--dusty-rose);color:#000;}
+.s-lav{background:var(--lavender);color:#000;}
+.s-red{background:var(--red-deep);color:#fff;}
+.s-bg{background:var(--bg);color:#000;}
+
+/* ============================================================
+   BRAND PARTNERS SCROLL STRIP
+   ============================================================ */
+.partners-strip{
+  background:var(--bg);
+  padding:60px 2rem;
+  border-top:1px solid var(--border);
+  overflow:hidden;
+}
+.partners-strip__head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  max-width:1200px;margin:0 auto 2rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--border);
+}
+.partners-strip__title{
+  font-size:clamp(18px,2.5vw,28px);font-weight:400;letter-spacing:-.02em;
+}
+.partners-strip__sub{font-size:12px;color:var(--text-muted);}
+.partners-row{
+  display:flex;gap:2px;
+  max-width:1200px;margin:0 auto;
+  overflow-x:auto;scrollbar-width:none;
+}
+.partners-row::-webkit-scrollbar{display:none;}
+.partner-card{
+  flex-shrink:0;
+  background:var(--bg-card);
+  padding:1.5rem 1.25rem;
+  min-width:180px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:160px;cursor:pointer;transition:background .15s;
+  border:1px solid transparent;
+}
+.partner-card:hover{background:#fff;border-color:var(--border);}
+.partner-card__name{font-size:16px;font-weight:400;letter-spacing:-.02em;margin-bottom:.3rem;}
+.partner-card__tag{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;}
+.partner-card__arrow{align-self:flex-end;opacity:.3;transition:opacity .12s;font-size:16px;}
+.partner-card:hover .partner-card__arrow{opacity:.9;}
+
+/* ============================================================
+   FEATURED PRODUCTS — EDITORIAL GRID
+   (Counterprint-style, Shopify-managed)
+   ============================================================ */
+.products-section{
+  background:var(--bg);
+  padding:80px 2rem 100px;
+  border-top:1px solid var(--border);
+}
+.products-section__inner{max-width:1200px;margin:0 auto;}
+.products-section__head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:2.5rem;
+  padding-bottom:1.25rem;
+  border-bottom:1px solid var(--border);
+}
+.products-section__title{
+  font-size:clamp(22px,3vw,38px);font-weight:400;letter-spacing:-.025em;
+}
+.products-section__link{
+  font-size:13px;color:var(--text-muted);text-decoration:none;
+  border-bottom:1px solid transparent;padding-bottom:1px;
+  transition:color .12s,border-color .12s;
+}
+.products-section__link:hover{color:var(--text);border-color:var(--text);}
+
+/* Shopify will inject its collection grid here */
+.shopify-products-slot{
+  min-height:500px;
+  border:1px dashed var(--border);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);font-size:13px;
+  /* Remove border once Shopify section is pasted in */
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media(max-width:600px){
+  .hero{min-height:60vh;padding:80px 1.25rem 40px;}
+  .brick{grid-template-columns:1fr;}
+  .brick__img{min-height:260px;}
+  .brick__text{padding:40px 1.5rem;}
+  .products-section__head{flex-direction:column;gap:.75rem;align-items:flex-start;}
+  .preview-nav__links{gap:1rem;}
+}
+
+
+
+/* Dir section overrides */
+#dirSection .page{max-width:760px;margin:0 auto;padding:0;height:auto;display:block;}
+#dirSection .layout{height:auto;overflow:visible;display:block;}
+#dirSection .scroll-box{overflow:visible;height:auto;padding:0;}
+#dirSection .sidebar{display:none;}
+#dirSection .card{margin-bottom:20px;}
+
+/* ============================================================
+   MODAL SYSTEM — single source of truth, forced fixed to viewport
+   Both #infoModal and #bookModal live inside #three33-portal which
+   is moved to document.body via JS so position:fixed is reliable
+   even inside Shopify's nested theme DOM.
+   ============================================================ */
+#infoModal.modal-overlay,
+#bookModal.book-modal-overlay {
+  display: none !important;
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
+  z-index: 2147483647 !important;
+  padding: 1.5rem !important;
+  background: rgba(0,0,0,.8) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+#infoModal.modal-overlay.open,
+#bookModal.book-modal-overlay.open {
+  display: flex !important;
+}
+#infoModal.modal-overlay {
+  align-items: center !important;
+  justify-content: center !important;
+}
+#bookModal.book-modal-overlay {
+  align-items: flex-end !important;
+  justify-content: center !important;
+}
+#infoModal .modal {
+  background: #1c1c1a !important;
+  border: 0.5px solid rgba(255,255,255,.12) !important;
+  border-radius: 14px !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  max-height: 85vh !important;
+  overflow-y: auto !important;
+  scrollbar-width: none !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+#infoModal .modal::-webkit-scrollbar{display:none;}
+#bookModal .book-modal {
+  background: #1c1c1a !important;
+  border: 0.5px solid rgba(255,255,255,.12) !important;
+  border-radius: 14px 14px 0 0 !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  padding: 20px 20px 32px !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+</style>
+</head>
+<body>
+
+
+<style>
+
+
+
+
+
+.page{max-width:800px;margin:0 auto;height:100%;display:flex;flex-direction:column;padding:0 1.5rem;position:relative;}
+
+/* Top bar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 0 .75rem;}
+.topbar-title{font-size:16px;font-weight:400;font-family:Georgia,serif;color:#fff;letter-spacing:-.3px;}
+.view-toggle{display:flex;gap:3px;}
+.vt-btn{background:transparent;border:0.5px solid rgba(255,255,255,.15);border-radius:4px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.4);cursor:pointer;transition:all .12s;}
+.vt-btn:hover{color:#fff;}
+.vt-btn.on{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(0,0,0,.3);}
+
+/* Search + filter block — like Soar */
+.control-block{
+  background:rgba(255,255,255,.05);
+  border:0.5px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  padding:14px 16px;
+  margin-bottom:1.25rem;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* Search row */
+.search-row{display:flex;align-items:center;gap:10px;position:relative;}
+.search-icon{color:rgba(255,255,255,.3);font-size:14px;flex-shrink:0;}
+.search-input{
+  flex:1;background:transparent;border:none;outline:none;
+  color:#fff;font-size:14px;font-family:-apple-system,sans-serif;
+}
+.search-input::placeholder{color:rgba(255,255,255,.25);}
+
+.block-divider{height:0.5px;background:rgba(255,255,255,.08);}
+
+/* Filter row */
+.filter-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.cl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-right:2px;}
+.pb{border:0.5px solid rgba(255,255,255,.15);background:transparent;border-radius:99px;padding:4px 13px;font-size:12px;cursor:pointer;color:rgba(255,255,255,.45);transition:all .12s;}
+.pb:hover{background:rgba(255,255,255,.06);color:#fff;}
+.pb.on{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(0,0,0,.35);}
+.filter-divider{width:1px;height:14px;background:rgba(255,255,255,.1);flex-shrink:0;}
+
+/* Curated dropdown */
+.curated-wrap{position:relative;}
+.curated-btn{border:0.5px solid rgba(255,255,255,.15);background:transparent;border-radius:99px;padding:4px 13px;font-size:12px;cursor:pointer;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:4px;transition:all .12s;}
+.curated-btn:hover{background:rgba(255,255,255,.06);color:#fff;}
+.curated-btn.on{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.4);padding-right:10px;}
+.curated-dropdown{position:absolute;top:calc(100% + 6px);left:0;background:#222220;border:0.5px solid rgba(255,255,255,.12);border-radius:8px;padding:5px;min-width:180px;z-index:100;display:none;box-shadow:0 8px 24px rgba(0,0,0,.5);}
+.curated-dropdown.open{display:block;}
+.curated-item{padding:7px 10px;border-radius:5px;font-size:12px;color:rgba(255,255,255,.55);cursor:pointer;transition:background .1s;}
+.curated-item:hover{background:rgba(0,0,0,.06);color:#111;}
+.curated-item.on{color:#fff;background:rgba(255,255,255,.08);}
+
+/* Main layout */
+.layout{display:flex;flex:1;overflow:hidden;}
+.sidebar{width:40px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;padding:4px 0 8px;}
+.dashes{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;justify-content:center;}
+.dash{width:14px;height:2px;background:rgba(255,255,255,.15);border-radius:99px;cursor:pointer;transition:width .2s,background .2s;flex-shrink:0;}
+.dash.on{width:24px;background:rgba(255,255,255,.85);}
+.dash:hover{background:rgba(255,255,255,.4);}
+.sidebar-icons{display:flex;flex-direction:column;align-items:center;gap:10px;padding-top:14px;}
+.sidebar-icon{background:transparent;border:none;cursor:pointer;color:rgba(255,255,255,.25);font-size:13px;line-height:1;padding:0;transition:color .15s;}
+.sidebar-icon:hover{color:rgba(255,255,255,.6);}
+.scroll-box{flex:1;overflow-y:scroll;overflow-x:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-left:10px;padding-right:2px;}
+.scroll-box::-webkit-scrollbar{display:none;}
+
+/* Cards */
+.card{width:100%;height:150px;border-radius:6px;margin-bottom:36px;cursor:pointer;position:relative;overflow:hidden;display:flex;align-items:stretch;transition:transform .2s cubic-bezier(.34,1.4,.64,1),box-shadow .2s ease;box-shadow:2px 2px 14px rgba(0,0,0,.35);}
+.card:hover{transform:translateX(5px);box-shadow:4px 4px 22px rgba(0,0,0,.45);}
+.card.on{transform:translateX(7px);box-shadow:6px 6px 26px rgba(0,0,0,.5);}
+.card-strip{width:4px;flex-shrink:0;}
+.card-body{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:16px 18px;position:relative;}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.card-name{font-size:19px;font-weight:400;font-family:Georgia,serif;line-height:1.2;letter-spacing:-.3px;color:#fff;}
+.card-hood{font-size:11px;opacity:.55;text-align:right;max-width:40%;color:#fff;}
+.card-mid{font-size:11px;opacity:.45;margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff;}
+.card-bottom-row{display:flex;justify-content:space-between;align-items:flex-end;}
+.card-tag{font-size:9px;letter-spacing:.07em;text-transform:uppercase;opacity:.4;color:#fff;}
+.card-right-row{display:flex;align-items:center;gap:6px;}
+.icon-btn{font-size:11px;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:transparent;cursor:pointer;font-family:-apple-system,sans-serif;transition:background .12s,color .12s;text-decoration:none;}
+.icon-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
+.expand-arrow{font-size:12px;color:rgba(255,255,255,.25);transition:transform .25s ease;user-select:none;}
+.card.on .expand-arrow{transform:rotate(180deg);color:rgba(255,255,255,.55);}
+.feat-dot{position:absolute;top:14px;right:18px;width:6px;height:6px;background:#3b82f6;border-radius:50%;box-shadow:0 0 0 2px rgba(59,130,246,.3);}
+.card-right-edge-strip{width:5px;flex-shrink:0;background:rgba(0,0,0,.18);}
+
+/* Detail panel */
+.card-detail{overflow:hidden;max-height:0;transition:max-height .35s cubic-bezier(.4,0,.2,1);border-radius:0 0 6px 6px;margin-top:-2px;}
+.card.on + .card-detail{max-height:600px;}
+.card-detail-inner{padding:14px 16px 18px;}
+.detail-panels{display:flex;gap:10px;align-items:flex-start;}
+.detail-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.dblock{border-radius:8px;background:rgba(0,0,0,.2);border:0.5px solid rgba(255,255,255,.1);padding:14px 14px 12px;cursor:pointer;aspect-ratio:1;display:flex;flex-direction:column;justify-content:space-between;transition:background .15s;}
+.dblock:hover{background:rgba(0,0,0,.32);}
+.dblock-title{font-size:13px;font-weight:500;color:#fff;line-height:1.25;}
+.dblock-sub{font-size:10px;color:rgba(255,255,255,.45);line-height:1.4;margin-top:4px;}
+.dblock-cta{font-size:10px;color:rgba(0,0,0,.5);align-self:flex-end;}
+.slots{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.sp{font-size:10px;padding:3px 8px;border-radius:99px;border:0.5px solid rgba(255,255,255,.22);color:#fff;background:rgba(0,0,0,.15);text-decoration:none;}
+.picks-col{flex:1;display:flex;flex-direction:column;gap:6px;}
+.picks-label{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2px;}
+.pick-block{border-radius:8px;background:rgba(0,0,0,.2);border:0.5px solid rgba(255,255,255,.1);padding:14px;display:flex;flex-direction:column;justify-content:space-between;flex:1;}
+.pick-info{display:flex;flex-direction:column;height:100%;gap:6px;}
+.pick-name{font-size:13px;font-weight:500;color:#111;font-family:Georgia,serif;line-height:1.2;}
+.pick-sub{font-size:10px;color:rgba(255,255,255,.4);line-height:1.4;}
+.pick-order{font-size:10px;color:rgba(0,0,0,.5);text-decoration:none;align-self:flex-end;margin-top:auto;}
+.pick-order:hover{color:#fff;}
+
+/* Brand banner */
+.brand-banner{width:calc(100% - 8px);height:52px;border-radius:4px;margin-bottom:36px;margin-left:4px;display:flex;align-items:center;justify-content:space-between;padding:0 16px 0 12px;background:#1d4ed8;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;box-shadow:2px 3px 16px rgba(29,78,216,.4);position:relative;overflow:hidden;transform:rotateX(3deg);}
+.brand-banner::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:rgba(255,255,255,.35);}
+.brand-banner:hover{transform:rotateX(0deg) translateY(-2px);box-shadow:4px 6px 20px rgba(29,78,216,.5);}
+.brand-left{display:flex;align-items:center;gap:10px;}
+.brand-label{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.brand-name{font-size:14px;font-weight:500;color:#111;font-family:Georgia,serif;}
+.brand-tagline{font-size:10px;color:rgba(0,0,0,.5);}
+.brand-cta{font-size:10px;padding:3px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.28);color:#fff;background:transparent;cursor:pointer;white-space:nowrap;}
+
+/* Date strip */
+.date-strip{display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-bottom:1.25rem;border-bottom:0.5px solid rgba(255,255,255,.1);}
+.date-strip::-webkit-scrollbar{display:none;}
+.date-col{flex-shrink:0;flex:1;min-width:44px;display:flex;flex-direction:column;align-items:center;padding:6px 4px 10px;cursor:pointer;position:relative;transition:opacity .12s;}
+.date-col:hover{opacity:.7;}
+.date-day{font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:4px;}
+.date-num{font-size:15px;font-weight:400;color:rgba(255,255,255,.45);}
+.date-col.on .date-day{color:rgba(255,255,255,.7);}
+.date-col.on .date-num{color:#fff;font-weight:600;}
+.date-col.on::after{content:'';position:absolute;bottom:0;left:20%;right:20%;height:2px;background:#fff;border-radius:99px;}
+.date-col.today .date-num{color:#3b82f6;}
+.date-col.today.on::after{background:#3b82f6;}
+.date-header{font-size:20px;font-weight:400;font-family:Georgia,serif;color:#fff;letter-spacing:-.3px;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:0.5px solid rgba(255,255,255,.08);}
+.date-empty{font-size:13px;color:rgba(255,255,255,.3);padding:2rem 0;font-family:-apple-system,sans-serif;}
+
+/* Map */
+.map-placeholder{flex:1;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);border:0.5px solid rgba(255,255,255,.08);border-radius:8px;color:rgba(255,255,255,.2);font-size:13px;min-height:300px;}
+
+.empty{text-align:center;font-size:13px;color:rgba(255,255,255,.25);padding:3rem 0;}
+
+.explore-all-wrap{
+  text-align:center;
+  padding:1rem 0 2rem;
+}
+.explore-all-btn{
+  border:0.5px solid rgba(255,255,255,.2);
+  background:transparent;
+  border-radius:99px;
+  padding:10px 28px;
+  font-size:13px;
+  color:rgba(255,255,255,.6);
+  cursor:pointer;
+  font-family:-apple-system,sans-serif;
+  transition:all .15s;
+  letter-spacing:.02em;
+}
+.explore-all-btn:hover{
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  border-color:rgba(0,0,0,.35);
+}
+
+@media (max-width: 600px) {
+  .page{padding:0 .75rem;}
+  .control-block{padding:10px 12px;gap:8px;}
+  .filter-row{gap:4px;}
+  .pb{padding:3px 9px;font-size:11px;}
+  .card{
+    height:108px !important;
+    min-height:108px !important;
+    max-height:108px !important;
+    margin-bottom:14px;
+    overflow:hidden !important;
+  }
+  .card-front{overflow:hidden !important;}
+  .card-body{
+    padding:10px 12px !important;
+    overflow:hidden !important;
+  }
+  .card-top{flex-wrap:nowrap;overflow:hidden;}
+  .card-name{
+    font-size:15px !important;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:55%;
+  }
+  .card-hood{
+    font-size:9px !important;
+    max-width:42%;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .card-mid{
+    font-size:10px !important;
+    overflow:hidden !important;
+    text-overflow:ellipsis !important;
+    white-space:nowrap !important;
+    max-width:100%;
+    display:block !important;
+    margin-top:4px !important;
+  }
+  .card-tag{font-size:8px;}
+  .icon-btn{font-size:10px;padding:3px 8px;}
+  .feat-dot{top:8px;right:10px;}
+  .detail-panels{flex-direction:column;}
+  .detail-grid{grid-template-columns:1fr 1fr;width:100%;}
+  .picks-col{width:100%;}
+  .dblock{aspect-ratio:auto;min-height:75px;}
+  .brand-banner{height:auto;min-height:44px;padding:8px 12px;margin-bottom:16px;}
+  .brand-tagline{display:none;}
+  .topbar-title{font-size:14px;}
+  .sidebar{width:24px;}
+  .sidebar-icons{display:none;}
+  .dash{width:10px;}
+  .dash.on{width:16px;}
+  .card-right-edge-strip{display:none;}
+}
+
+.deal-badge{
+  display:inline-block;
+  font-size:8px;letter-spacing:.08em;text-transform:uppercase;
+  background:#f59e0b;color:#1a1a00;
+  padding:2px 7px;border-radius:99px;
+  font-weight:600;margin-bottom:4px;
+  font-family:-apple-system,sans-serif;
+}
+
+.claim-btn{
+  background:#f59e0b!important;
+  color:#1a1a00!important;
+  border-color:#f59e0b!important;
+  font-weight:700;
+}
+.no-touchevents .claim-btn:hover{background:#ffb733!important;}
+
+.deal-fine-print{
+  font-size:10px;
+  color:rgba(255,255,255,.32);
+  margin-top:4px;margin-bottom:4px;
+  font-family:-apple-system,sans-serif;
+}
+
+.card.coming-soon{
+  opacity:0.55;
+  filter:saturate(0.6);
+}
+.card.coming-soon .card-front{
+  border:1.5px dashed rgba(255,255,255,.2) !important;
+  box-shadow:none !important;
+}
+.card.coming-soon:hover{
+  transform:none !important;
+  box-shadow:none !important;
+  cursor:default;
+}
+.cs-badge{
+  font-size:8px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+  font-family:-apple-system,sans-serif;
+  margin-right:6px;
+}
+
+/* Modal overlay */
+.modal-overlay{
+  position:absolute;top:0;left:0;right:0;bottom:0;min-height:100%;
+  background:rgba(0,0,0,.75);
+  z-index:1000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:1.5rem;
+  backdrop-filter:blur(4px);
+}
+.modal-overlay.open{display:flex;}
+.modal{
+  background:#1c1c1a;
+  border:0.5px solid rgba(255,255,255,.12);
+  border-radius:14px;
+  width:100%;max-width:480px;
+  max-height:85vh;
+  overflow-y:auto;
+  scrollbar-width:none;
+  position:relative;
+}
+.modal::-webkit-scrollbar{display:none;}
+.modal-photo{
+  width:100%;height:180px;
+  border-radius:14px 14px 0 0;
+  background:#2a2a28;
+  position:relative;
+  overflow:hidden;
+  display:flex;align-items:flex-end;
+  padding:14px 16px;
+}
+.modal-photo-bg{
+  position:absolute;inset:0;
+  opacity:0.8;
+}
+.modal-photo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.6) 0%,transparent 60%);
+}
+.modal-photo-title{
+  font-size:22px;font-weight:400;
+  font-family:Georgia,serif;color:#fff;
+  position:relative;z-index:1;
+  letter-spacing:-.3px;
+}
+.modal-close{
+  position:absolute;top:12px;right:12px;
+  background:rgba(0,0,0,.4);border:none;
+  color:#fff;font-size:16px;
+  width:30px;height:30px;border-radius:50%;
+  cursor:pointer;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+}
+.modal-body{padding:16px 18px 20px;}
+.modal-meta{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px;font-family:-apple-system,sans-serif;}
+.modal-desc{font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:14px;}
+.modal-context{font-size:12px;color:rgba(0,0,0,.5);line-height:1.65;font-style:italic;border-left:2px solid rgba(255,255,255,.15);padding-left:12px;margin-bottom:16px;}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.modal-btn{
+  border:0.5px solid rgba(255,255,255,.25);
+  background:transparent;border-radius:99px;
+  padding:8px 16px;font-size:12px;
+  color:#fff;cursor:pointer;
+  font-family:-apple-system,sans-serif;
+  transition:background .12s;
+}
+.modal-btn:hover{background:rgba(255,255,255,.1);}
+.modal-btn.primary{background:rgba(255,255,255,.12);border-color:rgba(0,0,0,.35);}
+
+/* Book modal */
+.book-modal-overlay{
+  position:absolute;top:0;left:0;right:0;bottom:0;min-height:100%;
+  background:rgba(0,0,0,.75);
+  z-index:1001;
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  backdrop-filter:blur(4px);
+}
+.book-modal-overlay.open{display:flex;align-items:flex-end;}
+.book-modal{
+  background:#1c1c1a;
+  border:0.5px solid rgba(255,255,255,.12);
+  border-radius:14px 14px 0 0;
+  width:100%;max-width:480px;
+  padding:20px 20px 32px;
+}
+.book-modal-title{font-size:18px;font-weight:400;font-family:Georgia,serif;color:#fff;margin-bottom:4px;}
+.book-modal-sub{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;}
+.book-modal-close{
+  position:absolute;top:16px;right:16px;
+  background:transparent;border:none;color:rgba(255,255,255,.4);
+  font-size:18px;cursor:pointer;
+}
+.slots-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.slot-btn{
+  border:0.5px solid rgba(255,255,255,.2);
+  background:transparent;border-radius:8px;
+  padding:8px 14px;font-size:12px;color:#fff;
+  cursor:pointer;font-family:-apple-system,sans-serif;
+  transition:background .12s;
+}
+.slot-btn:hover{background:rgba(255,255,255,.1);}
+.no-slots{font-size:12px;color:rgba(0,0,0,.35);font-style:italic;}
+
+/* Override page/layout styles for inline dir */
+#dirSection .page{max-width:760px;margin:0 auto;padding:0;height:auto;display:block;}
+#dirSection .layout{height:auto;overflow:visible;display:block;}
+#dirSection .scroll-box{overflow:visible;height:auto;padding:0;}
+#dirSection .sidebar{display:none;}
+#dirSection .card{margin-bottom:20px;}
+
+</style>
+
+<div id="three33-hero-wrap">
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__inner">
+    <p class="hero__eyebrow">Los Angeles · New York · San Diego</p>
+    <h1 class="hero__title">A home for healthy food,<br>close to you</h1>
+    <p class="hero__sub">Book time slots at the best plant-forward restaurants.<br>Curated products. Real community.</p>
+
+    <div class="hero__search">
+      <span class="hero__search-icon">⌕</span>
+      <input class="hero__search-input" id="heroSearch" type="text"
+        placeholder="Search health &amp; veg friendly places &amp; happenings..."
+        oninput="onHeroSearch()">
+    </div>
+
+    <div class="hero__city-row">
+      <span class="hf-label">City</span>
+      <button class="hf-pill city" onclick="setHeroCity(this,'LA',event)">Los Angeles</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'NYC',event)">New York</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'SD',event)">San Diego</button>
+    </div>
+
+    <div class="hero__filter-row">
+      <button class="hf-pill cat" onclick="setHeroCat(this,'date',event)">Events by Date</button>
+      <button class="hf-pill on cat" onclick="setHeroCat(this,'book',event)">Book</button>
+      <button class="hf-pill cat" style="opacity:.5" onclick="setHeroCat(this,'order',event)">Order</button>
+      <button class="hf-pill cat" style="opacity:.5" onclick="setHeroCat(this,'shop',event)">Shop</button>
+      <div class="hf-divider"></div>
+      <button class="hf-pill cat" onclick="setHeroCat(this,'deals',event)">Deal Drop</button>
+      <button class="hf-pill cat" style="opacity:.5" onclick="setHeroCat(this,'wellness',event)">Wellness</button>
+      <div class="hf-divider"></div>
+      <div class="hf-sort">
+        <button class="hf-pill" id="sortBtn" onclick="toggleSort()">Sort ▾</button>
+        <div class="hf-sort-drop" id="sortDrop">
+          <div class="hf-sort-item" onclick="setHeroSort('neighborhood')">By Neighborhood</div>
+          <div class="hf-sort-item" onclick="setHeroSort('picks')">333 Picks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Directory results — inline, hidden until filter activated -->
+<section class="dir-section" id="dirSection">
+  <div class="dir-inner" id="dirList"></div>
+</section>
+</div>
+
+<div id="three33-portal" class="three33-portal">
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal">
+      <div class="modal-photo" id="modalPhoto" style="width:100%;height:180px;border-radius:14px 14px 0 0;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:14px 16px;">
+        <div id="modalPhotoBg" style="position:absolute;inset:0;opacity:.8;"></div>
+        <button onclick="closeModal('infoModal')" style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.4);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;z-index:2;">✕</button>
+        <span id="modalTitle" style="font-size:22px;font-weight:400;color:#fff;position:relative;z-index:1;font-family:Georgia,serif;letter-spacing:-.3px;"></span>
+      </div>
+      <div style="padding:16px 18px 20px;">
+        <div id="modalMeta" style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px;font-family:-apple-system,sans-serif;"></div>
+        <div id="modalDesc" style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:14px;"></div>
+        <div id="modalContext" style="font-size:12px;color:rgba(0,0,0,.5);line-height:1.65;font-style:italic;border-left:2px solid rgba(255,255,255,.15);padding-left:12px;margin-bottom:16px;"></div>
+        <div id="modalDishes" style="display:none;margin-bottom:14px;"></div>
+        <div id="modalActions" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="book-modal-overlay" id="bookModal">
+    <div class="book-modal">
+      <button onclick="closeModal('bookModal')" style="position:absolute;top:16px;right:16px;background:transparent;border:none;color:rgba(255,255,255,.4);font-size:18px;cursor:pointer;">✕</button>
+      <div id="bookModalTitle" style="font-size:18px;font-weight:400;font-family:Georgia,serif;color:#fff;margin-bottom:4px;"></div>
+      <div id="bookModalSub" style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px;"></div>
+      <div id="bookModalSlots" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+var city="LA"; var cat="book"; var searchQuery=""; var curatedFilter=""; var currentView="list"; var showingAll=false; var cur=null; var partnerMap={};
+
+
+
+var all={
+  LA:[
+    {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#2d5a3d",active:true,locations:["Larchmont","Venice"],strip:"#4a9460",d:"Organic plant-based bowls, plates, and elixirs.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
+    {n:"Sweetgreen",h:"Hollywood La Brea",t:"Restaurant",f:false,bg:"#3a6644",strip:"#5a9060",d:"Seasonal salads, wraps, and grain bowls. Hollywood La Brea as initial 333 hub.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],active:true},
+    {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#8b4513",strip:"#c46020",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options. Monthly box available.",monthly:true,active:true,sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
+    {n:"Peace Pies × 333",h:"SD original · Los Feliz pickup & dinners",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"Raw vegan pies, elixirs. Incredible wraps, salads, and dishes. Monthly box available.",monthly:true,sl:[]},
+    {n:"Gracias Madre",h:"WeHo",t:"Restaurant",f:false,bg:"#7b3f00",strip:"#b06020",d:"Plant-based Mexican. Wood-fired vegetables and seasonal plates.",sl:[]},
+    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and seasonal plates.",sl:[]},
+    {n:"Woon",h:"Echo Park · Silver Lake",t:"Restaurant",f:false,bg:"#1a3a5c",strip:"#2a5a8c",d:"Beloved LA Chinese comfort food made with intention.",sl:[]},
+    {n:"Butcher's Daughter",h:"WeHo · Venice",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",sl:[]},
+    {n:"Alfalfa",h:"Larchmont · Santa Monica",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Health-forward fast casual. Wraps, bowls, and smoothies.",sl:[]},
+    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta and wood-fired dishes.",sl:[]},
+    {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Award winning vegan artisan bakery. Monthly boxes available — curated drops delivered to your door.",monthly:true,sl:[]},
+    {n:"Lazy Acres",h:"Los Feliz · SM",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Widest selection in CA of high quality niche products.",sl:[]},
+    {n:"Loqui",h:"Culver City · DTLA",t:"Deal",f:false,bg:"#2a4a3a",strip:"#3a6a4a",d:"Exceptional Mexican-inspired tacos and bowls. Clean ingredients, bold flavors.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Home State",h:"Multiple locations · LA",t:"Deal",f:false,bg:"#8a4a2a",strip:"#aa6a3a",d:"Texas breakfast and comfort food done right. Kolaches, breakfast tacos, and more.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Awan",h:"LA",t:"Deal",f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Premium vegan ice cream.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Besties Vegan Paradise",h:"East Hollywood · LA",t:"Grocery",f:false,bg:"#c45a8a",strip:"#e07aaa",d:"LA's beloved fully vegan grocery and deli. Exceptional prepared foods, pantry, and specialty products.",sl:[]},
+    {n:"Jimbo's",h:"San Diego · LA",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"Beloved San Diego natural grocer. Delivered to the LA area.",sl:[]},
+    {n:"Hip Vegan",h:"Ojai original · Los Feliz pickup & dinners",t:"Restaurant",f:false,bg:"#7a4a6a",strip:"#9a6a8a",d:"Ojai-rooted plant-based kitchen bringing its way to LA. Creative, colorful, feel-good food.",sl:[]},
+    {n:"Kitchen Mouse",h:"Highland Park",t:"Restaurant",f:false,bg:"#5a3a6a",strip:"#7a5a8a",d:"Beloved vegan cafe and bakery. Creative seasonal dishes, exceptional coffee and baked goods.",sl:[]},
+    {n:"Be You",h:"Silver Lake",t:"Restaurant",f:false,bg:"#3a5a7a",strip:"#5a7a9a",d:"Health-forward cafe rooted in wellness and community. Clean bowls, juices, and daily specials.",sl:[]},
+    {n:"Joy",h:"Highland Park · LA",t:"Restaurant",f:false,bg:"#3a5a6a",strip:"#5a7a8a",d:"Taiwanese cuisine in a larger, vibrant space. Sister spot to Pine & Crane, James Beard nominated.",sl:[]},
+    {n:"Salaya Thai",h:"Thai Town · Los Feliz",t:"Restaurant",f:false,bg:"#6a3a5a",strip:"#8a5a7a",d:"Thai cuisine with a health-conscious approach. Fresh herbs, clean proteins, vibrant flavors.",sl:[]},
+    {n:"Old Gold Pizza",h:"Los Feliz · Barnsdall Park",t:"Restaurant",f:false,bg:"#8a6a2a",strip:"#aa8a3a",d:"Chef-driven pizza, salads and more. Creative seasonal menu by Barnsdall Park in Los Feliz.",sl:[]},
+    {n:"Magpies Softserve",h:"Highland Park · Silver Lake",t:"Restaurant",f:false,bg:"#c4607a",strip:"#e0809a",d:"Non-dairy soft serve. Monthly run club at both locations — free soft serve included. Order & subscribe.",sl:[],monthly:true},
+    {n:"Erewhon",h:"Multiple locations · LA",t:"Restaurant",f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"LA's iconic wellness grocer. Exceptional vegan prepared options — curated for 333 group dinners.",sl:[]},
+    {n:"Rascals × 333",h:"SB original · LA pop-ups & events",t:"Restaurant",f:false,bg:"#4a6a5a",strip:"#6a8a7a",d:"Santa Barbara's beloved vegan kitchen. Bringing creative plant-based dishes to LA pop-ups and events.",sl:[]},
+    {n:"Veggie Grill × 333",h:"Parks & community spaces · LA",t:"Event",f:false,bg:"#5a7a2a",strip:"#7a9a3a",d:"Custom 333 × Veggie Grill menu. Pop-ups at parks, coffee shops, and community spaces around LA.",sl:[]},
+    {n:"Usal Project",h:"Los Feliz",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
+    {n:"333 × Hosts",h:"Los Angeles",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+  ],
+  NYC:[
+    {n:"Jajaja",h:"6 locations · NYC",t:"Restaurant",f:true,bg:"#b35c1e",strip:"#d4782a",d:"Plant-based Mexican street food. One of NYC's most beloved vegan spots.",sl:[]},
+    {n:"By Chloe",h:"Soho",t:"Restaurant",f:true,bg:"#e8a0a0",strip:"#d07070",d:"Fast-casual plant-based comfort food. Burgers, bowls, and baked goods.",sl:[]},
+    {n:"Peace Food Cafe",h:"2 locations · NYC",t:"Restaurant",f:false,bg:"#6b8e6b",strip:"#8aaa8a",d:"Vegan cafe and bakery. Wholesome plates, fresh juices, and housemade desserts.",sl:[]},
+    {n:"Divya's Kitchen",h:"East Village",t:"Restaurant",f:false,bg:"#8b6914",strip:"#b08a20",d:"Ayurvedic plant-based cooking. Rooted in ancient Indian wellness traditions.",sl:[]},
+    {n:"Le Botaniste",h:"Multiple locations",t:"Restaurant",f:false,bg:"#3a5a2a",strip:"#5a7a3a",d:"Belgian organic plant-based restaurant. Beautifully plated, deeply nourishing.",sl:[]},
+    {n:"Elbow Bread",h:"New York",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Artisan bakery. Sourdough, pastries, and seasonal specials.",sl:[]},
+    {n:"Matchaful",h:"Multiple locations",t:"Restaurant",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"Ceremonial grade matcha cafe. Clean lattes, smoothies, and snacks. Limited edition 333 product drops.",sl:[]},
+    {n:"Butcher's Daughter",h:"West Village",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",sl:[]},
+    {n:"Orchard Grocer",h:"Lower East Side",t:"Restaurant",f:false,bg:"#5a7a3a",strip:"#7a9a50",d:"NYC's fully plant-based deli. Exceptional sandwiches and prepared foods.",sl:[]},
+    {n:"Happier Grocery",h:"Multiple locations · NYC",t:"Grocery",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"Plant-forward grocery and hot bar. Fresh prepared foods, pantry staples, and daily specials.",sl:[]},
+    {n:"Springbone",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a6a3a",strip:"#aa8a50",d:"Bone broth focused bowls and plates. Clean proteins, nourishing broths, simple ingredients.",sl:[]},
+    {n:"Paulie Gee's",h:"Greenpoint · Brooklyn",t:"Restaurant",f:false,bg:"#5a3a2a",strip:"#7a5a3a",d:"Legendary artisan pizza. Wood-fired pies with creative toppings. Vegan options that actually deliver.",sl:[]},
+    {n:"Spicy Moon",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a2a2a",strip:"#aa4a4a",d:"NYC's beloved Sichuan vegan restaurant. Bold, spicy, deeply satisfying plant-based Chinese food.",sl:[]},
+    {n:"Usal Project",h:"New York",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
+    {n:"333 × Hosts",h:"New York",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+  ],
+  Bay:[
+    {n:"Usal Project",h:"Bay Area",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
+    {n:"333 × Hosts",h:"Bay Area",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+  ],
+  SD:[
+    {n:"Peace Pies",h:"Multiple locations · SD",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"Raw vegan pies, elixirs, and living food plates. Monthly box available. The San Diego original.",sl:[]},
+    {n:"Donna Jean",h:"North Park · SD",t:"Restaurant",f:true,bg:"#8b3a3a",strip:"#b05050",d:"Beloved plant-based Italian-inspired restaurant. Creative seasonal menus, housemade pasta.",sl:[]},
+    {n:"Kindred",h:"South Park · SD",t:"Restaurant",f:true,bg:"#2a2a4a",strip:"#4a4a80",d:"Vegan heavy metal bar and restaurant. One of the most acclaimed plant-based spots in the US.",sl:[]},
+    {n:"Evolution Fast Food",h:"North Park · SD",t:"Restaurant",f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Plant-based fast food in the other half of the Donna Jean space. Burgers, fries, and comfort food done vegan.",sl:[]},
+    {n:"Civico 2045",h:"Little Italy · SD",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Sister spot to Civico 2064 in LA. Italian plant-based, wood-fired.",sl:[]},
+    {n:"Trilogy Sanctuary",h:"La Jolla · SD",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Rooftop plant-based cafe and yoga studio. Juices, bowls, and stunning ocean views.",sl:[]},
+    {n:"New Wave Bagels",h:"San Diego",t:"Bakery",f:false,bg:"#4a6a8a",strip:"#6a8aaa",d:"Plant-based bagels and spreads. Creative flavors, clean ingredients, San Diego staple.",sl:[]},
+    {n:"Hazel & Jade",h:"San Diego",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Artisan bakery. Beautiful pastries, breads, and seasonal specials.",sl:[]},
+    {n:"People's Market",h:"San Diego",t:"Grocery",f:false,bg:"#5a6a3a",strip:"#7a8a50",d:"Community-rooted natural market. Local, organic, and consciously sourced.",sl:[]},
+    {n:"People's Market Deli",h:"San Diego",t:"Restaurant",f:false,bg:"#6a7a4a",strip:"#8a9a60",d:"The deli counter inside People's Market. Fresh, plant-forward prepared foods daily.",sl:[]},
+    {n:"Jimbo's",h:"Multiple locations · SD",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"San Diego's beloved natural grocer. The original home base.",sl:[]},
+    {n:"Lazy Acres",h:"San Diego",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Wide selection of natural and specialty products.",sl:[]},
+    {n:"Usal Project",h:"San Diego",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
+    {n:"333 × Hosts",h:"San Diego",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+  ]
+};
+
+var brandsByCity={
+  LA:[
+    {n:"Abbott's",tagline:"Craft plant-based proteins"},
+    {n:"Little Sesame",tagline:"Organic hummus & spreads"},
+    {n:"Laird Superfood",tagline:"Clean creamers & adaptogens"},
+  ],
+  NYC:[
+    {n:"Treeline",tagline:"Artisan cashew-based cheese"},
+    {n:"Pacha",tagline:"Gluten-free breads & tortillas"},
+    {n:"Sunny's Fine Foods",tagline:"Clean, simple, delicious"},
+  ],
+  SD:[
+    {n:"Primal Kitchen",tagline:"Real food sauces & dressings"},
+    {n:"Little Sesame",tagline:"Organic hummus & spreads"},
+    {n:"Laird Superfood",tagline:"Clean creamers & adaptogens"},
+  ],
+};
+
+var city='NYC', cat='book', cur=null, searchQuery='', curatedFilter='', currentView='list';
+var CUTOFF=6;
+var showingAll=false;
+
+// Build partner lookup map
+var partnerMap={};
+function buildPartnerMap(){
+  Object.keys(all).forEach(function(c){
+    all[c].forEach(function(p){ partnerMap[p.n]=p; });
+  });
+}
+buildPartnerMap();
+// Re-run on DOM ready in case Shopify deferred execution
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', function(){ buildPartnerMap(); });
+}
+
+// ============================================================
+// GOOGLE SHEETS DATA SOURCE
+// Set SHEET_CSV_URL below (the "Publish to web" CSV link) to load
+// live partner data instead of the hardcoded array above.
+// If empty or the fetch fails, the hardcoded `all` data above is
+// used as-is — nothing breaks if the sheet isn't set up yet.
+// ============================================================
+var SHEET_CSV_URL = ""; // <-- paste your published CSV URL here
+
+function parseCSV(text){
+  var rows=[]; var row=[]; var field=''; var inQuotes=false;
+  for(var i=0;i<text.length;i++){
+    var c=text[i], n=text[i+1];
+    if(inQuotes){
+      if(c==='"'&&n==='"'){ field+='"'; i++; }
+      else if(c==='"'){ inQuotes=false; }
+      else field+=c;
+    } else {
+      if(c==='"') inQuotes=true;
+      else if(c===','){ row.push(field); field=''; }
+      else if(c==='\r'){ /* skip */ }
+      else if(c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; }
+      else field+=c;
+    }
+  }
+  if(field.length||row.length){ row.push(field); rows.push(row); }
+  return rows;
+}
+
+function csvToPartnerData(csvText){
+  var rows=parseCSV(csvText);
+  if(!rows.length) return null;
+  var headers=rows[0].map(function(h){ return h.trim(); });
+  var data={LA:[],NYC:[],SD:[]};
+  for(var r=1;r<rows.length;r++){
+    var cells=rows[r];
+    if(!cells.length||!cells[0]) continue;
+    var obj={};
+    headers.forEach(function(h,idx){ obj[h]=(cells[idx]||'').trim(); });
+    if(!obj.city||!obj.name) continue;
+
+    function daySlots(dayKey,dayLabel){
+      if(!obj[dayKey]) return [];
+      return obj[dayKey].split(',').map(function(t){ return t.trim(); }).filter(Boolean).map(function(tm){ return {day:dayLabel,tm:tm}; });
+    }
+    var sl=[].concat(
+      daySlots('mon','Mon'), daySlots('tue','Tue'), daySlots('wed','Wed'), daySlots('thu','Thu')
+    );
+
+    var partner={
+      n: obj.name,
+      h: obj.neighborhood||'',
+      t: obj.type||'Restaurant',
+      d: obj.description||'',
+      f: (obj.featured||'').toUpperCase()==='TRUE',
+      active: (obj.active||'').toUpperCase()==='TRUE',
+      dealOnly: (obj.dealOnly||'').toUpperCase()==='TRUE',
+      deal: (obj.type==='Deal')||(obj.dealOnly||'').toUpperCase()==='TRUE',
+      bg: obj.bgColor||'#3a3a3a',
+      strip: obj.stripColor||'#5a5a5a',
+      sl: sl
+    };
+    if(obj.dealFace) partner.dealFace=parseInt(obj.dealFace,10);
+    if(obj.dealPrice) partner.dealPrice=parseInt(obj.dealPrice,10);
+
+    if(!data[obj.city]) data[obj.city]=[];
+    data[obj.city].push(partner);
+  }
+  return data;
+}
+
+function loadSheetData(){
+  if(!SHEET_CSV_URL) return; // no sheet configured yet — keep hardcoded data
+  fetch(SHEET_CSV_URL)
+    .then(function(res){
+      if(!res.ok) throw new Error('Sheet fetch failed: '+res.status);
+      return res.text();
+    })
+    .then(function(csvText){
+      var parsed=csvToPartnerData(csvText);
+      if(parsed){
+        all=parsed;
+        partnerMap={};
+        buildPartnerMap();
+        if(typeof render==='function') render();
+        if(typeof showDir==='function' && document.getElementById('dirSection') && document.getElementById('dirSection').classList.contains('open')) showDir();
+      }
+    })
+    .catch(function(err){
+      console.warn('Could not load Google Sheet data, using built-in partner list instead:', err);
+    });
+}
+loadSheetData();
+
+function getList(){
+  var items=(all[city]||[]).filter(function(p){ return cat==='deals'?p.deal:!p.dealOnly; });
+  if(cat==='book') items=items.filter(function(p){ return p.t==='Restaurant'||p.t==='Event'; });
+  if(cat==='wellness') items=items.filter(function(p){ return p.t==='Wellness'; });
+  else if(cat==='date') items=items.filter(function(p){ return p.t==='Event'; });
+  else if(cat==='order') items=items.filter(function(p){ return p.t==='Restaurant'||p.t==='Bakery'; });
+  else if(cat==='shop') items=items.filter(function(p){ return p.t==='Grocery'; });
+  if(curatedFilter==='neighborhood') items=items.slice().sort(function(a,b){ return a.h.localeCompare(b.h); });
+  else if(curatedFilter==='picks'||curatedFilter==='featured') items=items.filter(function(p){ return p.f; });
+  else if(curatedFilter==='new') items=items.slice(-4);
+  if(searchQuery) items=items.filter(function(p){
+    return p.n.toLowerCase().indexOf(searchQuery)>-1||p.h.toLowerCase().indexOf(searchQuery)>-1||p.d.toLowerCase().indexOf(searchQuery)>-1;
+  });
+  return items;
+}
+
+function onSearch(){
+  searchQuery=document.getElementById('searchInput').value.toLowerCase();
+  showingAll=false; render();
+}
+
+function toggleCurated(){
+  if(curatedFilter){ setCurated(curatedFilter); }
+  else { document.getElementById('curatedDrop').classList.toggle('open'); }
+}
+
+var curatedLabels={neighborhood:'By Neighborhood',picks:'333 Picks'};
+function setCurated(val){
+  curatedFilter=curatedFilter===val?'':val;
+  document.querySelectorAll('.curated-item').forEach(function(el){el.classList.remove('on');});
+  var btn=document.getElementById('curatedBtn');
+  if(curatedFilter){
+    document.querySelectorAll('.curated-item').forEach(function(el){
+      if(el.getAttribute('onclick').indexOf(val)>-1) el.classList.add('on');
+    });
+    btn.classList.add('on');
+    btn.innerHTML=curatedLabels[curatedFilter]+' <span style="font-size:11px;opacity:.7;margin-left:2px;">\u2715</span>';
+  } else {
+    btn.classList.remove('on');
+    btn.innerHTML='Sort \u25be';
+  }
+  document.getElementById('curatedDrop').classList.remove('open');
+  showingAll=false; render();
+}
+
+document.addEventListener('click',function(e){
+  var wrap=document.querySelector('.curated-wrap');
+  if(wrap&&!wrap.contains(e.target)) document.getElementById('curatedDrop').classList.remove('open');
+});
+
+function render(){
+  if(currentView==='map') return;
+  cur=null;
+  var listEl=document.getElementById('list');
+  listEl.innerHTML='';
+  var brands=brandsByCity[city]||brandsByCity.LA;
+  var items=getList();
+
+  if(cat==='date'){
+    var today=new Date();
+    var dayNames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var strip=document.createElement('div'); strip.className='date-strip';
+    var selectedDate=0;
+    function buildStrip(){
+      strip.innerHTML='';
+      for(var i=0;i<60;i++){
+        var d=new Date(today); d.setDate(today.getDate()+i);
+        var col=document.createElement('div');
+        col.className='date-col'+(i===selectedDate?' on':'')+(i===0?' today':'');
+        col.innerHTML='<span class="date-day">'+(i===0?'Today':dayNames[d.getDay()].slice(0,3))+'</span><span class="date-num">'+d.getDate()+'</span>';
+        (function(idx){ col.addEventListener('click',function(){ selectedDate=idx; buildStrip(); buildDateCards(); }); })(i);
+        strip.appendChild(col);
+      }
+    }
+    function buildDateCards(){
+      var existing=listEl.querySelectorAll('.card,.card-detail,.date-header,.date-empty');
+      existing.forEach(function(el){el.remove();});
+      var d=new Date(today); d.setDate(today.getDate()+selectedDate);
+      var hdr=document.createElement('div'); hdr.className='date-header';
+      hdr.textContent=dayNames[d.getDay()]+', '+monthNames[d.getMonth()]+' '+d.getDate();
+      listEl.appendChild(hdr);
+      var msg=document.createElement('div'); msg.className='date-empty';
+      msg.textContent='No events scheduled yet \u2014 check back soon.';
+      listEl.appendChild(msg);
+    }
+    listEl.appendChild(strip);
+    buildStrip(); buildDateCards(); buildDashes(0);
+    return;
+  }
+
+  if(!items.length){ listEl.innerHTML='<div class="empty">Coming soon to this city.</div>'; buildDashes(0); return; }
+
+  var visible=showingAll?items:items.slice(0,CUTOFF);
+  var brandIdx=0;
+  visible.forEach(function(p,i){
+    renderCard(p,listEl);
+    if((i===3||i===7||i===11)&&brands[brandIdx]){
+      var b=brands[brandIdx++];
+      var banner=document.createElement('div'); banner.className='brand-banner';
+      banner.innerHTML='<div class="brand-left"><span class="brand-label">Featured</span><span class="brand-name">'+b.n+'</span><span class="brand-tagline">'+b.tagline+'</span></div><button class="brand-cta">Shop bundles \u2192</button>';
+      listEl.appendChild(banner);
+    }
+  });
+
+  if(!showingAll && items.length>CUTOFF){
+    var wrap=document.createElement('div'); wrap.className='explore-all-wrap';
+    var btn=document.createElement('button'); btn.className='explore-all-btn';
+    btn.textContent='Explore all '+items.length+' partners \u2192';
+    btn.addEventListener('click',function(){ showingAll=true; render(); buildDashes(items.length); });
+    wrap.appendChild(btn); listEl.appendChild(wrap);
+    buildDashes(CUTOFF);
+  } else { buildDashes(visible.length); }
+  document.getElementById('scrollBox').scrollTop=0;
+  updateDashes();
+}
+
+function renderCard(p,container){
+  var isR=p.t==='Restaurant'||p.t==='Bakery';
+  var isG=p.t==='Grocery';
+  var isE=p.t==='Event';
+  var isActive=p.active||p.deal;
+
+  var card=document.createElement('div');
+  card.className='card'+(isActive?'':' coming-soon');
+  card.style.background=p.bg;
+
+  // Build book buttons
+  var bookBtns='';
+  if(p.deal){
+    bookBtns='<button class="icon-btn" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#f59e0b;" onclick="event.stopPropagation()">Claim deal</button>';
+  } else if(isActive&&isR){
+    if(p.locations){
+      bookBtns=p.locations.map(function(l){
+        return '<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="'+l+'" onclick="event.stopPropagation()">Book '+l+'</button>';
+      }).join('');
+    } else {
+      bookBtns='<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="" onclick="event.stopPropagation()">Book</button>';
+    }
+  } else if(isR){
+    bookBtns='<span class="cs-badge">Coming soon</span>';
+  }
+
+  var secondaryBtn='';
+  if(!p.deal&&isActive&&isR) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Order Exclusives \u2197</a>';
+  else if(isG) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Shop \u2197</a>';
+  else if(isE&&isActive) secondaryBtn='<button class="icon-btn">Reserve</button>';
+
+  var dealBadge='';
+  var claimBtn='';
+  if(p.deal){
+    var face=p.dealFace||40, price=p.dealPrice||25;
+    claimBtn='<a class="icon-btn claim-btn" href="#" target="_blank" onclick="event.stopPropagation()">Claim $'+face+' for $'+price+' \u2197</a>';
+  }
+
+  card.innerHTML=
+    '<div class="card-strip" style="background:'+p.strip+'"></div>'+
+    '<div class="card-body">'+
+      (p.f?'<div class="feat-dot"></div>':'')+
+      '<div class="card-top"><span class="card-name">'+p.n+'</span><span class="card-hood">'+p.h+'</span></div>'+
+      dealBadge+
+      '<div class="card-mid">'+p.d+'</div>'+
+      (p.deal?'<div class="deal-fine-print">Redeemed at checkout · One per customer · No expiration</div>':'')+
+      '<div class="card-bottom-row">'+
+        '<span class="card-tag">'+p.t+'</span>'+
+        '<div class="card-right-row">'+(p.deal?claimBtn:bookBtns+secondaryBtn)+'</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="card-right-edge-strip"></div>';
+
+  card.addEventListener('click',function(e){
+    var bookBtn=e.target.closest('.book-btn');
+    if(bookBtn){ e.stopPropagation(); var nm=bookBtn.getAttribute('data-name'); var lc=bookBtn.getAttribute('data-loc')||null; openBookModal(partnerMap[nm],lc); return; }
+    if(e.target.closest('.icon-btn')) return;
+    openInfoModal(p);
+  });
+
+  container.appendChild(card);
+}
+
+function buildDashes(n){
+  var dashes=document.getElementById('dashes'); dashes.innerHTML='';
+  for(var i=0;i<n;i++){
+    var d=document.createElement('div'); d.className='dash';
+    (function(idx){ d.addEventListener('click',function(){ var cards=document.querySelectorAll('.card'); if(cards[idx])cards[idx].scrollIntoView({behavior:'smooth',block:'nearest'}); }); })(i);
+    dashes.appendChild(d);
+  }
+}
+
+function updateDashes(){
+  var cards=document.querySelectorAll('.card');
+  var dashes=document.querySelectorAll('.dash');
+  dashes.forEach(function(d){d.classList.remove('on');});
+  cards.forEach(function(c,i){if(c.classList.contains('on')&&dashes[i])dashes[i].classList.add('on');});
+}
+
+var _sb=document.getElementById('scrollBox'); if(_sb) _sb.addEventListener('scroll',function(){
+  var cards=document.querySelectorAll('.card');
+  var dashes=document.querySelectorAll('.dash');
+  if(!cards.length)return;
+  var closest=0,minDist=99999;
+  cards.forEach(function(c,i){ var dist=Math.abs(c.getBoundingClientRect().top-200); if(dist<minDist){minDist=dist;closest=i;} });
+  dashes.forEach(function(d,i){d.classList.toggle('on',i===closest);});
+});
+
+// Modals
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+function openInfoModal(p){
+  document.getElementById('modalTitle').textContent=p.n;
+  document.getElementById('modalMeta').textContent=p.h+' \xb7 '+p.t;
+  document.getElementById('modalDesc').textContent=p.d;
+  document.getElementById('modalContext').textContent='333 context and editorial notes coming soon \u2014 we personally vet every partner before they appear here.';
+  document.getElementById('modalPhotoBg').style.background=p.bg;
+  var dishesEl=document.getElementById('modalDishes');
+  var isActive=p.active||p.deal;
+  if(isActive){
+    dishesEl.innerHTML='<div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;">333 top picks</div><div style="font-size:12px;color:rgba(255,255,255,.3);font-style:italic;">Coming soon \u2014 curated dishes from this partner</div>';
+    dishesEl.style.display='block';
+  } else { dishesEl.style.display='none'; }
+  var actions=document.getElementById('modalActions');
+  actions.innerHTML='';
+  var isR=p.t==='Restaurant'||p.t==='Bakery';
+  if(isActive&&isR){
+    if(p.locations){
+      p.locations.forEach(function(l){
+        var btn=document.createElement('button'); btn.className='modal-btn primary'; btn.textContent='Book '+l;
+        btn.onclick=function(){ closeModal('infoModal'); openBookModal(p,l); };
+        actions.appendChild(btn);
+      });
+    } else {
+      var btn=document.createElement('button'); btn.className='modal-btn primary'; btn.textContent='Book';
+      btn.onclick=function(){ closeModal('infoModal'); openBookModal(p,null); };
+      actions.appendChild(btn);
+    }
+    var orderBtn=document.createElement('a'); orderBtn.className='modal-btn'; orderBtn.textContent='Order Exclusives \u2197'; orderBtn.href='#'; orderBtn.target='_blank';
+    actions.appendChild(orderBtn);
+  }
+  document.getElementById('infoModal').classList.add('open');
+}
+
+function openBookModal(p,location){
+  if(!p) return;
+  var title=location?p.n+' \xb7 '+location:p.n;
+  document.getElementById('bookModalTitle').textContent='Book \u2014 '+title;
+  var uniqueTimes=[];
+  if(p.sl&&p.sl.length){ p.sl.forEach(function(s){ if(uniqueTimes.indexOf(s.tm)===-1) uniqueTimes.push(s.tm); }); }
+  document.getElementById('bookModalSub').textContent='Mon – Thu · '+(uniqueTimes.length?uniqueTimes.join(', '):'3:30, 5:00, 6:30 PM')+' · Based on availability';
+  var slotsEl=document.getElementById('bookModalSlots');
+  slotsEl.innerHTML='';
+  if(p.sl&&p.sl.length){
+    var byDay={};
+    var dayOrder=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    p.sl.forEach(function(s){ if(!byDay[s.day]) byDay[s.day]=[]; byDay[s.day].push(s.tm); });
+    dayOrder.forEach(function(d){
+      if(!byDay[d]) return;
+      var row=document.createElement('div'); row.style.cssText='width:100%;margin-bottom:10px;';
+      row.innerHTML='<div style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:8px;">'+d+'</div>';
+      var times=document.createElement('div'); times.style.cssText='display:flex;flex-wrap:wrap;gap:6px;';
+      byDay[d].forEach(function(tm){ var btn=document.createElement('button'); btn.className='slot-btn'; btn.textContent=tm; times.appendChild(btn); });
+      row.appendChild(times); slotsEl.appendChild(row);
+    });
+  } else {
+    slotsEl.innerHTML='<div class="no-slots">Booking slots coming soon \u2014 check back shortly.</div>';
+  }
+  document.getElementById('bookModal').classList.add('open');
+}
+
+document.addEventListener('click',function(e){
+  if(e.target.id==='infoModal') closeModal('infoModal');
+  if(e.target.id==='bookModal') closeModal('bookModal');
+});
+
+function setCity(btn,c){ document.querySelectorAll('.city').forEach(function(b){b.classList.remove('on');}); btn.classList.add('on'); city=c; showingAll=false; render(); }
+function setCat(btn,c){ document.querySelectorAll('.cat').forEach(function(b){b.classList.remove('on');}); btn.classList.add('on'); cat=c; showingAll=false; render(); }
+
+render();
+
+
+var heroCity='', heroCat='book', heroSort='';
+
+function setHeroCity(btn,c,e){ if(e){e.stopPropagation();e.preventDefault();}
+  document.querySelectorAll('.city').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on'); heroCity=c; city=c;
+  dirShowingAll=false;
+  if(heroCat!=='none') showDir();
+  else { heroCat='book'; cat='book'; showDir(); }
+}
+function setHeroCat(btn,c,e){ if(e){e.stopPropagation();e.preventDefault();}
+  document.querySelectorAll('.cat').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on'); heroCat=c; cat=c; curatedFilter='';
+  city=heroCity;
+  dirShowingAll=false;
+  showDir();
+}
+function onHeroSearch(){
+  var q=document.getElementById('heroSearch').value;
+  searchQuery=q.toLowerCase();
+  if(q&&heroCat==='none'){heroCat='book';cat='book';}
+  dirShowingAll=false;
+  showDir();
+}
+function toggleSort(){
+  document.getElementById('sortDrop').classList.toggle('open');
+}
+function setHeroSort(val){
+  curatedFilter=val;
+  document.getElementById('sortBtn').innerHTML=val==='neighborhood'?'By Neighborhood ✕':'333 Picks ✕';
+  document.getElementById('sortDrop').classList.remove('open');
+  if(heroCat!=='none') showDir();
+}
+document.addEventListener('click',function(e){
+  var wrap=document.querySelector('.hf-sort');
+  if(wrap&&!wrap.contains(e.target)) document.getElementById('sortDrop').classList.remove('open');
+});
+
+var dirShowingAll=false;
+function showDir(){
+  // Hand off to the standalone booking/directory site instead of rendering
+  // the directory inline on 333.kitchen. Same hero look and pill behavior,
+  // just sends the visitor to 333z.one with their city/category selection
+  // carried over as URL parameters.
+  var c=heroCity||'LA';
+  var cc=(heroCat==='none')?'book':heroCat;
+  var url='https://333z.one/?city='+encodeURIComponent(c)+'&cat='+encodeURIComponent(cc);
+  if(searchQuery) url+='&q='+encodeURIComponent(searchQuery);
+  window.location.href=url;
+}
+
+// Move portal to body so position:fixed works correctly inside Shopify's nested theme DOM
+(function(){
+  function mv(){
+    var p=document.getElementById('three33-portal');
+    if(p&&p.parentNode!==document.body) document.body.appendChild(p);
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',mv);
+  else mv();
+})();
+
+</script>
+</body>
+</html>
