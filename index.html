@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>333 — A Home for Healthy Food, Close to You</title>
-<meta name="description" content="Book time slots at the best plant-forward restaurants in LA, NYC, and San Diego. Intentional community & sourcing.">
+<meta name="description" content="Book time slots at the best plant-forward restaurants in LA, NYC, and San Diego. Curated products. Real community.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -139,6 +139,11 @@
 }
 .hf-pill:hover{background:rgba(0,0,0,.06);color:#111;}
 .hf-pill.on{background:rgba(0,0,0,.1);color:#111;border-color:rgba(0,0,0,.4);}
+.hf-pill.shop-link{
+  text-decoration:none;display:inline-block;
+  border-style:dashed;
+}
+.hf-pill.shop-link:hover{background:rgba(0,0,0,.06);color:#111;}
 .hf-divider{width:1px;height:16px;background:rgba(0,0,0,.15);align-self:center;}
 .hf-sort{position:relative;}
 .hf-sort-drop{
@@ -643,6 +648,21 @@
   font-family:-apple-system,sans-serif;
 }
 
+.claim-btn{
+  background:#f59e0b!important;
+  color:#1a1a00!important;
+  border-color:#f59e0b!important;
+  font-weight:700;
+}
+.no-touchevents .claim-btn:hover{background:#ffb733!important;}
+
+.deal-fine-print{
+  font-size:10px;
+  color:rgba(255,255,255,.32);
+  margin-top:4px;margin-bottom:4px;
+  font-family:-apple-system,sans-serif;
+}
+
 .card.coming-soon{
   opacity:0.55;
   filter:saturate(0.6);
@@ -782,7 +802,7 @@
 <section class="hero">
   <div class="hero__bg"></div>
   <div class="hero__inner">
-    <p class="hero__eyebrow">Los Angeles · New York · San Diego</p>
+    <p class="hero__eyebrow">Los Angeles · New York · San Francisco · San Diego</p>
     <h1 class="hero__title">A home for healthy food,<br>close to you</h1>
     <p class="hero__sub">Book time slots at the best plant-forward restaurants.<br>Curated products. Real community.</p>
 
@@ -798,15 +818,15 @@
       <button class="hf-pill city" onclick="setHeroCity(this,'LA',event)">Los Angeles</button>
       <button class="hf-pill city" onclick="setHeroCity(this,'NYC',event)">New York</button>
       <button class="hf-pill city" onclick="setHeroCity(this,'SD',event)">San Diego</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'SF',event)">San Francisco</button>
     </div>
 
     <div class="hero__filter-row">
-      <button class="hf-pill cat" onclick="setHeroCat(this,'date',event)">Events by Date</button>
-      <button class="hf-pill on cat" onclick="setHeroCat(this,'book',event)">Book</button>
+      <button class="hf-pill on cat" onclick="setHeroCat(this,'book',event)">Meal Book</button>
       <button class="hf-pill cat" style="opacity:.5" onclick="setHeroCat(this,'order',event)">Order</button>
-      <button class="hf-pill cat" style="opacity:.5" onclick="setHeroCat(this,'shop',event)">Shop</button>
+      <button class="hf-pill cat" onclick="setHeroCat(this,'wellness',event)">Wellness Book</button>
       <div class="hf-divider"></div>
-      <button class="hf-pill cat" onclick="setHeroCat(this,'deals',event)">Deal Drop</button>
+      <a class="hf-pill shop-link" href="https://333.kitchen" target="_blank" rel="noopener">Shop ↗</a>
       <div class="hf-divider"></div>
       <div class="hf-sort">
         <button class="hf-pill" id="sortBtn" onclick="toggleSort()">Sort ▾</button>
@@ -872,8 +892,9 @@ var all={
     {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta and wood-fired dishes.",sl:[]},
     {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Award winning vegan artisan bakery. Monthly boxes available — curated drops delivered to your door.",monthly:true,sl:[]},
     {n:"Lazy Acres",h:"Los Feliz · SM",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Widest selection in CA of high quality niche products.",sl:[]},
-    {n:"Loqui",h:"Culver City · DTLA",t:"Deal",f:false,bg:"#2a4a3a",strip:"#3a6a4a",d:"Exceptional Mexican-inspired tacos and bowls. Clean ingredients, bold flavors.",sl:[],deal:true,dealOnly:true},
-    {n:"Home State",h:"Multiple locations · LA",t:"Deal",f:false,bg:"#8a4a2a",strip:"#aa6a3a",d:"Texas breakfast and comfort food done right. Kolaches, breakfast tacos, and more.",sl:[],deal:true,dealOnly:true},
+    {n:"Loqui",h:"Culver City · DTLA",t:"Deal",f:false,bg:"#2a4a3a",strip:"#3a6a4a",d:"Exceptional Mexican-inspired tacos and bowls. Clean ingredients, bold flavors.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Home State",h:"Multiple locations · LA",t:"Deal",f:false,bg:"#8a4a2a",strip:"#aa6a3a",d:"Texas breakfast and comfort food done right. Kolaches, breakfast tacos, and more.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Awan",h:"LA",t:"Deal",f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Premium vegan ice cream.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
     {n:"Besties Vegan Paradise",h:"East Hollywood · LA",t:"Grocery",f:false,bg:"#c45a8a",strip:"#e07aaa",d:"LA's beloved fully vegan grocery and deli. Exceptional prepared foods, pantry, and specialty products.",sl:[]},
     {n:"Jimbo's",h:"San Diego · LA",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"Beloved San Diego natural grocer. Delivered to the LA area.",sl:[]},
     {n:"Hip Vegan",h:"Ojai original · Los Feliz pickup & dinners",t:"Restaurant",f:false,bg:"#7a4a6a",strip:"#9a6a8a",d:"Ojai-rooted plant-based kitchen bringing its way to LA. Creative, colorful, feel-good food.",sl:[]},
@@ -925,6 +946,8 @@ var all={
     {n:"Lazy Acres",h:"San Diego",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Wide selection of natural and specialty products.",sl:[]},
     {n:"Usal Project",h:"San Diego",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
     {n:"333 × Hosts",h:"San Diego",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+  ],
+  SF:[
   ]
 };
 
@@ -943,6 +966,8 @@ var brandsByCity={
     {n:"Primal Kitchen",tagline:"Real food sauces & dressings"},
     {n:"Little Sesame",tagline:"Organic hummus & spreads"},
     {n:"Laird Superfood",tagline:"Clean creamers & adaptogens"},
+  ],
+  SF:[
   ],
 };
 
@@ -963,12 +988,105 @@ if(document.readyState==='loading'){
   document.addEventListener('DOMContentLoaded', function(){ buildPartnerMap(); });
 }
 
+// ============================================================
+// GOOGLE SHEETS DATA SOURCE
+// Set SHEET_CSV_URL below (the "Publish to web" CSV link) to load
+// live partner data instead of the hardcoded array above.
+// If empty or the fetch fails, the hardcoded `all` data above is
+// used as-is — nothing breaks if the sheet isn't set up yet.
+// ============================================================
+var SHEET_CSV_URL = ""; // <-- paste your published CSV URL here
+
+function parseCSV(text){
+  var rows=[]; var row=[]; var field=''; var inQuotes=false;
+  for(var i=0;i<text.length;i++){
+    var c=text[i], n=text[i+1];
+    if(inQuotes){
+      if(c==='"'&&n==='"'){ field+='"'; i++; }
+      else if(c==='"'){ inQuotes=false; }
+      else field+=c;
+    } else {
+      if(c==='"') inQuotes=true;
+      else if(c===','){ row.push(field); field=''; }
+      else if(c==='\r'){ /* skip */ }
+      else if(c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; }
+      else field+=c;
+    }
+  }
+  if(field.length||row.length){ row.push(field); rows.push(row); }
+  return rows;
+}
+
+function csvToPartnerData(csvText){
+  var rows=parseCSV(csvText);
+  if(!rows.length) return null;
+  var headers=rows[0].map(function(h){ return h.trim(); });
+  var data={LA:[],NYC:[],SD:[]};
+  for(var r=1;r<rows.length;r++){
+    var cells=rows[r];
+    if(!cells.length||!cells[0]) continue;
+    var obj={};
+    headers.forEach(function(h,idx){ obj[h]=(cells[idx]||'').trim(); });
+    if(!obj.city||!obj.name) continue;
+
+    function daySlots(dayKey,dayLabel){
+      if(!obj[dayKey]) return [];
+      return obj[dayKey].split(',').map(function(t){ return t.trim(); }).filter(Boolean).map(function(tm){ return {day:dayLabel,tm:tm}; });
+    }
+    var sl=[].concat(
+      daySlots('mon','Mon'), daySlots('tue','Tue'), daySlots('wed','Wed'), daySlots('thu','Thu')
+    );
+
+    var partner={
+      n: obj.name,
+      h: obj.neighborhood||'',
+      t: obj.type||'Restaurant',
+      d: obj.description||'',
+      f: (obj.featured||'').toUpperCase()==='TRUE',
+      active: (obj.active||'').toUpperCase()==='TRUE',
+      dealOnly: (obj.dealOnly||'').toUpperCase()==='TRUE',
+      deal: (obj.type==='Deal')||(obj.dealOnly||'').toUpperCase()==='TRUE',
+      bg: obj.bgColor||'#3a3a3a',
+      strip: obj.stripColor||'#5a5a5a',
+      sl: sl
+    };
+    if(obj.dealFace) partner.dealFace=parseInt(obj.dealFace,10);
+    if(obj.dealPrice) partner.dealPrice=parseInt(obj.dealPrice,10);
+
+    if(!data[obj.city]) data[obj.city]=[];
+    data[obj.city].push(partner);
+  }
+  return data;
+}
+
+function loadSheetData(){
+  if(!SHEET_CSV_URL) return; // no sheet configured yet — keep hardcoded data
+  fetch(SHEET_CSV_URL)
+    .then(function(res){
+      if(!res.ok) throw new Error('Sheet fetch failed: '+res.status);
+      return res.text();
+    })
+    .then(function(csvText){
+      var parsed=csvToPartnerData(csvText);
+      if(parsed){
+        all=parsed;
+        partnerMap={};
+        buildPartnerMap();
+        if(typeof render==='function') render();
+        if(typeof showDir==='function' && document.getElementById('dirSection') && document.getElementById('dirSection').classList.contains('open')) showDir();
+      }
+    })
+    .catch(function(err){
+      console.warn('Could not load Google Sheet data, using built-in partner list instead:', err);
+    });
+}
+loadSheetData();
+
 function getList(){
   var items=(all[city]||[]).filter(function(p){ return cat==='deals'?p.deal:!p.dealOnly; });
   if(cat==='book') items=items.filter(function(p){ return p.t==='Restaurant'||p.t==='Event'; });
-  else if(cat==='date') items=items.filter(function(p){ return p.t==='Event'; });
+  if(cat==='wellness') items=items.filter(function(p){ return p.t==='Wellness'; });
   else if(cat==='order') items=items.filter(function(p){ return p.t==='Restaurant'||p.t==='Bakery'; });
-  else if(cat==='shop') items=items.filter(function(p){ return p.t==='Grocery'; });
   if(curatedFilter==='neighborhood') items=items.slice().sort(function(a,b){ return a.h.localeCompare(b.h); });
   else if(curatedFilter==='picks'||curatedFilter==='featured') items=items.filter(function(p){ return p.f; });
   else if(curatedFilter==='new') items=items.slice(-4);
@@ -1092,14 +1210,14 @@ function renderCard(p,container){
   // Build book buttons
   var bookBtns='';
   if(p.deal){
-    bookBtns='<button class="icon-btn" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#f59e0b;" onclick="event.stopPropagation()">Claim deal</button>';
+    bookBtns='<button class="icon-btn" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#f59e0b;">Claim deal</button>';
   } else if(isActive&&isR){
     if(p.locations){
       bookBtns=p.locations.map(function(l){
-        return '<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="'+l+'" onclick="event.stopPropagation()">Book '+l+'</button>';
+        return '<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="'+l+'">Book '+l+'</button>';
       }).join('');
     } else {
-      bookBtns='<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="" onclick="event.stopPropagation()">Book</button>';
+      bookBtns='<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="">Book</button>';
     }
   } else if(isR){
     bookBtns='<span class="cs-badge">Coming soon</span>';
@@ -1110,7 +1228,12 @@ function renderCard(p,container){
   else if(isG) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Shop \u2197</a>';
   else if(isE&&isActive) secondaryBtn='<button class="icon-btn">Reserve</button>';
 
-  var dealBadge=p.deal?'<div><span class="deal-badge">Monthly Deal Drop</span></div>':'';
+  var dealBadge='';
+  var claimBtn='';
+  if(p.deal){
+    var face=p.dealFace||40, price=p.dealPrice||25;
+    claimBtn='<a class="icon-btn claim-btn" href="#" target="_blank" onclick="event.stopPropagation()">Claim $'+face+' for $'+price+' \u2197</a>';
+  }
 
   card.innerHTML=
     '<div class="card-strip" style="background:'+p.strip+'"></div>'+
@@ -1119,9 +1242,10 @@ function renderCard(p,container){
       '<div class="card-top"><span class="card-name">'+p.n+'</span><span class="card-hood">'+p.h+'</span></div>'+
       dealBadge+
       '<div class="card-mid">'+p.d+'</div>'+
+      (p.deal?'<div class="deal-fine-print">Redeemed at checkout · One per customer · No expiration</div>':'')+
       '<div class="card-bottom-row">'+
         '<span class="card-tag">'+p.t+'</span>'+
-        '<div class="card-right-row">'+bookBtns+secondaryBtn+'</div>'+
+        '<div class="card-right-row">'+(p.deal?claimBtn:bookBtns+secondaryBtn)+'</div>'+
       '</div>'+
     '</div>'+
     '<div class="card-right-edge-strip"></div>';
@@ -1282,7 +1406,7 @@ function showDir(){
   var items=getList();
   listEl.innerHTML='';
   if(!items.length){
-    listEl.innerHTML='<div style="padding:3rem 0;color:rgba(255,255,255,.3);font-size:13px;text-align:center;">No results — try another city or filter.</div>';
+    listEl.innerHTML='<div style="padding:3rem 0;color:rgba(255,255,255,.3);font-size:13px;text-align:center;">'+(cat==='wellness'?'Wellness partners coming soon.':'No results — try another city or filter.')+'</div>';
     return;
   }
   var show=dirShowingAll?items:items.slice(0,6);
