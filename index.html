@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>333 — A Home for Healthy Food, Close to You</title>
-<meta name="description" content=" Coming soon: Book time slots at the best plant-forward restaurants in LA, NYC, and San Diego. Intentional community & ingredients.">
+<meta name="description" content="Book time slots at the best plant-forward restaurants in LA, NYC, and San Diego. Curated products. Real community.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -161,6 +161,7 @@
 
 /* Dir results */
 .dir-section{background:#f8f8f0;padding:0 2rem 3rem;display:none;}
+.section-divider{border:none;border-top:1px solid rgba(0,0,0,.08);margin:0;}
 .dir-section.open{display:block;}
 .dir-inner{max-width:760px;margin:0 auto;}
 
@@ -499,8 +500,8 @@
 .card-mid{font-size:11px;opacity:.45;margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff;}
 .card-bottom-row{display:flex;justify-content:space-between;align-items:flex-end;}
 .card-tag{font-size:9px;letter-spacing:.07em;text-transform:uppercase;opacity:.4;color:#fff;}
-.card-right-row{display:flex;align-items:center;gap:6px;}
-.icon-btn{font-size:11px;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:transparent;cursor:pointer;font-family:-apple-system,sans-serif;transition:background .12s,color .12s;text-decoration:none;}
+.card-right-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;row-gap:8px;}
+.icon-btn{font-size:11px;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:transparent;cursor:pointer;font-family:-apple-system,sans-serif;transition:background .12s,color .12s;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;}
 .icon-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
 .expand-arrow{font-size:12px;color:rgba(255,255,255,.25);transition:transform .25s ease;user-select:none;}
 .card.on .expand-arrow{transform:rotate(180deg);color:rgba(255,255,255,.55);}
@@ -663,6 +664,13 @@
   font-family:-apple-system,sans-serif;
 }
 
+.dine-credit-note{
+  font-size:10.5px;font-weight:600;letter-spacing:.02em;
+  color:rgba(255,255,255,.55);
+  margin-top:2px;margin-bottom:4px;
+  font-family:-apple-system,sans-serif;
+}
+
 .card.coming-soon{
   opacity:0.55;
   filter:saturate(0.6);
@@ -803,8 +811,8 @@
   <div class="hero__bg"></div>
   <div class="hero__inner">
     <p class="hero__eyebrow">Los Angeles · New York · San Francisco · San Diego</p>
-    <h1 class="hero__title">A home for healthy food,<br>close to you</h1>
-    <p class="hero__sub">Book time slots at the best plant-forward restaurants.<br>Curated products. Real community.</p>
+    <h1 class="hero__title">A home for healthy food & more ,<br>close to you</h1>
+    <p class="hero__sub">Coming soon: Book time slots at the best health spots.<br>Intentional food & wellness partners.</p>
 
     <div class="hero__search">
       <span class="hero__search-icon">⌕</span>
@@ -839,9 +847,350 @@
   </div>
 </section>
 <!-- Directory results — inline, hidden until filter activated -->
+
+
+
 <section class="dir-section" id="dirSection">
   <div class="dir-inner" id="dirList"></div>
 </section>
+
+<!-- ============================================================
+     EDITORIAL DIVIDER — solid color background, text left, two
+     side-by-side slightly offset photo placeholders right.
+     Replace the two div.ed-photo-placeholder elements with
+     <img> tags when real photos are ready.
+     ============================================================ -->
+<div class="editorial-divider">
+  <style>
+    .editorial-divider{
+      background:#5b8fa8;
+      padding:96px 7vw;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:64px;
+      align-items:center;
+    }
+    .ed-text{
+      display:flex;flex-direction:column;
+      align-items:flex-start;gap:20px;
+    }
+    .ed-eyebrow{
+      font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+      color:rgba(255,255,255,.65);font-weight:600;
+      font-family:"DM Sans",-apple-system,sans-serif;
+    }
+    .ed-headline{
+      font-size:clamp(28px,3.5vw,42px);
+      font-weight:400;letter-spacing:-.025em;line-height:1.12;
+      color:#fff;
+      font-family:"DM Sans",-apple-system,sans-serif;
+    }
+    .ed-sub{
+      font-size:15px;line-height:1.6;
+      color:rgba(255,255,255,.75);
+      font-family:"DM Sans",-apple-system,sans-serif;
+      max-width:320px;
+    }
+    .ed-btn{
+      display:inline-block;
+      background:#fff;color:#111;
+      font-size:13px;font-weight:600;
+      padding:12px 24px;border-radius:999px;
+      text-decoration:none;
+      font-family:"DM Sans",-apple-system,sans-serif;
+      transition:opacity .15s;
+      margin-top:4px;
+    }
+    .ed-btn:hover{opacity:.88;}
+    .ed-photos{
+      display:flex;
+      flex-direction:row;
+      align-items:flex-start;
+      gap:16px;
+    }
+    .ed-photo-placeholder{
+      flex:1;
+      border-radius:4px;
+      overflow:hidden;
+    }
+    .ed-photo-placeholder:first-child{
+      margin-top:0;
+      height:340px;
+      background:#3d6e85;
+    }
+    .ed-photo-placeholder:last-child{
+      margin-top:48px;
+      height:340px;
+      background:#7aafc8;
+    }
+    .ed-photo-placeholder img{
+      width:100%;height:100%;object-fit:cover;display:block;
+    }
+    @media(max-width:700px){
+      .editorial-divider{
+        grid-template-columns:1fr;
+        padding:64px 24px;
+        gap:40px;
+      }
+      .ed-photo-placeholder:first-child{height:200px;}
+      .ed-photo-placeholder:last-child{height:200px;margin-top:0;}
+    }
+  </style>
+
+  <div class="ed-text">
+    <p class="ed-eyebrow">A health co-op, built for 2026</p>
+    <h2 class="ed-headline">Real places.<br>Real food.<br>One membership.</h2>
+    <p class="ed-sub">Intentional food &amp; wellness, rooted in community.</p>
+    <a class="ed-btn" href="#waitlist">Get on the waitlist →</a>
+  </div>
+
+  <div class="ed-photos">
+    <!-- Replace each div with <img src="..." alt="..."> when photos are ready -->
+    <div class="ed-photo-placeholder"></div>
+    <div class="ed-photo-placeholder"></div>
+  </div>
+
+</div>
+
+<hr class="section-divider">
+<section class="credit-explainer" aria-label="How 333 credits work">
+  <style>
+    .credit-explainer{
+      background:#f8f8f0;
+      padding:64px 24px 76px;
+      max-width:980px;
+      margin:0 auto;
+    }
+    .ce-head{
+      text-align:center;
+      max-width:560px;
+      margin:0 auto 56px;
+    }
+    .ce-eyebrow{
+      font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+      color:rgba(0,0,0,.4);margin-bottom:14px;font-weight:600;
+    }
+    .ce-title{
+      font-size:clamp(24px,3.4vw,32px);
+      font-weight:400;letter-spacing:-.02em;line-height:1.18;
+      color:#111;margin-bottom:14px;
+    }
+    .ce-sub{
+      font-size:14.5px;line-height:1.6;color:rgba(0,0,0,.55);
+    }
+
+    /* ---- the flow: one pool, three weighted destinations ---- */
+    .ce-flow{
+      position:relative;
+      display:grid;
+      grid-template-columns:200px 1fr;
+      gap:0;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .ce-pool{
+      display:flex;flex-direction:column;align-items:center;
+      text-align:center;
+      position:relative;
+      z-index:2;
+    }
+    .ce-pool-recommend{
+      font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+      color:#e25036;font-weight:700;margin-bottom:10px;
+    }
+    .ce-pool-badge{
+      width:108px;height:108px;border-radius:50%;
+      background:#111;color:#f8f8f0;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      margin-bottom:14px;
+      box-shadow:0 8px 24px rgba(0,0,0,.18);
+    }
+    .ce-pool-num{
+      font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1;
+    }
+    .ce-pool-num-label{
+      font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+      color:rgba(248,248,240,.6);margin-top:3px;
+    }
+    .ce-pool-label{
+      font-size:13px;font-weight:600;color:#111;margin-bottom:3px;
+    }
+    .ce-pool-sub{
+      font-size:11.5px;color:rgba(0,0,0,.45);max-width:140px;line-height:1.4;
+    }
+
+    .ce-branches{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:18px;
+      position:relative;
+      z-index:2;
+    }
+    .ce-branch{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:16px;
+      padding:22px 18px 20px;
+      position:relative;
+    }
+    .ce-branch-icon{
+      width:34px;height:34px;margin-bottom:14px;
+    }
+    .ce-branch-name{
+      font-size:14.5px;font-weight:600;color:#111;margin-bottom:6px;
+    }
+    .ce-branch-range{
+      display:inline-block;
+      font-size:10.5px;font-weight:600;letter-spacing:.02em;
+      color:#fff;background:#e25036;
+      padding:3px 9px;border-radius:99px;
+      margin-bottom:10px;
+    }
+    .ce-branch-desc{
+      font-size:12px;line-height:1.55;color:rgba(0,0,0,.55);
+    }
+
+    /* connecting lines, desktop only */
+    .ce-lines{
+      position:absolute;
+      left:200px; right:0; top:0; bottom:0;
+      pointer-events:none;
+      z-index:1;
+    }
+    .ce-lines svg{ width:100%; height:100%; display:block; }
+
+    @media(max-width:760px){
+      .ce-flow{grid-template-columns:1fr;gap:28px;}
+      .ce-pool{margin-bottom:4px;}
+      .ce-branches{grid-template-columns:1fr;gap:12px;}
+      .ce-lines{display:none;}
+      .ce-allusion{font-size:12.5px;padding:0 8px;}
+      .ce-waitlist-btn{width:100%;max-width:280px;}
+    }
+
+    /* ---- 33-credit tier perk callout ---- */
+    .ce-perk{
+      display:flex;align-items:flex-start;gap:16px;
+      background:rgba(226,80,54,.06);
+      border:1px dashed rgba(226,80,54,.35);
+      border-radius:14px;
+      padding:18px 20px;
+      margin-top:18px;
+    }
+    .ce-perk-icon{ width:30px;height:30px;flex-shrink:0;margin-top:2px; }
+    .ce-perk-title{ font-size:13.5px;font-weight:600;color:#111;margin-bottom:4px; }
+    .ce-perk-desc{ font-size:12px;line-height:1.55;color:rgba(0,0,0,.55); }
+
+    @media(max-width:480px){
+      .ce-perk{flex-direction:column;gap:10px;}
+    }
+
+    /* ---- waitlist CTA ---- */
+    .ce-waitlist{
+      text-align:center;
+      margin-top:40px;padding-top:32px;
+      border-top:1px solid rgba(0,0,0,.08);
+    }
+    .ce-waitlist-btn{
+      display:inline-block;
+      background:#111;color:#f8f8f0;
+      font-size:14px;font-weight:600;
+      padding:13px 28px;border-radius:999px;
+      text-decoration:none;
+      transition:opacity .15s;
+    }
+    .ce-waitlist-btn:hover{opacity:.82;}
+    .ce-waitlist-note{
+      font-size:12px;color:rgba(0,0,0,.42);margin-top:12px;
+    }
+
+    /* ---- closing allusion ---- */
+    .ce-allusion{
+      text-align:center;
+      max-width:520px;margin:32px auto 0;
+      font-size:13px;line-height:1.6;
+      font-style:italic;
+      color:rgba(0,0,0,.45);
+    }
+  </style>
+
+  <div class="ce-head">
+    <p class="ce-eyebrow">A health co-op, built for 2026</p>
+    <h2 class="ce-title">One balance. Wherever you spend it<br>still feels like 333.</h2>
+    <p class="ce-sub">A monthly credit plan you'll spend on curated meals, wellness sessions, or anything in the store — priced by what it's actually worth, not by a menu. Save the most if it becomes part of your every day.</p>
+  </div>
+
+  <div class="ce-flow">
+    <div class="ce-pool">
+      <p class="ce-pool-recommend">We recommend</p>
+      <div class="ce-pool-badge">
+        <span class="ce-pool-num">33</span>
+        <span class="ce-pool-num-label">credits / mo</span>
+      </div>
+      <div class="ce-pool-label">Your plan</div>
+      <div class="ce-pool-sub">Smaller and larger plans available too · cancel anytime</div>
+    </div>
+
+    <div class="ce-lines" aria-hidden="true">
+      <svg viewBox="0 0 760 200" preserveAspectRatio="none">
+        <path d="M 0 100 C 60 100, 60 28, 130 28" stroke="rgba(0,0,0,.14)" stroke-width="1.5" fill="none"/>
+        <path d="M 0 100 C 60 100, 60 100, 130 100" stroke="rgba(0,0,0,.14)" stroke-width="1.5" fill="none"/>
+        <path d="M 0 100 C 60 100, 60 172, 130 172" stroke="rgba(0,0,0,.14)" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+
+    <div class="ce-branches">
+      <div class="ce-branch">
+        <svg class="ce-branch-icon" viewBox="0 0 34 34" fill="none">
+          <path d="M9 4C9 4 8 9 8 13C8 16.3 10.7 19 14 19V30M14 19C17.3 19 20 16.3 20 13C20 9 19 4 19 4M14 4V19" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 4C23 4 21 7.5 21 12.5C21 16 22.8 18 25 18.5V30" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="ce-branch-name">Meals</div>
+        <span class="ce-branch-range">1.0–2.2 credits</span>
+        <p class="ce-branch-desc">A lighter dish runs lower, a fuller meal a bit more — never a wide spread, since every partner already clears the same bar.</p>
+      </div>
+
+      <div class="ce-branch">
+        <svg class="ce-branch-icon" viewBox="0 0 34 34" fill="none">
+          <circle cx="17" cy="11" r="4.5" stroke="#111" stroke-width="1.6"/>
+          <path d="M17 24C17 18.5 21 17 25 17C25 22 23 26 17 30C11 26 9 22 9 17C13 17 17 18.5 17 24Z" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/>
+        </svg>
+        <div class="ce-branch-name">Wellness</div>
+        <span class="ce-branch-range">~3 credits</span>
+        <p class="ce-branch-desc">Studio classes and sessions you won't find anywhere else — priced a little higher because the room, the instructor, the experience cost more to give you.</p>
+      </div>
+
+      <div class="ce-branch">
+        <svg class="ce-branch-icon" viewBox="0 0 34 34" fill="none">
+          <path d="M6 11L17 5L28 11M6 11V25L17 30V16M6 11L17 16M28 11V25L17 30M28 11L17 16" stroke="#111" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+        <div class="ce-branch-name">The Store</div>
+        <span class="ce-branch-range">Same as cash</span>
+        <p class="ce-branch-desc">Use a credit balance like a gift card across pantry staples, frozen meals, and the rest of the shop — usually a better deal than paying cash outright.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="ce-perk">
+    <svg class="ce-perk-icon" viewBox="0 0 34 34" fill="none">
+      <rect x="6" y="13" width="22" height="15" rx="1.5" stroke="#111" stroke-width="1.6"/>
+      <path d="M6 13L17 21L28 13" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M17 13V6M17 6L13 9.5M17 6L21 9.5" stroke="#e25036" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <p class="ce-perk-title">A monthly drop, for our 33-credit+ plans</p>
+      <p class="ce-perk-desc">Free product samples from clean food and wellness brands we'd actually use ourselves — delivered to your door, no credits spent.</p>
+    </div>
+  </div>
+
+  <div class="ce-waitlist">
+    <a href="#" class="ce-waitlist-btn">Get on the waitlist →</a>
+    <p class="ce-waitlist-note">We're not live yet — credits launch with our founding partners.</p>
+  </div>
+
+  <p class="ce-allusion">Wellness has never been bigger. Somehow the big food and wellness platforms have gotten further from health, community, and quality — not closer.</p>
+</section>
+
 </div>
 
 <div id="three33-portal" class="three33-portal">
@@ -885,11 +1234,11 @@ var all={
     {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#8b4513",strip:"#c46020",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options. Monthly box available.",monthly:true,active:true,sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
     {n:"Peace Pies × 333",h:"SD original · Los Feliz pickup & dinners",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"Raw vegan pies, elixirs. Incredible wraps, salads, and dishes. Monthly box available.",monthly:true,sl:[]},
     {n:"Gracias Madre",h:"WeHo",t:"Restaurant",f:false,bg:"#7b3f00",strip:"#b06020",d:"Plant-based Mexican. Wood-fired vegetables and seasonal plates.",sl:[]},
-    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and seasonal plates.",sl:[]},
+    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and seasonal plates.",sl:[],dineIn:true,active:true,dineCredits:4,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
     {n:"Woon",h:"Echo Park · Silver Lake",t:"Restaurant",f:false,bg:"#1a3a5c",strip:"#2a5a8c",d:"Beloved LA Chinese comfort food made with intention.",sl:[]},
     {n:"Butcher's Daughter",h:"WeHo · Venice",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",sl:[]},
     {n:"Alfalfa",h:"Larchmont · Santa Monica",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Health-forward fast casual. Wraps, bowls, and smoothies.",sl:[]},
-    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta and wood-fired dishes.",sl:[]},
+    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta and wood-fired dishes.",sl:[],dineIn:true,active:true,dineCredits:5,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
     {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Award winning vegan artisan bakery. Monthly boxes available — curated drops delivered to your door.",monthly:true,sl:[]},
     {n:"Lazy Acres",h:"Los Feliz · SM",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Widest selection in CA of high quality niche products.",sl:[]},
     {n:"Loqui",h:"Culver City · DTLA",t:"Deal",f:false,bg:"#2a4a3a",strip:"#3a6a4a",d:"Exceptional Mexican-inspired tacos and bowls. Clean ingredients, bold flavors.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
@@ -1209,7 +1558,10 @@ function renderCard(p,container){
 
   // Build book buttons
   var bookBtns='';
-  if(p.deal){
+  if(p.dineIn&&p.active){
+    bookBtns='<a class="icon-btn" href="'+p.resyUrl+'" target="_blank" onclick="event.stopPropagation()">Reserve \u2197</a>'+
+              '<button class="icon-btn checkin-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'">Check in</button>';
+  } else if(p.deal){
     bookBtns='<button class="icon-btn" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#f59e0b;">Claim deal</button>';
   } else if(isActive&&isR){
     if(p.locations){
@@ -1224,7 +1576,7 @@ function renderCard(p,container){
   }
 
   var secondaryBtn='';
-  if(!p.deal&&isActive&&isR) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Order Exclusives \u2197</a>';
+  if(!p.deal&&!p.dineIn&&isActive&&isR) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Order Exclusives \u2197</a>';
   else if(isG) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Shop \u2197</a>';
   else if(isE&&isActive) secondaryBtn='<button class="icon-btn">Reserve</button>';
 
@@ -1242,9 +1594,10 @@ function renderCard(p,container){
       '<div class="card-top"><span class="card-name">'+p.n+'</span><span class="card-hood">'+p.h+'</span></div>'+
       dealBadge+
       '<div class="card-mid">'+p.d+'</div>'+
+      (p.dineIn?'<div class="dine-credit-note">Specific menu coming soon</div>':'')+
       (p.deal?'<div class="deal-fine-print">Redeemed at checkout · One per customer · No expiration</div>':'')+
       '<div class="card-bottom-row">'+
-        '<span class="card-tag">'+p.t+'</span>'+
+        (p.dineIn?'':'<span class="card-tag">'+p.t+'</span>')+
         '<div class="card-right-row">'+(p.deal?claimBtn:bookBtns+secondaryBtn)+'</div>'+
       '</div>'+
     '</div>'+
@@ -1253,6 +1606,8 @@ function renderCard(p,container){
   card.addEventListener('click',function(e){
     var bookBtn=e.target.closest('.book-btn');
     if(bookBtn){ e.stopPropagation(); var nm=bookBtn.getAttribute('data-name'); var lc=bookBtn.getAttribute('data-loc')||null; openBookModal(partnerMap[nm],lc); return; }
+    var checkinBtn=e.target.closest('.checkin-btn');
+    if(checkinBtn){ e.stopPropagation(); alert('Mockup only — this will check you in and apply '+p.dineCredits+' credits once the real system is built.'); return; }
     if(e.target.closest('.icon-btn')) return;
     openInfoModal(p);
   });
@@ -1296,14 +1651,20 @@ function openInfoModal(p){
   document.getElementById('modalPhotoBg').style.background=p.bg;
   var dishesEl=document.getElementById('modalDishes');
   var isActive=p.active||p.deal;
-  if(isActive){
+  if(isActive&&!p.dineIn){
     dishesEl.innerHTML='<div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;">333 top picks</div><div style="font-size:12px;color:rgba(255,255,255,.3);font-style:italic;">Coming soon \u2014 curated dishes from this partner</div>';
     dishesEl.style.display='block';
   } else { dishesEl.style.display='none'; }
   var actions=document.getElementById('modalActions');
   actions.innerHTML='';
   var isR=p.t==='Restaurant'||p.t==='Bakery';
-  if(isActive&&isR){
+  if(p.dineIn&&p.active){
+    var reserveBtn=document.createElement('a'); reserveBtn.className='modal-btn primary'; reserveBtn.textContent='Reserve \u2197'; reserveBtn.href=p.resyUrl; reserveBtn.target='_blank';
+    actions.appendChild(reserveBtn);
+    var checkinBtn=document.createElement('button'); checkinBtn.className='modal-btn'; checkinBtn.textContent='Check in';
+    checkinBtn.onclick=function(){ alert('Mockup only — this will check you in once the real system is built.'); };
+    actions.appendChild(checkinBtn);
+  } else if(isActive&&isR){
     if(p.locations){
       p.locations.forEach(function(l){
         var btn=document.createElement('button'); btn.className='modal-btn primary'; btn.textContent='Book '+l;
@@ -1441,4 +1802,4 @@ function showDir(){
 
 </script>
 </body>
-</html>
+
