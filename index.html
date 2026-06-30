@@ -811,8 +811,8 @@
   <div class="hero__bg"></div>
   <div class="hero__inner">
     <p class="hero__eyebrow">Los Angeles · New York · San Francisco · San Diego</p>
-    <h1 class="hero__title">A home for the best in health food & wellness ,<br>close to you</h1>
-    <p class="hero__sub">Coming soon: Book time slots at the best health spots.<br>Intentional partners & spaces.</p>
+    <h1 class="hero__title">A home for the best in health food & wellness <br> /h1>
+    <p class="hero__sub">Coming soon: Book time slots & more at the best health spots.<br>Intentional partners & spaces.</p>
 
     <div class="hero__search">
       <span class="hero__search-icon">⌕</span>
@@ -1117,7 +1117,7 @@
   <div class="ce-head">
     <p class="ce-eyebrow">A health co-op, built for 2026</p>
     <h2 class="ce-title">One balance. Wherever you spend it<br>still feels like 333.</h2>
-    <p class="ce-sub">A monthly credit plan you'll spend on curated meals, wellness sessions, or anything in the store — priced by what it's actually worth, not by a menu. Save the most if it becomes part of your every day.</p>
+    <p class="ce-sub">A monthly credit plan you'll spend on curated healthy meals, wellness sessions,fancy date night spots or anything in the store — priced by what it's actually worth, not by a menu. Save the most if it becomes part of your every day.</p>
   </div>
 
   <div class="ce-flow">
@@ -1147,7 +1147,7 @@
         </svg>
         <div class="ce-branch-name">Meals</div>
         <span class="ce-branch-range">1.0–2.2 credits</span>
-        <p class="ce-branch-desc">A lighter dish runs lower, a fuller meal a bit more — never a wide spread, since every partner already clears the same bar.</p>
+        <p class="ce-branch-desc">Curated for health & taste & with often optional communnal areas available to eat. Use your credits for 333 approved menu items at the casual banh mi stand or the candlelit fancy Italian restaurant .</p>
       </div>
 
       <div class="ce-branch">
@@ -1157,7 +1157,7 @@
         </svg>
         <div class="ce-branch-name">Wellness</div>
         <span class="ce-branch-range">~3 credits</span>
-        <p class="ce-branch-desc">Studio classes and sessions you won't find anywhere else — priced a little higher because the room, the instructor, the experience cost more to give you.</p>
+        <p class="ce-branch-desc">Studio classes and sessions you won't find anywhere else. </p>
       </div>
 
       <div class="ce-branch">
@@ -1166,7 +1166,7 @@
         </svg>
         <div class="ce-branch-name">The Store</div>
         <span class="ce-branch-range">Same as cash</span>
-        <p class="ce-branch-desc">Use a credit balance like a gift card across pantry staples, frozen meals, and the rest of the shop — usually a better deal than paying cash outright.</p>
+        <p class="ce-branch-desc">Use a credit balance like a gift card across pantry staples, frozen meals, and the rest of the shop — always a better deal than paying cash outright.</p>
       </div>
     </div>
   </div>
@@ -1179,7 +1179,7 @@
     </svg>
     <div>
       <p class="ce-perk-title">A monthly drop, for our 33-credit+ plans</p>
-      <p class="ce-perk-desc">Free product samples from clean food and wellness brands we'd actually use ourselves — delivered to your door, no credits spent.</p>
+      <p class="ce-perk-desc">Free monthly product from clean food and wellness brands we'd actually use ourselves — delivered to your door, no credits spent.</p>
     </div>
   </div>
 
@@ -1229,29 +1229,29 @@ var city="LA"; var cat="book"; var searchQuery=""; var curatedFilter=""; var cur
 
 var all={
   LA:[
-    {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#2d5a3d",active:true,locations:["Larchmont","Venice"],strip:"#4a9460",d:"Organic plant-based bowls, plates, and elixirs.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
-    {n:"Sweetgreen",h:"Hollywood La Brea",t:"Restaurant",f:false,bg:"#3a6644",strip:"#5a9060",d:"Seasonal salads, wraps, and grain bowls. Hollywood La Brea as initial 333 hub.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],active:true},
-    {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#8b4513",strip:"#c46020",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options. Monthly box available.",monthly:true,active:true,sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
-    {n:"Peace Pies × 333",h:"SD original · Los Feliz pickup & dinners",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"Raw vegan pies, elixirs. Incredible wraps, salads, and dishes. Monthly box available.",monthly:true,sl:[]},
-    {n:"Gracias Madre",h:"WeHo",t:"Restaurant",f:false,bg:"#7b3f00",strip:"#b06020",d:"Plant-based Mexican. Wood-fired vegetables and seasonal plates.",sl:[]},
-    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and seasonal plates.",sl:[],dineIn:true,active:true,dineCredits:4,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
+    {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#2d5a3d",active:true,locations:["Larchmont","Venice"],strip:"#4a9460",d:"Craveable plant based food made with best quality ingredients.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
+    {n:"Sweetgreen",h:"Hollywood La Brea",t:"Restaurant",f:false,bg:"#3a6644",strip:"#5a9060",d:"Seasonal salads, wraps, and protein plates. Hollywood La Brea as initial 333 hub.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],active:true},
+    {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#8b4513",strip:"#c46020",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options",monthly:true,active:true,sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
+    {n:"Peace Pies × 333",h:"SD original · Los Feliz pickup & dinners",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients",monthly:true,sl:[]},
+    {n:"Gracias Madre",h:"WeHo",t:"Restaurant",f:false,bg:"#7b3f00",strip:"#b06020",d:"Plant-based Mexican.",sl:[]},
+    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and salads.",sl:[],dineIn:true,active:true,dineCredits:4,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
     {n:"Woon",h:"Echo Park · Silver Lake",t:"Restaurant",f:false,bg:"#1a3a5c",strip:"#2a5a8c",d:"Beloved LA Chinese comfort food made with intention.",sl:[]},
     {n:"Butcher's Daughter",h:"WeHo · Venice",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",sl:[]},
     {n:"Alfalfa",h:"Larchmont · Santa Monica",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Health-forward fast casual. Wraps, bowls, and smoothies.",sl:[]},
-    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta and wood-fired dishes.",sl:[],dineIn:true,active:true,dineCredits:5,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
-    {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Award winning vegan artisan bakery. Monthly boxes available — curated drops delivered to your door.",monthly:true,sl:[]},
+    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta.",sl:[],dineIn:true,active:true,dineCredits:5,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
+    {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Award winning vegan artisan bakery.",monthly:true,sl:[]},
     {n:"Lazy Acres",h:"Los Feliz · SM",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Widest selection in CA of high quality niche products.",sl:[]},
     {n:"Loqui",h:"Culver City · DTLA",t:"Deal",f:false,bg:"#2a4a3a",strip:"#3a6a4a",d:"Exceptional Mexican-inspired tacos and bowls. Clean ingredients, bold flavors.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
-    {n:"Home State",h:"Multiple locations · LA",t:"Deal",f:false,bg:"#8a4a2a",strip:"#aa6a3a",d:"Texas breakfast and comfort food done right. Kolaches, breakfast tacos, and more.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Home State",h:"Multiple locations · LA",t:"Deal",f:false,bg:"#8a4a2a",strip:"#aa6a3a",d:"Intentional Tex Mex with quality sourcing .",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
     {n:"Awan",h:"LA",t:"Deal",f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Premium vegan ice cream.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
-    {n:"Besties Vegan Paradise",h:"East Hollywood · LA",t:"Grocery",f:false,bg:"#c45a8a",strip:"#e07aaa",d:"LA's beloved fully vegan grocery and deli. Exceptional prepared foods, pantry, and specialty products.",sl:[]},
+    {n:"Besties Vegan Paradise",h:"East Hollywood · LA",t:"Grocery",f:false,bg:"#c45a8a",strip:"#e07aaa",d:"LA's beloved fully vegan grocery and deli.",sl:[]},
     {n:"Jimbo's",h:"San Diego · LA",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"Beloved San Diego natural grocer. Delivered to the LA area.",sl:[]},
     {n:"Hip Vegan",h:"Ojai original · Los Feliz pickup & dinners",t:"Restaurant",f:false,bg:"#7a4a6a",strip:"#9a6a8a",d:"Ojai-rooted plant-based kitchen bringing its way to LA. Creative, colorful, feel-good food.",sl:[]},
-    {n:"Kitchen Mouse",h:"Highland Park",t:"Restaurant",f:false,bg:"#5a3a6a",strip:"#7a5a8a",d:"Beloved vegan cafe and bakery. Creative seasonal dishes, exceptional coffee and baked goods.",sl:[]},
+    {n:"Kitchen Mouse",h:"Highland Park",t:"Restaurant",f:false,bg:"#5a3a6a",strip:"#7a5a8a",d:"Beloved vegan cafe and bakery.",sl:[]},
     {n:"Be You",h:"Silver Lake",t:"Restaurant",f:false,bg:"#3a5a7a",strip:"#5a7a9a",d:"Health-forward cafe rooted in wellness and community. Clean bowls, juices, and daily specials.",sl:[]},
-    {n:"Joy",h:"Highland Park · LA",t:"Restaurant",f:false,bg:"#3a5a6a",strip:"#5a7a8a",d:"Taiwanese cuisine in a larger, vibrant space. Sister spot to Pine & Crane, James Beard nominated.",sl:[]},
-    {n:"Salaya Thai",h:"Thai Town · Los Feliz",t:"Restaurant",f:false,bg:"#6a3a5a",strip:"#8a5a7a",d:"Thai cuisine with a health-conscious approach. Fresh herbs, clean proteins, vibrant flavors.",sl:[]},
-    {n:"Old Gold Pizza",h:"Los Feliz · Barnsdall Park",t:"Restaurant",f:false,bg:"#8a6a2a",strip:"#aa8a3a",d:"Chef-driven pizza, salads and more. Creative seasonal menu by Barnsdall Park in Los Feliz.",sl:[]},
+    {n:"Joy",h:"Highland Park · LA",t:"Restaurant",f:false,bg:"#3a5a6a",strip:"#5a7a8a",d:"Taiwanese cuisine in a larger, vibrant space. ",sl:[]},
+    {n:"Salaya Thai",h:"Thai Town · Los Feliz",t:"Restaurant",f:false,bg:"#6a3a5a",strip:"#8a5a7a",d:"Thai cuisine with a health-conscious approach.",sl:[]},
+    {n:"Old Gold Pizza",h:"Los Feliz · Barnsdall Park",t:"Restaurant",f:false,bg:"#8a6a2a",strip:"#aa8a3a",d:"Chef-driven pizza, salads and more.",sl:[]},
     {n:"Magpies Softserve",h:"Highland Park · Silver Lake",t:"Restaurant",f:false,bg:"#c4607a",strip:"#e0809a",d:"Non-dairy soft serve. Monthly run club at both locations — free soft serve included. Order & subscribe.",sl:[],monthly:true},
     {n:"Erewhon",h:"Multiple locations · LA",t:"Restaurant",f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"LA's iconic wellness grocer. Exceptional vegan prepared options — curated for 333 group dinners.",sl:[]},
     {n:"Rascals × 333",h:"SB original · LA pop-ups & events",t:"Restaurant",f:false,bg:"#4a6a5a",strip:"#6a8a7a",d:"Santa Barbara's beloved vegan kitchen. Bringing creative plant-based dishes to LA pop-ups and events.",sl:[]},
@@ -1260,19 +1260,19 @@ var all={
     {n:"333 × Hosts",h:"Los Angeles",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
   ],
   NYC:[
-    {n:"Jajaja",h:"6 locations · NYC",t:"Restaurant",f:true,bg:"#b35c1e",strip:"#d4782a",d:"Plant-based Mexican street food. One of NYC's most beloved vegan spots.",sl:[]},
-    {n:"By Chloe",h:"Soho",t:"Restaurant",f:true,bg:"#e8a0a0",strip:"#d07070",d:"Fast-casual plant-based comfort food. Burgers, bowls, and baked goods.",sl:[]},
-    {n:"Peace Food Cafe",h:"2 locations · NYC",t:"Restaurant",f:false,bg:"#6b8e6b",strip:"#8aaa8a",d:"Vegan cafe and bakery. Wholesome plates, fresh juices, and housemade desserts.",sl:[]},
-    {n:"Divya's Kitchen",h:"East Village",t:"Restaurant",f:false,bg:"#8b6914",strip:"#b08a20",d:"Ayurvedic plant-based cooking. Rooted in ancient Indian wellness traditions.",sl:[]},
-    {n:"Le Botaniste",h:"Multiple locations",t:"Restaurant",f:false,bg:"#3a5a2a",strip:"#5a7a3a",d:"Belgian organic plant-based restaurant. Beautifully plated, deeply nourishing.",sl:[]},
+    {n:"Jajaja",h:"6 locations · NYC",t:"Restaurant",f:true,bg:"#b35c1e",strip:"#d4782a",d:"Plant-based Mexican food with also killer cocktails.",sl:[]},
+    {n:"By Chloe",h:"Soho",t:"Restaurant",f:true,bg:"#e8a0a0",strip:"#d07070",d:"Fast-casual plant-based comfort food. Burgers, bowls, salads and baked goods.",sl:[]},
+    {n:"Peace Food Cafe",h:"2 locations · NYC",t:"Restaurant",f:false,bg:"#6b8e6b",strip:"#8aaa8a",d:"Some of the best vegan sandwiches & desserts on earth.",sl:[]},
+    {n:"Divya's Kitchen",h:"East Village",t:"Restaurant",f:false,bg:"#8b6914",strip:"#b08a20",d:"Ayurvedic plant-based cooking. ",sl:[]},
+    {n:"Le Botaniste",h:"Multiple locations",t:"Restaurant",f:false,bg:"#3a5a2a",strip:"#5a7a3a",d:"Organic plant-based restaurant",sl:[]},
     {n:"Elbow Bread",h:"New York",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Artisan bakery. Sourdough, pastries, and seasonal specials.",sl:[]},
-    {n:"Matchaful",h:"Multiple locations",t:"Restaurant",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"Ceremonial grade matcha cafe. Clean lattes, smoothies, and snacks. Limited edition 333 product drops.",sl:[]},
+    {n:"Matchaful",h:"Multiple locations",t:"Restaurant",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"The best overnight oats & veg deserts we have found. Limited edition 333 product drops.",sl:[]},
     {n:"Butcher's Daughter",h:"West Village",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",sl:[]},
     {n:"Orchard Grocer",h:"Lower East Side",t:"Restaurant",f:false,bg:"#5a7a3a",strip:"#7a9a50",d:"NYC's fully plant-based deli. Exceptional sandwiches and prepared foods.",sl:[]},
     {n:"Happier Grocery",h:"Multiple locations · NYC",t:"Grocery",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"Plant-forward grocery and hot bar. Fresh prepared foods, pantry staples, and daily specials.",sl:[]},
-    {n:"Springbone",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a6a3a",strip:"#aa8a50",d:"Bone broth focused bowls and plates. Clean proteins, nourishing broths, simple ingredients.",sl:[]},
-    {n:"Paulie Gee's",h:"Greenpoint · Brooklyn",t:"Restaurant",f:false,bg:"#5a3a2a",strip:"#7a5a3a",d:"Legendary artisan pizza. Wood-fired pies with creative toppings. Vegan options that actually deliver.",sl:[]},
-    {n:"Spicy Moon",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a2a2a",strip:"#aa4a4a",d:"NYC's beloved Sichuan vegan restaurant. Bold, spicy, deeply satisfying plant-based Chinese food.",sl:[]},
+    {n:"Springbone",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a6a3a",strip:"#aa8a50",d:"Intentionally sourced fast casual with solid vegan options",sl:[]},
+    {n:"Paulie Gee's",h:"Greenpoint · Brooklyn",t:"Restaurant",f:false,bg:"#5a3a2a",strip:"#7a5a3a",d:"Legendary pizza that is probably the best vegan pizza on earth.",sl:[]},
+    {n:"Spicy Moon",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a2a2a",strip:"#aa4a4a",d:"NYC's beloved Sichuan vegan restaurant. ",sl:[]},
     {n:"Usal Project",h:"New York",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
     {n:"333 × Hosts",h:"New York",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
   ],
@@ -1281,18 +1281,18 @@ var all={
     {n:"333 × Hosts",h:"Bay Area",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
   ],
   SD:[
-    {n:"Peace Pies",h:"Multiple locations · SD",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"Raw vegan pies, elixirs, and living food plates. Monthly box available. The San Diego original.",sl:[]},
-    {n:"Donna Jean",h:"North Park · SD",t:"Restaurant",f:true,bg:"#8b3a3a",strip:"#b05050",d:"Beloved plant-based Italian-inspired restaurant. Creative seasonal menus, housemade pasta.",sl:[]},
-    {n:"Kindred",h:"South Park · SD",t:"Restaurant",f:true,bg:"#2a2a4a",strip:"#4a4a80",d:"Vegan heavy metal bar and restaurant. One of the most acclaimed plant-based spots in the US.",sl:[]},
-    {n:"Evolution Fast Food",h:"North Park · SD",t:"Restaurant",f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Plant-based fast food in the other half of the Donna Jean space. Burgers, fries, and comfort food done vegan.",sl:[]},
-    {n:"Civico 2045",h:"Little Italy · SD",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Sister spot to Civico 2064 in LA. Italian plant-based, wood-fired.",sl:[]},
+    {n:"Peace Pies",h:"Multiple locations · SD",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients. The San Diego original.",sl:[]},
+    {n:"Donna Jean",h:"North Park · SD",t:"Restaurant",f:true,bg:"#8b3a3a",strip:"#b05050",d:"Beloved plant-based Italian-inspired restaurant. The "best salad" & heathen pizza are what dreams are made of",sl:[]},
+    {n:"Kindred",h:"South Park · SD",t:"Restaurant",f:true,bg:"#2a2a4a",strip:"#4a4a80",d:"Vegan heavy metal bar and restaurant.",sl:[]},
+    {n:"Evolution Fast Food",h:"North Park · SD",t:"Restaurant",f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Plant-based fast food in the other half of the Donna Jean space.",sl:[]},
+    {n:"Civico 2045",h:"Little Italy · SD",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Sister spot to Civico 2064 in LA. Italian plant forward",sl:[]},
     {n:"Trilogy Sanctuary",h:"La Jolla · SD",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Rooftop plant-based cafe and yoga studio. Juices, bowls, and stunning ocean views.",sl:[]},
-    {n:"New Wave Bagels",h:"San Diego",t:"Bakery",f:false,bg:"#4a6a8a",strip:"#6a8aaa",d:"Plant-based bagels and spreads. Creative flavors, clean ingredients, San Diego staple.",sl:[]},
-    {n:"Hazel & Jade",h:"San Diego",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Artisan bakery. Beautiful pastries, breads, and seasonal specials.",sl:[]},
-    {n:"People's Market",h:"San Diego",t:"Grocery",f:false,bg:"#5a6a3a",strip:"#7a8a50",d:"Community-rooted natural market. Local, organic, and consciously sourced.",sl:[]},
+    {n:"New Wave Bagels",h:"San Diego",t:"Bakery",f:false,bg:"#4a6a8a",strip:"#6a8aaa",d:"The best in SD, sourdough bagels with gorumet options.",sl:[]},
+    {n:"Hazel & Jade",h:"San Diego",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Artisan vegan bakery.",sl:[]},
+    {n:"People's Market",h:"San Diego",t:"Grocery",f:false,bg:"#5a6a3a",strip:"#7a8a50",d:"Vegeterian market & vegan deli founded in 1970's.",sl:[]},
     {n:"People's Market Deli",h:"San Diego",t:"Restaurant",f:false,bg:"#6a7a4a",strip:"#8a9a60",d:"The deli counter inside People's Market. Fresh, plant-forward prepared foods daily.",sl:[]},
-    {n:"Jimbo's",h:"Multiple locations · SD",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"San Diego's beloved natural grocer. The original home base.",sl:[]},
-    {n:"Lazy Acres",h:"San Diego",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Wide selection of natural and specialty products.",sl:[]},
+    {n:"Jimbo's",h:"Multiple locations · SD",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"San Diego's beloved strictly organic grocer. The original home base.",sl:[]},
+    {n:"Lazy Acres",h:"San Diego",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"The favorite natural grocer of many.",sl:[]},
     {n:"Usal Project",h:"San Diego",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
     {n:"333 × Hosts",h:"San Diego",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
   ],
