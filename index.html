@@ -33,6 +33,22 @@
   --font-sub: "DM Sans", -apple-system, sans-serif;
   --font-body: "DM Sans", -apple-system, sans-serif;
 }
+
+/* ---- shared nav, same as hospitality page ---- */
+.h333-nav{
+  position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
+  max-width:1100px;margin:0 auto;padding:20px 2rem 0;font-family:"DM Sans",-apple-system,sans-serif;
+}
+.h333-nav__links{display:flex;gap:28px;align-items:center;}
+.h333-nav__link{font-size:13px;color:rgba(0,0,0,.6);text-decoration:none;transition:color .12s;}
+.h333-nav__link:hover{color:#111;}
+@media(max-width:700px){
+  .h333-nav{padding:16px 1.25rem 0;}
+  .h333-nav__links{gap:18px;flex-wrap:wrap;justify-content:center;}
+  .h333-nav__link{font-size:12px;}
+}
+.h333-nav-wrap{background:#f8f8f0;}
+
 .hero{
   position:relative;background:#f8f8f0;min-height:72vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -165,6 +181,18 @@
 </style>
 
 <div id="three33-hero-wrap">
+
+<div class="h333-nav-wrap">
+  <nav class="h333-nav">
+    <div class="h333-nav__links">
+      <a class="h333-nav__link" href="/">Home</a>
+      <a class="h333-nav__link" href="https://333.kitchen" target="_blank" rel="noopener">Shop ↗</a>
+      <a class="h333-nav__link" href="/hospitality">Hospitality & Catering</a>
+      <a class="h333-nav__link" href="#dirSection">Book L.A.</a>
+    </div>
+  </nav>
+</div>
+
 <section class="hero">
   <div class="hero__bg"></div>
   <div class="hero__inner">
@@ -236,24 +264,12 @@
 <div class="ed-photos">
   <div class="ed-photo-placeholder">
     <img
-      src="https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-04-02_at_2.58.10_PM.png?v=1783383392&width=800"
-      srcset=",,"
-        https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-04-02_at_2.58.10_PM.png?v=1783383392&width=500 500w
-        https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-04-02_at_2.58.10_PM.png?v=1783383392&width=800 800w
-        https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-04-02_at_2.58.10_PM.png?v=1783383392&width=1200 1200w
-      sizes="(max-width:700px) 100vw, 50vw"
-      loading="lazy"
+      src="https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-04-02_at_2.58.10_PM.png?v=1783383392"
       style="width:100%;height:100%;object-fit:cover;display:block;" alt="Outdoor table setting">
   </div>
   <div class="ed-photo-placeholder">
     <img
-      src="https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-07-06_at_1.55.05_PM.png?v=1783383232&width=800"
-      srcset=",,"
-        https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-07-06_at_1.55.05_PM.png?v=1783383232&width=500 500w
-        https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-07-06_at_1.55.05_PM.png?v=1783383232&width=800 800w
-        https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-07-06_at_1.55.05_PM.png?v=1783383232&width=1200 1200w
-      sizes="(max-width:700px) 100vw, 50vw"
-      loading="lazy"
+      src="https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Screenshot_2026-07-06_at_1.55.05_PM.png?v=1783383232"
       style="width:100%;height:100%;object-fit:cover;display:block;" alt="Vegan buffet spread, family style">
   </div>
 </div>
