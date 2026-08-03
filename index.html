@@ -50,9 +50,9 @@
 .h333-nav-wrap{background:#f8f8f0;}
 
 .hero{
-  position:relative;background:#f8f8f0;min-height:72vh;
+  position:relative;background:#f8f8f0;min-height:44vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:60px 2rem 60px;overflow:hidden;
+  padding:60px 2rem 30px;overflow:hidden;
 }
 .hero__bg{display:none;position:absolute;inset:0;background:url('//333.kitchen/cdn/shop/files/Orangesheaders.jpg?v=1708483718') center/cover no-repeat;opacity:.3;}
 .hero__inner{position:relative;z-index:1;width:100%;max-width:680px;text-align:center;}
@@ -60,7 +60,19 @@
 @media(max-width:600px){.hero__logo{width:180px;margin-bottom:1rem;}}
 .hero__eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.4);margin-bottom:1.25rem;}
 .hero__title{font-size:clamp(34px,5.5vw,62px);font-weight:400;line-height:1.08;letter-spacing:-.035em;color:#111;margin-bottom:1rem;}
-.hero__sub{font-size:15px;color:rgba(0,0,0,.5);margin-bottom:2.75rem;line-height:1.65;}
+.hero__sub{font-size:15px;color:rgba(0,0,0,.5);margin-bottom:0;line-height:1.65;}
+.search-section{background:#f8f8f0;padding:20px 2rem 48px;display:flex;justify-content:center;}
+.hero__search-panel{
+  background:rgba(0,0,0,.02);
+  border:0.5px solid rgba(0,0,0,.08);
+  border-radius:20px;
+  padding:28px 24px 20px;
+  width:100%;
+  max-width:600px;
+}
+@media(max-width:600px){
+  .hero__search-panel{padding:20px 16px 16px;border-radius:16px;}
+}
 .hero__search{background:rgba(0,0,0,.04);border:0.5px solid rgba(0,0,0,.15);border-radius:999px;display:flex;align-items:center;padding:11px 22px;gap:10px;width:100%;max-width:540px;margin:0 auto 1.5rem;transition:background .15s,border-color .15s;}
 .hero__search:focus-within{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.38);}
 .hero__search-icon{color:rgba(0,0,0,.35);font-size:15px;flex-shrink:0;}
@@ -79,7 +91,7 @@
 .hf-sort-drop.open{display:block;}
 .hf-sort-item{padding:7px 10px;border-radius:5px;font-size:12px;color:rgba(255,255,255,.55);cursor:pointer;}
 .hf-sort-item:hover{background:rgba(0,0,0,.06);color:#111;}
-.dir-section{background:#f8f8f0;padding:0 2rem 3rem;display:none;}
+.dir-section{background:#f8f8f0;padding:40px 2rem 3rem;display:none;}
 .section-divider{border:none;border-top:1px solid rgba(0,0,0,.08);margin:0;}
 .dir-section.open{display:block;}
 .dir-inner{max-width:760px;margin:0 auto;}
@@ -113,6 +125,7 @@
 .card-right-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;row-gap:8px;}
 .icon-btn{font-size:11px;padding:4px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6);background:transparent;cursor:pointer;font-family:-apple-system,sans-serif;transition:background .12s,color .12s;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;}
 .icon-btn:hover{background:rgba(255,255,255,.1);color:#fff;}
+.icon-btn[disabled]{opacity:.35;cursor:default;pointer-events:none;}
 .feat-dot{position:absolute;top:14px;right:18px;width:6px;height:6px;background:#3b82f6;border-radius:50%;box-shadow:0 0 0 2px rgba(59,130,246,.3);}
 .card-right-edge-strip{width:5px;flex-shrink:0;background:rgba(0,0,0,.18);}
 .brand-banner{width:calc(100% - 8px);height:52px;border-radius:4px;margin-bottom:36px;margin-left:4px;display:flex;align-items:center;justify-content:space-between;padding:0 16px 0 12px;background:#1d4ed8;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease;box-shadow:2px 3px 16px rgba(29,78,216,.4);position:relative;overflow:hidden;transform:rotateX(3deg);}
@@ -125,8 +138,8 @@
 .brand-cta{font-size:10px;padding:3px 10px;border-radius:99px;border:0.5px solid rgba(255,255,255,.28);color:#fff;background:transparent;cursor:pointer;white-space:nowrap;}
 .empty{text-align:center;font-size:13px;color:rgba(255,255,255,.25);padding:3rem 0;}
 .explore-all-wrap{text-align:center;padding:1rem 0 2rem;}
-.explore-all-btn{border:0.5px solid rgba(255,255,255,.2);background:transparent;border-radius:99px;padding:10px 28px;font-size:13px;color:rgba(255,255,255,.6);cursor:pointer;font-family:-apple-system,sans-serif;transition:all .15s;letter-spacing:.02em;}
-.explore-all-btn:hover{background:rgba(255,255,255,.07);color:#fff;border-color:rgba(0,0,0,.35);}
+.explore-all-btn{border:0.5px solid rgba(0,0,0,.2);background:transparent;border-radius:99px;padding:10px 28px;font-size:13px;color:rgba(0,0,0,.6);cursor:pointer;font-family:-apple-system,sans-serif;transition:all .15s;letter-spacing:.02em;}
+.explore-all-btn:hover{background:rgba(0,0,0,.07);color:#111;border-color:rgba(0,0,0,.35);}
 .deal-badge{display:inline-block;font-size:8px;letter-spacing:.08em;text-transform:uppercase;background:#f59e0b;color:#1a1a00;padding:2px 7px;border-radius:99px;font-weight:600;margin-bottom:4px;font-family:-apple-system,sans-serif;}
 .claim-btn{background:#f59e0b!important;color:#1a1a00!important;border-color:#f59e0b!important;font-weight:700;}
 .no-touchevents .claim-btn:hover{background:#ffb733!important;}
@@ -198,9 +211,14 @@
   <div class="hero__inner">
     <img class="hero__logo" src="https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Furthererased.png?v=1783965338" alt="333's health food" loading="lazy">
     <p class="hero__eyebrow">Los Angeles · New York · San Francisco · San Diego</p>
-    <h1 class="hero__title">One home for the best in health food & wellness</h1>
-<p class="hero__sub">Coming soon: Book time slots & redeem credits at best health spots</p>
+    <h1 class="hero__title">Building one home for the best in health</h1>
+  </div>
+</section>
 
+<section class="search-section">
+  <div style="width:100%;max-width:600px;text-align:center;">
+  <div class="hero__search-panel">
+    <p class="hero__sub" style="margin-bottom:20px;"><strong>Booking &amp; "just use my balance" coming soon.</strong><br>For now explore weekly dinner series &amp; check-in when at partners for perks.</p>
     <div class="hero__search">
       <span class="hero__search-icon">⌕</span>
       <input class="hero__search-input" id="heroSearch" type="text"
@@ -217,10 +235,8 @@
     </div>
 
     <div class="hero__filter-row">
-      <button class="hf-pill on cat" onclick="setHeroCat(this,'book',event)">Meal Book/Redeem</button>
-      <button class="hf-pill cat" onclick="setHeroCat(this,'wellness',event)">Wellness Book</button>
-      <div class="hf-divider"></div>
-      <a class="hf-pill shop-link" href="https://333.kitchen" target="_blank" rel="noopener"> Shop ↗</a>
+      <button class="hf-pill on cat" onclick="setHeroCat(this,'book',event)">Meals</button>
+      <button class="hf-pill cat" onclick="setHeroCat(this,'wellness',event)">Wellness</button>
       <div class="hf-divider"></div>
       <div style="display:flex;gap:4px;">
         <button class="hf-pill on" id="listViewBtn" onclick="setViewMode('list')">List</button>
@@ -228,6 +244,7 @@
         <button class="hf-pill" style="opacity:.5;cursor:default;" disabled>Map</button>
       </div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -241,7 +258,8 @@
     .ed-text{display:flex;flex-direction:column;align-items:flex-start;gap:20px;}
     .ed-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65);font-weight:600;font-family:"DM Sans",-apple-system,sans-serif;}
     .ed-headline{font-size:clamp(28px,3.5vw,42px);font-weight:400;letter-spacing:-.025em;line-height:1.12;color:#fff;font-family:"DM Sans",-apple-system,sans-serif;}
-    .ed-sub{font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);font-family:"DM Sans",-apple-system,sans-serif;max-width:320px;}
+    .ed-sub{font-size:15px;line-height:1.6;color:rgba(255,255,255,.75);font-family:"DM Sans",-apple-system,sans-serif;max-width:360px;}
+    .ed-allusion{font-size:13px;line-height:1.6;color:rgba(255,255,255,.55);font-style:italic;font-family:"DM Sans",-apple-system,sans-serif;max-width:360px;margin-top:8px;}
     .ed-btn{display:inline-block;background:#fff;color:#111;font-size:13px;font-weight:600;padding:12px 24px;border-radius:999px;text-decoration:none;font-family:"DM Sans",-apple-system,sans-serif;transition:opacity .15s;margin-top:4px;}
     .ed-btn:hover{opacity:.88;}
     .ed-photos{display:flex;flex-direction:row;align-items:flex-start;gap:16px;}
@@ -257,9 +275,11 @@
   </style>
   <div class="ed-text">
     <p class="ed-eyebrow">A health co-op, built for 2026</p>
-    <h2 class="ed-headline">Real places.<br>Real food.<br>One membership.</h2>
-    <p class="ed-sub">Intentional food &amp; wellness, rooted in community.</p>
-    <button class="ed-btn" data-tf-popup="b15WguZL" data-tf-opacity="70" style="border:none;cursor:pointer;">Get on the waitlist →</button>
+    <h2 class="ed-headline">Healthy places &amp; food that feel like coming home.</h2>
+    <p class="ed-sub">We're launching a founding membership with a rolling monthly balance you can use everyday for curated meals, our favorite wellness programming, date night dinners, and our store — plus 1-of-1 perks + experiences from our sponsor network.</p>
+    <p class="ed-sub" style="margin-top:-8px;">Intentional food &amp; wellness, rooted in community — with members feeling like they have dozens of homes away from home for their health.</p>
+    <p class="ed-allusion">Wellness has never been bigger. Somehow the big food and wellness platforms have gotten further from health, community, and quality — not closer.</p>
+    <button class="ed-btn" data-tf-popup="b15WguZL" data-tf-opacity="70" style="border:none;cursor:pointer;">Get on founding member waitlist →</button>
   </div>
 <div class="ed-photos">
   <div class="ed-photo-placeholder">
@@ -274,118 +294,6 @@
   </div>
 </div>
   </div>
-
-<hr class="section-divider">
-<section class="credit-explainer" aria-label="How 333 credits work">
-  <style>
-    .credit-explainer{background:#f8f8f0;padding:64px 24px 76px;max-width:980px;margin:0 auto;}
-    .ce-head{text-align:center;max-width:560px;margin:0 auto 56px;}
-    .ce-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,.4);margin-bottom:14px;font-weight:600;}
-    .ce-title{font-size:clamp(24px,3.4vw,32px);font-weight:400;letter-spacing:-.02em;line-height:1.18;color:#111;margin-bottom:14px;}
-    .ce-sub{font-size:14.5px;line-height:1.6;color:rgba(0,0,0,.55);}
-    .ce-flow{position:relative;display:grid;grid-template-columns:200px 1fr;gap:0;align-items:center;margin-bottom:8px;}
-    .ce-pool{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:2;}
-    .ce-pool-recommend{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#e25036;font-weight:700;margin-bottom:10px;}
-    .ce-pool-badge{width:108px;height:108px;border-radius:50%;background:#111;color:#f8f8f0;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:14px;box-shadow:0 8px 24px rgba(0,0,0,.18);}
-    .ce-pool-num{font-size:30px;font-weight:600;letter-spacing:-.01em;line-height:1;}
-    .ce-pool-num-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,248,240,.6);margin-top:3px;}
-    .ce-pool-label{font-size:13px;font-weight:600;color:#111;margin-bottom:3px;}
-    .ce-pool-sub{font-size:11.5px;color:rgba(0,0,0,.45);max-width:140px;line-height:1.4;}
-    .ce-branches{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;position:relative;z-index:2;}
-    .ce-branch{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:22px 18px 20px;position:relative;}
-    .ce-branch-icon{width:34px;height:34px;margin-bottom:14px;}
-    .ce-branch-name{font-size:14.5px;font-weight:600;color:#111;margin-bottom:6px;}
-    .ce-branch-range{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.02em;color:#fff;background:#e25036;padding:3px 9px;border-radius:99px;margin-bottom:10px;}
-    .ce-branch-desc{font-size:12px;line-height:1.55;color:rgba(0,0,0,.55);}
-    .ce-lines{position:absolute;left:200px; right:0; top:0; bottom:0;pointer-events:none;z-index:1;}
-    .ce-lines svg{ width:100%; height:100%; display:block; }
-    @media(max-width:760px){
-      .ce-flow{grid-template-columns:1fr;gap:28px;}
-      .ce-pool{margin-bottom:4px;}
-      .ce-branches{grid-template-columns:1fr;gap:12px;}
-      .ce-lines{display:none;}
-      .ce-allusion{font-size:12.5px;padding:0 8px;}
-      .ce-waitlist-btn{width:100%;max-width:280px;}
-    }
-    .ce-perk{display:flex;align-items:flex-start;gap:16px;background:rgba(226,80,54,.06);border:1px dashed rgba(226,80,54,.35);border-radius:14px;padding:18px 20px;margin-top:18px;}
-    .ce-perk-icon{ width:30px;height:30px;flex-shrink:0;margin-top:2px; }
-    .ce-perk-title{ font-size:13.5px;font-weight:600;color:#111;margin-bottom:4px; }
-    .ce-perk-desc{ font-size:12px;line-height:1.55;color:rgba(0,0,0,.55); }
-    @media(max-width:480px){.ce-perk{flex-direction:column;gap:10px;}}
-    .ce-waitlist{text-align:center;margin-top:40px;padding-top:32px;border-top:1px solid rgba(0,0,0,.08);}
-    .ce-waitlist-btn{display:inline-block;background:#111;color:#f8f8f0;font-size:14px;font-weight:600;padding:13px 28px;border-radius:999px;text-decoration:none;transition:opacity .15s;}
-    .ce-waitlist-btn:hover{opacity:.82;}
-    .ce-waitlist-note{font-size:12px;color:rgba(0,0,0,.42);margin-top:12px;}
-    .ce-allusion{text-align:center;max-width:520px;margin:32px auto 0;font-size:13px;line-height:1.6;font-style:italic;color:rgba(0,0,0,.45);}
-  </style>
-  <div class="ce-head">
-    <p class="ce-eyebrow">A health co-op, built for 2026</p>
-    <h2 class="ce-title">One balance. Wherever you spend it<br>still feels like 333.</h2>
-    <p class="ce-sub">A monthly credit plan you'll spend on curated healthy meals, wellness programming, date night dinners or anything in the online store. Save the most if it becomes part of your every day.</p>
-  </div>
-  <div class="ce-flow">
-    <div class="ce-pool">
-      <p class="ce-pool-recommend">We recommend</p>
-      <div class="ce-pool-badge">
-        <span class="ce-pool-num">33</span>
-        <span class="ce-pool-num-label">credits / mo</span>
-      </div>
-      <div class="ce-pool-label">Your plan</div>
-      <div class="ce-pool-sub">Smaller and larger plans available too · cancel anytime</div>
-    </div>
-    <div class="ce-lines" aria-hidden="true">
-      <svg viewBox="0 0 760 200" preserveAspectRatio="none">
-        <path d="M 0 100 C 60 100, 60 28, 130 28" stroke="rgba(0,0,0,.14)" stroke-width="1.5" fill="none"/>
-        <path d="M 0 100 C 60 100, 60 100, 130 100" stroke="rgba(0,0,0,.14)" stroke-width="1.5" fill="none"/>
-        <path d="M 0 100 C 60 100, 60 172, 130 172" stroke="rgba(0,0,0,.14)" stroke-width="1.5" fill="none"/>
-      </svg>
-    </div>
-    <div class="ce-branches">
-      <div class="ce-branch">
-        <svg class="ce-branch-icon" viewBox="0 0 34 34" fill="none">
-          <path d="M9 4C9 4 8 9 8 13C8 16.3 10.7 19 14 19V30M14 19C17.3 19 20 16.3 20 13C20 9 19 4 19 4M14 4V19" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M26 4C23 4 21 7.5 21 12.5C21 16 22.8 18 25 18.5V30" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div class="ce-branch-name">Meals</div>
-        <span class="ce-branch-range">1.0–2.2 credits</span>
-        <p class="ce-branch-desc">Curated for health & taste & with optional communnal areas available to eat & organically connect. Use your credits for 333 approved menu items at the casual banh mi stand or the candlelit Italian restaurant .</p>
-      </div>
-      <div class="ce-branch">
-        <svg class="ce-branch-icon" viewBox="0 0 34 34" fill="none">
-          <circle cx="17" cy="11" r="4.5" stroke="#111" stroke-width="1.6"/>
-          <path d="M17 24C17 18.5 21 17 25 17C25 22 23 26 17 30C11 26 9 22 9 17C13 17 17 18.5 17 24Z" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/>
-        </svg>
-        <div class="ce-branch-name">Wellness</div>
-        <span class="ce-branch-range">~3 credits</span>
-        <p class="ce-branch-desc">Studio classes and events you won't find anywhere else. </p>
-      </div>
-      <div class="ce-branch">
-        <svg class="ce-branch-icon" viewBox="0 0 34 34" fill="none">
-          <path d="M6 11L17 5L28 11M6 11V25L17 30V16M6 11L17 16M28 11V25L17 30M28 11L17 16" stroke="#111" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-        </svg>
-        <div class="ce-branch-name">The Store</div>
-        <span class="ce-branch-range">Same as cash</span>
-        <p class="ce-branch-desc">Use a credit balance like a gift card across pantry staples, frozen meals, and the rest of the shop — always a better deal than paying cash outright.</p>
-      </div>
-    </div>
-  </div>
-  <div class="ce-perk">
-    <svg class="ce-perk-icon" viewBox="0 0 34 34" fill="none">
-      <rect x="6" y="13" width="22" height="15" rx="1.5" stroke="#111" stroke-width="1.6"/>
-      <path d="M6 13L17 21L28 13" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/>
-      <path d="M17 13V6M17 6L13 9.5M17 6L21 9.5" stroke="#e25036" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div>
-      <p class="ce-perk-title">A monthly drop, for our 33-credit+ plans</p>
-      <p class="ce-perk-desc">Free monthly product from clean brands we'd actually use ourselves — delivered to your door, no credits spent.</p>
-    </div>
-  </div>
-  <div class="ce-waitlist">
-    <button class="ce-waitlist-btn" data-tf-popup="b15WguZL" data-tf-opacity="70" style="border:none;cursor:pointer;">Get on the waitlist →</button>
-    <p class="ce-waitlist-note">We're not live yet — credits launch with our founding partners.</p>
-  </div>
-  <p class="ce-allusion">Wellness has never been bigger. Somehow the big food and wellness platforms have gotten further from health, community, and quality — not closer.</p>
-</section>
 
 </div>
 
@@ -583,6 +491,8 @@ function csvToPartnerData(csvText){
     };
     if(obj.dealFace) partner.dealFace=parseInt(obj.dealFace,10);
     if(obj.dealPrice) partner.dealPrice=parseInt(obj.dealPrice,10);
+    if(obj.weeklysignupurl) partner.weeklySignupUrl=obj.weeklysignupurl;
+    if(obj.weeklysignuplabel) partner.weeklySignupLabel=obj.weeklysignuplabel;
 
     if(!data[obj.city]) data[obj.city]=[];
     data[obj.city].push(partner);
@@ -640,12 +550,13 @@ function renderCard(p,container){
   if(p.deal){
     bookBtns='<button class="icon-btn" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#f59e0b;">Claim deal</button>';
   } else if(isActive&&isR){
-    bookBtns = (p.locations
-      ? p.locations.map(function(l){
-          return '<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="'+l+'">Book '+l+'</button>';
-        }).join('')
-      : '<button class="icon-btn book-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'" data-loc="">Book</button>')
-      + '<button class="icon-btn redeem-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'">Dine/Order Redeem</button>';
+    bookBtns =
+      '<button class="icon-btn notlive-btn" data-label="Booking">Book</button>'+
+      '<button class="icon-btn notlive-btn" data-label="Redeem">Redeem</button>'+
+      '<button class="icon-btn checkin-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'">Check In</button>'+
+      (p.weeklySignupUrl
+        ? '<a class="icon-btn" href="'+p.weeklySignupUrl+'" target="_blank" onclick="event.stopPropagation()">'+(p.weeklySignupLabel||'Weekly meals sign up')+' \u2197</a>'
+        : '');
   } else if(isR){
     bookBtns='<span class="cs-badge">Coming soon</span>';
   }
@@ -678,10 +589,25 @@ function renderCard(p,container){
     '<div class="card-right-edge-strip"></div>';
 
   card.addEventListener('click',function(e){
-    var bookBtn=e.target.closest('.book-btn');
-    if(bookBtn){ e.stopPropagation(); var nm=bookBtn.getAttribute('data-name'); var lc=bookBtn.getAttribute('data-loc')||null; openBookModal(partnerMap[nm],lc); return; }
-    var redeemBtn=e.target.closest('.redeem-btn');
-    if(redeemBtn){ e.stopPropagation(); alert('Mockup only — this will populate a promo code from your available credits once the real system is built.'); return; }
+    var notliveBtn=e.target.closest('.notlive-btn');
+    if(notliveBtn){
+      e.stopPropagation();
+      alert(notliveBtn.getAttribute('data-label')+' isn\'t live yet \u2014 check back soon.');
+      return;
+    }
+    var checkinBtn=e.target.closest('.checkin-btn');
+    if(checkinBtn){
+      e.stopPropagation();
+      var nm=checkinBtn.getAttribute('data-name');
+      // TODO: point this at your Google Sheets / Zapier webhook once set up.
+      // Logs silently — no code shown to the guest, staff/back-end can consolidate and flag as needed.
+      fetch('YOUR_CHECKIN_WEBHOOK_URL', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({partner:nm, timestamp:new Date().toISOString()})
+      }).catch(function(){ /* fail silently for now */ });
+      return;
+    }
     if(e.target.closest('.icon-btn')) return;
     openInfoModal(p);
   });
@@ -706,21 +632,28 @@ function openInfoModal(p){
   var actions=document.getElementById('modalActions');
   actions.innerHTML='';
   var isR=p.t==='Restaurant'||p.t==='Bakery';
-  if(isActive&&isR){
-    if(p.locations){
-      p.locations.forEach(function(l){
-        var btn=document.createElement('button'); btn.className='modal-btn primary'; btn.textContent='Book '+l;
-        btn.onclick=function(){ closeModal('infoModal'); openBookModal(p,l); };
-        actions.appendChild(btn);
-      });
-    } else {
-      var btn=document.createElement('button'); btn.className='modal-btn primary'; btn.textContent='Book';
-      btn.onclick=function(){ closeModal('infoModal'); openBookModal(p,null); };
-      actions.appendChild(btn);
-    }
-    var redeemBtn=document.createElement('button'); redeemBtn.className='modal-btn'; redeemBtn.textContent='Dine/Order Redeem';
-    redeemBtn.onclick=function(){ alert('Mockup only — this will populate a promo code from your available credits once the real system is built.'); };
+  var isActiveR=isActive&&isR;
+  if(isActiveR){
+    var bookBtn=document.createElement('button'); bookBtn.className='modal-btn primary'; bookBtn.textContent='Book';
+    bookBtn.onclick=function(){ alert('Booking isn\'t live yet \u2014 check back soon.'); };
+    actions.appendChild(bookBtn);
+    var redeemBtn=document.createElement('button'); redeemBtn.className='modal-btn'; redeemBtn.textContent='Redeem';
+    redeemBtn.onclick=function(){ alert('Redeem isn\'t live yet \u2014 check back soon.'); };
     actions.appendChild(redeemBtn);
+    var checkinBtn=document.createElement('button'); checkinBtn.className='modal-btn'; checkinBtn.textContent='Check In';
+    checkinBtn.onclick=function(){
+      fetch('YOUR_CHECKIN_WEBHOOK_URL', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({partner:p.n, timestamp:new Date().toISOString()})
+      }).catch(function(){});
+    };
+    actions.appendChild(checkinBtn);
+    if(p.weeklySignupUrl){
+      var weeklyBtn=document.createElement('a'); weeklyBtn.className='modal-btn'; weeklyBtn.href=p.weeklySignupUrl; weeklyBtn.target='_blank';
+      weeklyBtn.textContent=(p.weeklySignupLabel||'Weekly meals sign up')+' \u2197';
+      actions.appendChild(weeklyBtn);
+    }
   }
   document.getElementById('infoModal').classList.add('open');
 }
@@ -810,25 +743,17 @@ function showDir(){
   var items=getList();
   listEl.innerHTML='';
   if(!items.length){
-    listEl.innerHTML='<div style="padding:3rem 0;color:rgba(255,255,255,.3);font-size:13px;text-align:center;">'+(cat==='wellness'?'Wellness partners coming soon.':'No results — try another city or filter.')+'</div>';
+    listEl.innerHTML='<div class="empty">'+(cat==='wellness'?'Wellness partners coming soon.':'No results — try another city or filter.')+'</div>';
     return;
   }
   var show=dirShowingAll?items:items.slice(0,6);
   show.forEach(function(p){renderCard(p,listEl);});
   if(!dirShowingAll && items.length>6){
-    var more=document.createElement('div');
-    more.style.cssText='text-align:center;padding:2rem 0;';
-    var link=document.createElement('a');
-    link.href='#';
-    link.style.cssText='font-size:13px;color:rgba(0,0,0,.5);border-bottom:1px solid rgba(0,0,0,.2);text-decoration:none;padding-bottom:2px;cursor:pointer;';
-    link.textContent='Explore all '+items.length+' partners \u2192';
-    link.addEventListener('click',function(e){
-      e.preventDefault();
-      dirShowingAll=true;
-      showDir();
-    });
-    more.appendChild(link);
-    listEl.appendChild(more);
+    var wrap=document.createElement('div'); wrap.className='explore-all-wrap';
+    var btn=document.createElement('button'); btn.className='explore-all-btn';
+    btn.textContent='Explore all '+items.length+' partners \u2192';
+    btn.addEventListener('click',function(){ dirShowingAll=true; showDir(); });
+    wrap.appendChild(btn); listEl.appendChild(wrap);
   }
   sec.scrollIntoView({behavior:'smooth',block:'start'});
 }
