@@ -73,10 +73,10 @@
 @media(max-width:600px){
   .hero__search-panel{padding:20px 16px 16px;border-radius:16px;}
 }
-.hero__search{background:rgba(0,0,0,.04);border:0.5px solid rgba(0,0,0,.15);border-radius:999px;display:flex;align-items:center;padding:11px 22px;gap:10px;width:100%;max-width:540px;margin:0 auto 1.5rem;transition:background .15s,border-color .15s;}
+.hero__search{background:rgba(0,0,0,.04);border:0.5px solid rgba(0,0,0,.15);border-radius:999px;display:flex;align-items:center;padding:11px 22px;gap:10px;width:100%;max-width:540px;margin:0 auto 1.5rem;transition:background .15s,border-color .15s;overflow:hidden;}
 .hero__search:focus-within{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.38);}
 .hero__search-icon{color:rgba(0,0,0,.35);font-size:15px;flex-shrink:0;}
-.hero__search-input{flex:1;background:transparent;border:none;outline:none;color:#111;font-size:14px;font-family:var(--font-body);}
+.hero__search-input{flex:1;min-width:0;background:transparent;border:none;outline:none;color:#111;font-size:14px;font-family:var(--font-body);text-overflow:ellipsis;}
 .hero__search-input::placeholder{color:rgba(0,0,0,.3);}
 .hero__city-row,.hero__filter-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:.6rem;}
 .hf-label{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.35);display:flex;align-items:center;margin-right:4px;}
@@ -191,6 +191,15 @@
 #dirList.grid-mode .card-right-row{flex-wrap:wrap;}
 #dirList.grid-mode .brand-banner{grid-column:1/-1;}
 #dirList.grid-mode .card-photo{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
+@media(max-width:600px){
+  #dirList.grid-mode{grid-template-columns:repeat(2,1fr);gap:10px;}
+  #dirList.grid-mode .card{aspect-ratio:auto;height:200px;}
+  #dirList.grid-mode .card-body{padding:10px 10px;}
+  #dirList.grid-mode .card-name{font-size:16px;}
+  #dirList.grid-mode .card-mid{font-size:10px;}
+  #dirList.grid-mode .card-right-row{gap:4px;}
+  #dirList.grid-mode .icon-btn{font-size:10px;padding:3px 8px;}
+}
 </style>
 
 <div id="three33-hero-wrap">
@@ -218,7 +227,7 @@
 <section class="search-section">
   <div style="width:100%;max-width:600px;text-align:center;">
   <div class="hero__search-panel">
-    <p class="hero__sub" style="margin-bottom:20px;"><strong>Booking &amp; "just use my balance" coming soon.</strong><br>For now explore weekly dinner series &amp; check-in when at partners for perks.</p>
+    <p class="hero__sub" style="margin-bottom:20px;"><strong>Booking &amp; balance redemption coming soon.</strong><br>For now explore weekly dinner series &amp; check-in when at partners for perks.</p>
     <div class="hero__search">
       <span class="hero__search-icon">⌕</span>
       <input class="hero__search-input" id="heroSearch" type="text"
@@ -228,10 +237,10 @@
 
     <div class="hero__city-row">
       <span class="hf-label">City</span>
-      <button class="hf-pill city" onclick="setHeroCity(this,'LA',event)">Los Angeles</button>
-      <button class="hf-pill city" onclick="setHeroCity(this,'NYC',event)">New York</button>
-      <button class="hf-pill city" onclick="setHeroCity(this,'SD',event)">San Diego</button>
-      <button class="hf-pill city" onclick="setHeroCity(this,'SF',event)">San Francisco</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'LA',event)">LA</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'NYC',event)">NYC</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'SD',event)">SD</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'SF',event)">SF</button>
     </div>
 
     <div class="hero__filter-row">
