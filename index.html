@@ -33,7 +33,7 @@
   --font-sub: "DM Sans", -apple-system, sans-serif;
   --font-body: "DM Sans", -apple-system, sans-serif;
 }
- 
+
 /* ---- shared nav, same as hospitality page ---- */
 .h333-nav{
   position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
@@ -48,7 +48,7 @@
   .h333-nav__link{font-size:12px;}
 }
 .h333-nav-wrap{background:#f8f8f0;}
- 
+
 .hero{
   position:relative;background:#f8f8f0;min-height:44vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -110,16 +110,16 @@
 </style>
 </head>
 <body>
- 
+
 <style>
-.card{width:100%;height:150px;border-radius:6px;margin-bottom:36px;cursor:pointer;position:relative;overflow:hidden;display:flex;align-items:stretch;transition:transform .2s cubic-bezier(.34,1.4,.64,1),box-shadow .2s ease;box-shadow:2px 2px 14px rgba(0,0,0,.35);}
+.card{width:100%;min-height:150px;border-radius:6px;margin-bottom:36px;cursor:pointer;position:relative;overflow:hidden;display:flex;align-items:stretch;transition:transform .2s cubic-bezier(.34,1.4,.64,1),box-shadow .2s ease;box-shadow:2px 2px 14px rgba(0,0,0,.35);}
 .card:hover{transform:translateX(5px);box-shadow:4px 4px 22px rgba(0,0,0,.45);}
 .card-strip{width:4px;flex-shrink:0;}
 .card-body{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:16px 18px;position:relative;}
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;}
 .card-name{font-size:19px;font-weight:400;font-family:Georgia,serif;line-height:1.2;letter-spacing:-.3px;color:#fff;}
 .card-hood{font-size:11px;opacity:.55;text-align:right;max-width:40%;color:#fff;}
-.card-mid{font-size:11px;opacity:.45;margin-top:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff;}
+.card-mid{font-size:11px;opacity:.45;margin-top:6px;color:#fff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;white-space:normal;}
 .card-bottom-row{display:flex;justify-content:space-between;align-items:flex-end;}
 .card-tag{font-size:9px;letter-spacing:.07em;text-transform:uppercase;opacity:.4;color:#fff;}
 .card-right-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;row-gap:8px;}
@@ -161,9 +161,9 @@
 .slot-btn{border:0.5px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;padding:8px 14px;font-size:12px;color:#fff;cursor:pointer;font-family:-apple-system,sans-serif;transition:background .12s;}
 .slot-btn:hover{background:rgba(255,255,255,.1);}
 .no-slots{font-size:12px;color:rgba(0,0,0,.35);font-style:italic;}
- 
+
 .card-hood-under{font-size:11px;opacity:.85;font-weight:600;color:#fff;margin-top:10px;margin-bottom:2px;}
- 
+
 #dirList.grid-mode{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
@@ -197,7 +197,7 @@
 #dirList.grid-mode .card-photo{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
 @media(max-width:600px){
   #dirList.grid-mode{grid-template-columns:repeat(2,1fr);gap:10px;}
-  #dirList.grid-mode .card{aspect-ratio:auto;height:200px;}
+  #dirList.grid-mode .card{aspect-ratio:auto;min-height:200px;}
   #dirList.grid-mode .card-body{padding:10px 10px;}
   #dirList.grid-mode .card-name{font-size:16px;}
   #dirList.grid-mode .card-mid{font-size:10px;}
@@ -205,11 +205,16 @@
   #dirList.grid-mode .pickup-link{font-size:9px !important;margin:0 0 3px !important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   #dirList.grid-mode .card-right-row{gap:4px;}
   #dirList.grid-mode .icon-btn{font-size:10px;padding:3px 8px;}
+
+  #dirList:not(.grid-mode) .card-right-row{gap:5px;}
+  #dirList:not(.grid-mode) .icon-btn{font-size:10px;padding:4px 9px;}
+  #dirList:not(.grid-mode) .pickup-link{font-size:10px !important;}
+  #dirList:not(.grid-mode) .card-name{font-size:17px;}
 }
 </style>
- 
+
 <div id="three33-hero-wrap">
- 
+
 <div class="h333-nav-wrap">
   <nav class="h333-nav">
     <div class="h333-nav__links">
@@ -220,7 +225,7 @@
     </div>
   </nav>
 </div>
- 
+
 <section class="hero">
   <div class="hero__bg"></div>
   <div class="hero__inner">
@@ -229,7 +234,7 @@
     <h1 class="hero__title">Building one home for the best in health</h1>
   </div>
 </section>
- 
+
 <section class="search-section">
   <div style="width:100%;max-width:600px;text-align:center;">
   <div class="hero__search-panel">
@@ -240,7 +245,7 @@
         placeholder="Search health &amp; veg friendly places &amp; happenings..."
         oninput="onHeroSearch()">
     </div>
- 
+
     <div class="hero__city-row">
       <span class="hf-label">City</span>
       <button class="hf-pill city" onclick="setHeroCity(this,'LA',event)">LA</button>
@@ -249,7 +254,7 @@
       <button class="hf-pill city" onclick="setHeroCity(this,'SF',event)">SF</button>
       <button class="hf-pill city" onclick="setHeroCity(this,'PDX',event)">PDX</button>
     </div>
- 
+
     <div class="hero__filter-row">
       <button class="hf-pill on cat" onclick="setHeroCat(this,'book',event)">Meals</button>
       <button class="hf-pill cat" onclick="setHeroCat(this,'wellness',event)">Wellness</button>
@@ -263,7 +268,7 @@
   </div>
   </div>
 </section>
- 
+
 <section class="dir-section" id="dirSection">
   <div class="dir-inner">
     <div style="text-align:right;padding:12px 0 4px;">
@@ -272,8 +277,8 @@
     <div id="dirList"></div>
   </div>
 </section>
- 
- 
+
+
 <div class="editorial-divider">
   <style>
     .editorial-divider{background:#5b8fa8;padding:96px 7vw;display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center;}
@@ -316,11 +321,11 @@
   </div>
 </div>
   </div>
- 
+
 </div>
- 
+
 <div style="background:#f8f8f0;height:40px;"></div>
- 
+
 <section style="background:#f8f8f0;padding:64px 6vw 72px;">
   <style>
     .faq-wrap{max-width:640px;margin:0 auto;}
@@ -368,7 +373,7 @@
     </div>
   </div>
 </section>
- 
+
 <div id="three33-portal" class="three33-portal">
   <div class="modal-overlay" id="infoModal">
     <div class="modal">
@@ -395,13 +400,13 @@
     </div>
   </div>
 </div>
- 
+
 <script>
 var city='LA', cat='book', searchQuery='', curatedFilter='', currentView='list';
 var CUTOFF=6;
 var showingAll=false;
 var cur=null;
- 
+
 var all={
   LA:[
     {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#2d5a3d",active:true,locations:["Larchmont","Venice"],strip:"#4a9460",d:"Craveable plant based food made with best quality ingredients.",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
@@ -479,7 +484,7 @@ var all={
   PDX:[
   ]
 };
- 
+
 var brandsByCity={
   LA:[
     {n:"Abbott's",tagline:"Craft plant-based proteins"},
@@ -501,7 +506,7 @@ var brandsByCity={
   PDX:[
   ],
 };
- 
+
 var partnerMap={};
 function buildPartnerMap(){
   Object.keys(all).forEach(function(c){
@@ -512,9 +517,9 @@ buildPartnerMap();
 if(document.readyState==='loading'){
   document.addEventListener('DOMContentLoaded', function(){ buildPartnerMap(); });
 }
- 
+
 var SHEET_CSV_URL = "";
- 
+
 function parseCSV(text){
   var rows=[]; var row=[]; var field=''; var inQuotes=false;
   for(var i=0;i<text.length;i++){
@@ -534,7 +539,7 @@ function parseCSV(text){
   if(field.length||row.length){ row.push(field); rows.push(row); }
   return rows;
 }
- 
+
 function csvToPartnerData(csvText){
   var rows=parseCSV(csvText);
   if(!rows.length) return null;
@@ -546,7 +551,7 @@ function csvToPartnerData(csvText){
     var obj={};
     headers.forEach(function(h,idx){ obj[h]=(cells[idx]||'').trim(); });
     if(!obj.city||!obj.name) continue;
- 
+
     function daySlots(dayKey,dayLabel){
       if(!obj[dayKey]) return [];
       return obj[dayKey].split(',').map(function(t){ return t.trim(); }).filter(Boolean).map(function(tm){ return {day:dayLabel,tm:tm}; });
@@ -554,7 +559,7 @@ function csvToPartnerData(csvText){
     var sl=[].concat(
       daySlots('mon','Mon'), daySlots('tue','Tue'), daySlots('wed','Wed'), daySlots('thu','Thu')
     );
- 
+
     var partner={
       n: obj.name,
       h: obj.neighborhood||'',
@@ -572,13 +577,13 @@ function csvToPartnerData(csvText){
     if(obj.dealPrice) partner.dealPrice=parseInt(obj.dealPrice,10);
     if(obj.weeklysignupurl) partner.weeklySignupUrl=obj.weeklysignupurl;
     if(obj.weeklysignuplabel) partner.weeklySignupLabel=obj.weeklysignuplabel;
- 
+
     if(!data[obj.city]) data[obj.city]=[];
     data[obj.city].push(partner);
   }
   return data;
 }
- 
+
 function loadSheetData(){
   if(!SHEET_CSV_URL) return;
   fetch(SHEET_CSV_URL)
@@ -600,7 +605,7 @@ function loadSheetData(){
     });
 }
 loadSheetData();
- 
+
 function getList(){
   var items=(all[city]||[]).filter(function(p){ return cat==='deals'?p.deal:!p.dealOnly; });
   if(cat==='book') items=items.filter(function(p){ if(p.hideFromMeals) return false; return p.t==='Restaurant'||p.t==='Event'||p.mealsFeature; });
@@ -614,17 +619,17 @@ function getList(){
   });
   return items;
 }
- 
+
 function renderCard(p,container){
   var isR=p.t==='Restaurant'||p.t==='Bakery';
   var isG=p.t==='Grocery';
   var isE=p.t==='Event';
   var isActive=p.active||p.deal;
- 
+
   var card=document.createElement('div');
   card.className='card'+(isActive?'':' coming-soon');
   card.style.background=p.bg;
- 
+
   var bookBtns='';
   if(p.deal){
     bookBtns='<button class="icon-btn" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#f59e0b;">Claim deal</button>';
@@ -639,17 +644,17 @@ function renderCard(p,container){
   } else if(isR){
     bookBtns='<span class="cs-badge">Coming soon</span>';
   }
- 
+
   var secondaryBtn='';
   if(isG) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Shop \u2197</a>';
   else if(isE&&isActive) secondaryBtn='<button class="icon-btn">Reserve</button>';
- 
+
   var claimBtn='';
   if(p.deal){
     var face=p.dealFace||40, price=p.dealPrice||25;
     claimBtn='<a class="icon-btn claim-btn" href="#" target="_blank" onclick="event.stopPropagation()">Claim $'+face+' for $'+price+' \u2197</a>';
   }
- 
+
   card.innerHTML=
     '<div class="card-strip" style="background:'+p.strip+'"></div>'+
     '<div class="card-body">'+
@@ -669,7 +674,7 @@ function renderCard(p,container){
       '</div>'+
     '</div>'+
     '<div class="card-right-edge-strip"></div>';
- 
+
   card.addEventListener('click',function(e){
     var notliveBtn=e.target.closest('.notlive-btn');
     if(notliveBtn){
@@ -693,12 +698,12 @@ function renderCard(p,container){
     if(e.target.closest('.icon-btn')) return;
     openInfoModal(p);
   });
- 
+
   container.appendChild(card);
 }
- 
+
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
- 
+
 function openInfoModal(p){
   document.getElementById('modalTitle').textContent=p.n;
   document.getElementById('modalMeta').textContent=p.h+' \xb7 '+p.t;
@@ -739,7 +744,7 @@ function openInfoModal(p){
   }
   document.getElementById('infoModal').classList.add('open');
 }
- 
+
 function openBookModal(p,location){
   if(!p) return;
   var title=location?p.n+' \xb7 '+location:p.n;
@@ -766,14 +771,14 @@ function openBookModal(p,location){
   }
   document.getElementById('bookModal').classList.add('open');
 }
- 
+
 document.addEventListener('click',function(e){
   if(e.target.id==='infoModal') closeModal('infoModal');
   if(e.target.id==='bookModal') closeModal('bookModal');
 });
- 
+
 var heroCity='', heroCat='book';
- 
+
 function setHeroCity(btn,c,e){ if(e){e.stopPropagation();e.preventDefault();}
   document.querySelectorAll('.city').forEach(function(b){b.classList.remove('on');});
   btn.classList.add('on'); heroCity=c; city=c;
@@ -808,13 +813,13 @@ document.addEventListener('click',function(e){
   var wrap=document.querySelector('.hf-sort');
   if(wrap&&!wrap.contains(e.target)) document.getElementById('sortDrop').classList.remove('open');
 });
- 
+
 function setViewMode(mode){
   document.getElementById('dirList').classList.toggle('grid-mode', mode==='grid');
   document.getElementById('listViewBtn').classList.toggle('on', mode==='list');
   document.getElementById('gridViewBtn').classList.toggle('on', mode==='grid');
 }
- 
+
 var dirShowingAll=false;
 function closeDir(){
   document.getElementById('dirSection').classList.remove('open');
@@ -846,7 +851,7 @@ function showDir(){
   }
   sec.scrollIntoView({behavior:'smooth',block:'start'});
 }
- 
+
 (function(){
   function mv(){
     var p=document.getElementById('three33-portal');
