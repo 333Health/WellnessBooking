@@ -33,7 +33,7 @@
   --font-sub: "DM Sans", -apple-system, sans-serif;
   --font-body: "DM Sans", -apple-system, sans-serif;
 }
-
+ 
 /* ---- shared nav, same as hospitality page ---- */
 .h333-nav{
   position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
@@ -48,7 +48,7 @@
   .h333-nav__link{font-size:12px;}
 }
 .h333-nav-wrap{background:#f8f8f0;}
-
+ 
 .hero{
   position:relative;background:#f8f8f0;min-height:44vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -110,7 +110,7 @@
 </style>
 </head>
 <body>
-
+ 
 <style>
 .card{width:100%;height:150px;border-radius:6px;margin-bottom:36px;cursor:pointer;position:relative;overflow:hidden;display:flex;align-items:stretch;transition:transform .2s cubic-bezier(.34,1.4,.64,1),box-shadow .2s ease;box-shadow:2px 2px 14px rgba(0,0,0,.35);}
 .card:hover{transform:translateX(5px);box-shadow:4px 4px 22px rgba(0,0,0,.45);}
@@ -161,9 +161,9 @@
 .slot-btn{border:0.5px solid rgba(255,255,255,.2);background:transparent;border-radius:8px;padding:8px 14px;font-size:12px;color:#fff;cursor:pointer;font-family:-apple-system,sans-serif;transition:background .12s;}
 .slot-btn:hover{background:rgba(255,255,255,.1);}
 .no-slots{font-size:12px;color:rgba(0,0,0,.35);font-style:italic;}
-
+ 
 .card-hood-under{font-size:11px;opacity:.85;font-weight:600;color:#fff;margin-top:10px;margin-bottom:2px;}
-
+ 
 #dirList.grid-mode{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
@@ -187,6 +187,10 @@
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
   overflow:hidden;white-space:normal;
 }
+#dirList.grid-mode .card-hood-under{
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  overflow:hidden;
+}
 #dirList.grid-mode .card-bottom-row{margin-top:auto;padding-top:10px;}
 #dirList.grid-mode .card-right-row{flex-wrap:wrap;}
 #dirList.grid-mode .brand-banner{grid-column:1/-1;}
@@ -197,13 +201,15 @@
   #dirList.grid-mode .card-body{padding:10px 10px;}
   #dirList.grid-mode .card-name{font-size:16px;}
   #dirList.grid-mode .card-mid{font-size:10px;}
+  #dirList.grid-mode .card-hood-under{font-size:9px;}
+  #dirList.grid-mode .pickup-link{font-size:9px !important;margin:0 0 3px !important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   #dirList.grid-mode .card-right-row{gap:4px;}
   #dirList.grid-mode .icon-btn{font-size:10px;padding:3px 8px;}
 }
 </style>
-
+ 
 <div id="three33-hero-wrap">
-
+ 
 <div class="h333-nav-wrap">
   <nav class="h333-nav">
     <div class="h333-nav__links">
@@ -214,35 +220,36 @@
     </div>
   </nav>
 </div>
-
+ 
 <section class="hero">
   <div class="hero__bg"></div>
   <div class="hero__inner">
     <img class="hero__logo" src="https://cdn.shopify.com/s/files/1/0810/9395/1777/files/Furthererased.png?v=1783965338" alt="333's health food" loading="lazy">
-    <p class="hero__eyebrow">Los Angeles · New York · San Francisco · San Diego</p>
+    <p class="hero__eyebrow">LA · NYC · SF · SD · PDX</p>
     <h1 class="hero__title">Building one home for the best in health</h1>
   </div>
 </section>
-
+ 
 <section class="search-section">
   <div style="width:100%;max-width:600px;text-align:center;">
   <div class="hero__search-panel">
-    <p class="hero__sub" style="margin-bottom:20px;"><strong>Booking &amp; balance redemption coming soon.</strong><br>For now explore weekly dinner series &amp; check-in when at partners for perks.</p>
+    <p class="hero__sub" style="margin-bottom:20px;"><strong>Booking &amp; balance redemption coming soon.</strong><br>For now explore sponsor dinner series &amp; check-in when at partners for perks.</p>
     <div class="hero__search">
       <span class="hero__search-icon">⌕</span>
       <input class="hero__search-input" id="heroSearch" type="text"
         placeholder="Search health &amp; veg friendly places &amp; happenings..."
         oninput="onHeroSearch()">
     </div>
-
+ 
     <div class="hero__city-row">
       <span class="hf-label">City</span>
       <button class="hf-pill city" onclick="setHeroCity(this,'LA',event)">LA</button>
       <button class="hf-pill city" onclick="setHeroCity(this,'NYC',event)">NYC</button>
       <button class="hf-pill city" onclick="setHeroCity(this,'SD',event)">SD</button>
       <button class="hf-pill city" onclick="setHeroCity(this,'SF',event)">SF</button>
+      <button class="hf-pill city" onclick="setHeroCity(this,'PDX',event)">PDX</button>
     </div>
-
+ 
     <div class="hero__filter-row">
       <button class="hf-pill on cat" onclick="setHeroCat(this,'book',event)">Meals</button>
       <button class="hf-pill cat" onclick="setHeroCat(this,'wellness',event)">Wellness</button>
@@ -256,11 +263,17 @@
   </div>
   </div>
 </section>
-
+ 
 <section class="dir-section" id="dirSection">
-  <div class="dir-inner" id="dirList"></div>
+  <div class="dir-inner">
+    <div style="text-align:right;padding:12px 0 4px;">
+      <button onclick="closeDir()" style="border:0.5px solid rgba(0,0,0,.2);background:transparent;border-radius:99px;padding:6px 16px;font-size:12px;color:rgba(0,0,0,.5);cursor:pointer;font-family:-apple-system,sans-serif;">Close ✕</button>
+    </div>
+    <div id="dirList"></div>
+  </div>
 </section>
-
+ 
+ 
 <div class="editorial-divider">
   <style>
     .editorial-divider{background:#5b8fa8;padding:96px 7vw;display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center;}
@@ -303,9 +316,59 @@
   </div>
 </div>
   </div>
-
+ 
 </div>
-
+ 
+<div style="background:#f8f8f0;height:40px;"></div>
+ 
+<section style="background:#f8f8f0;padding:64px 6vw 72px;">
+  <style>
+    .faq-wrap{max-width:640px;margin:0 auto;}
+    .faq-eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e25036;font-weight:600;margin-bottom:1rem;text-align:center;}
+    .faq-title{font-size:clamp(24px,3vw,32px);font-weight:400;letter-spacing:-.02em;text-align:center;margin-bottom:2.5rem;color:#111;}
+    .faq-item{border-top:1px solid rgba(0,0,0,.1);}
+    .faq-item:last-child{border-bottom:1px solid rgba(0,0,0,.1);}
+    .faq-q-btn{
+      width:100%;background:transparent;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:20px 0;font-size:15px;font-weight:600;color:#111;
+      font-family:"DM Sans",-apple-system,sans-serif;text-align:left;
+    }
+    .faq-arrow{transition:transform .2s ease;flex-shrink:0;margin-left:12px;font-size:14px;color:rgba(0,0,0,.4);}
+    .faq-item.open .faq-arrow{transform:rotate(180deg);}
+    .faq-a-wrap{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+    .faq-item.open .faq-a-wrap{max-height:200px;}
+    .faq-a{font-size:14px;line-height:1.65;color:rgba(0,0,0,.6);padding-bottom:20px;}
+  </style>
+  <div class="faq-wrap">
+    <p class="faq-eyebrow">Good to know</p>
+    <div class="faq-item">
+      <button class="faq-q-btn" onclick="this.parentElement.classList.toggle('open')">
+        <span>What is "Book" & meal bookings?</span><span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a-wrap"><p class="faq-a">Our partners will work with us on times with any lower traffic for which we can offer meal times with organic communal options &amp; options to pick up, always at incredible price points especially for members who can spend their balance.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q-btn" onclick="this.parentElement.classList.toggle('open')">
+        <span>What is "Check In"?</span><span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a-wrap"><p class="faq-a">Checking in gives you 10% + off at our core partners, along with additional perks &amp; hospitality. Plus, it helps give us valuable data points as we curate our community &amp; partners.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q-btn" onclick="this.parentElement.classList.toggle('open')">
+        <span>What will I be able to use "Redeem" for?</span><span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a-wrap"><p class="faq-a">Members will be able to use their daily account credit for dine in. There will also be separate options to redeem for gift cards at partners, just not at a 1-to-1 ratio.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q-btn" onclick="this.parentElement.classList.toggle('open')">
+        <span>What is the 333 Curations & Pickup Order link?</span><span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a-wrap"><p class="faq-a">At select partners we are curating mini menus of a few items, including with chef &amp; health partners. Everything will be optimized for health &amp; taste amazing. At these links you can order for pickup. We intentionally don't offer delivery, but Uber courier and similar services are easy enough typically if that is easier.</p></div>
+    </div>
+  </div>
+</section>
+ 
 <div id="three33-portal" class="three33-portal">
   <div class="modal-overlay" id="infoModal">
     <div class="modal">
@@ -316,9 +379,9 @@
       </div>
       <div style="padding:16px 18px 20px;">
         <div id="modalMeta" style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px;font-family:-apple-system,sans-serif;"></div>
+        <div id="modalPickup" style="display:none;margin-bottom:14px;"></div>
         <div id="modalDesc" style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:14px;"></div>
         <div id="modalContext" style="font-size:12px;color:rgba(0,0,0,.5);line-height:1.65;font-style:italic;border-left:2px solid rgba(255,255,255,.15);padding-left:12px;margin-bottom:16px;"></div>
-        <div id="modalDishes" style="display:none;margin-bottom:14px;"></div>
         <div id="modalActions" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
       </div>
     </div>
@@ -332,24 +395,24 @@
     </div>
   </div>
 </div>
-
+ 
 <script>
 var city='LA', cat='book', searchQuery='', curatedFilter='', currentView='list';
 var CUTOFF=6;
 var showingAll=false;
 var cur=null;
-
+ 
 var all={
   LA:[
-    {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#2d5a3d",active:true,locations:["Larchmont","Venice"],strip:"#4a9460",d:"Craveable plant based food made with best quality ingredients.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
-    {n:"Sweetgreen",h:"Hollywood La Brea",t:"Restaurant",f:false,bg:"#3a6644",strip:"#5a9060",d:"Seasonal salads, wraps, and protein plates. Hollywood La Brea as initial 333 hub.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],active:true},
-    {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#8b4513",strip:"#c46020",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options",monthly:true,active:true,sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
-    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and salads.",sl:[],dineIn:true,active:true,dineCredits:4,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
-    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta.",sl:[],dineIn:true,active:true,dineCredits:5,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK"},
+    {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#2d5a3d",active:true,locations:["Larchmont","Venice"],strip:"#4a9460",d:"Craveable plant based food made with best quality ingredients.",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
+    {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#8b4513",strip:"#c46020",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options",monthly:true,active:true,weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
+    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and salads.",sl:[],dineIn:true,active:true,dineCredits:4,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP"},
+    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta.",sl:[],dineIn:true,active:true,dineCredits:5,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK",pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK"},
+    {n:"Butcher's Daughter",h:"WeHo · Venice",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",active:true,weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",sl:[]},
+    {n:"Woon",h:"Echo Park",t:"Restaurant",f:false,bg:"#1a3a5c",strip:"#2a5a8c",d:"Beloved LA Chinese",active:true,pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK",sl:[]},
+    {n:"Sweetgreen",h:"Hollywood La Brea",t:"Restaurant",f:false,bg:"#3a6644",strip:"#5a9060",d:"Seasonal salads, wraps, and protein plates. Hollywood La Brea as initial 333 hub.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
     {n:"Peace Pies × 333",h:"SD original · Los Feliz pickup & dinners",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients",monthly:true,sl:[]},
     {n:"Gracias Madre",h:"WeHo",t:"Restaurant",f:false,bg:"#7b3f00",strip:"#b06020",d:"Plant based mexican with whole organic ingredients.",sl:[]},
-    {n:"Woon",h:"Echo Park · Silver Lake",t:"Restaurant",f:false,bg:"#1a3a5c",strip:"#2a5a8c",d:"Beloved LA Chinese",sl:[]},
-    {n:"Butcher's Daughter",h:"WeHo · Venice",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",sl:[]},
     {n:"Alfalfa",h:"Larchmont · Santa Monica",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Health-forward fast casual. Wraps, bowls, and smoothies.",sl:[]},
     {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Award winning vegan artisan bakery.",monthly:true,sl:[]},
     {n:"Lazy Acres",h:"Los Feliz · SM",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Widest selection in CA of high quality niche products.",sl:[]},
@@ -365,11 +428,16 @@ var all={
     {n:"Salaya Thai",h:"Thai Town · Los Feliz",t:"Restaurant",f:false,bg:"#6a3a5a",strip:"#8a5a7a",d:"Thai cuisine with a health-conscious approach.",sl:[]},
     {n:"Old Gold Pizza",h:"Los Feliz · Barnsdall Park",t:"Restaurant",f:false,bg:"#8a6a2a",strip:"#aa8a3a",d:"Chef-driven pizza, salads and more.",sl:[]},
     {n:"Magpies Softserve",h:"Highland Park · Silver Lake",t:"Restaurant",f:false,bg:"#c4607a",strip:"#e0809a",d:"DF Soft serve sourced with freshest & cleanest ingredients",sl:[],monthly:true},
-    {n:"Erewhon",h:"Multiple locations · LA",t:"Restaurant",f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"LA's iconic wellness grocer. Exceptional vegan prepared options — curated for 333 group dinners.",sl:[]},
+    {n:"Erewhon",h:"Multiple locations · LA",t:"Restaurant",f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"LA's iconic wellness grocer. Exceptional vegan prepared options — curated for 333 group dinners.",hideFromMeals:true,sl:[]},
     {n:"Rascals × 333",h:"SB original · LA pop-ups & events",t:"Restaurant",f:false,bg:"#4a6a5a",strip:"#6a8a7a",d:"Santa Barbara's beloved vegan kitchen. Bringing creative plant-based dishes to LA pop-ups and events.",sl:[]},
     {n:"Veggie Grill × 333",h:"Parks & community spaces · LA",t:"Event",f:false,bg:"#5a7a2a",strip:"#7a9a3a",d:"Custom 333 × Veggie Grill menu. Pop-ups at parks, coffee shops, and community spaces around LA.",sl:[]},
     {n:"Usal Project",h:"Los Feliz",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
     {n:"333 × Hosts",h:"Los Angeles",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+    {n:"Layla's",h:"Brentwood · Santa Monica · Beverly Hills",t:"Bakery",f:false,bg:"#8a6a4a",strip:"#aa8a60",d:"Sourdough bagels made with farmers market ingredients.",mealsFeature:true,sl:[]},
+    {n:"Sqirl",h:"Silver Lake",t:"Restaurant",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"Plant-forward bowls and cafe fare.",sl:[]},
+    {n:"Men & Beasts",h:"Echo Park",t:"Restaurant",f:false,bg:"#3a4a5a",strip:"#5a6a7a",d:"Plant forward from scratch Chinese.",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",sl:[]},
+    {n:"Vibe Kitchen × 333",h:"OC original · Coming to LA",t:"Restaurant",f:false,bg:"#6a4a7a",strip:"#8a6a9a",d:"Beloved Orange County kitchen, bringing their menu to LA.",sl:[]},
+    {n:"LA Grocery",h:"Melrose Hill · near Larchmont",t:"Restaurant",f:false,bg:"#5a7a4a",strip:"#7a9a60",d:"Gourmet hot bar and produce.",sl:[]},
   ],
   NYC:[
     {n:"Jajaja",h:"6 locations · NYC",t:"Restaurant",f:true,bg:"#b35c1e",strip:"#d4782a",d:"Plant-based Mexican food with killer cocktails or mocktails.",sl:[]},
@@ -396,7 +464,6 @@ var all={
     {n:"Peace Pies",h:"Multiple locations · SD",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients. The San Diego original.",sl:[]},
     {n:"Donna Jean",h:"North Park · SD",t:"Restaurant",f:true,bg:"#8b3a3a",strip:"#b05050",d:"Beloved plant-based Italian-inspired restaurant. The best salad & heathen pizza are what dreams are made of",sl:[]},
     {n:"Kindred",h:"South Park · SD",t:"Restaurant",f:true,bg:"#2a2a4a",strip:"#4a4a80",d:"Vegan heavy metal bar and restaurant.",sl:[]},
-    {n:"Evolution Fast Food",h:"North Park · SD",t:"Restaurant",f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Plant-based fast food in the other half of the Donna Jean space.",sl:[]},
     {n:"Civico 2045",h:"Little Italy · SD",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Sister spot to Civico 2064 in LA. Italian plant forward",sl:[]},
     {n:"Trilogy Sanctuary",h:"La Jolla · SD",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Rooftop plant-based cafe and yoga studio. Juices, bowls, and stunning ocean views.",sl:[]},
     {n:"New Wave Bagels",h:"San Diego",t:"Bakery",f:false,bg:"#4a6a8a",strip:"#6a8aaa",d:"The best in SD, sourdough bagels with gorumet options.",sl:[]},
@@ -405,13 +472,14 @@ var all={
     {n:"People's Market Deli",h:"San Diego",t:"Restaurant",f:false,bg:"#6a7a4a",strip:"#8a9a60",d:"The deli counter inside People's Market. Fresh, plant-forward prepared foods daily.",sl:[]},
     {n:"Jimbo's",h:"Multiple locations · SD",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"San Diego's beloved strictly organic grocer. The original home base.",sl:[]},
     {n:"Lazy Acres",h:"San Diego",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"The favorite natural grocer of many.",sl:[]},
-    {n:"Usal Project",h:"San Diego",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
     {n:"333 × Hosts",h:"San Diego",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
   ],
   SF:[
+  ],
+  PDX:[
   ]
 };
-
+ 
 var brandsByCity={
   LA:[
     {n:"Abbott's",tagline:"Craft plant-based proteins"},
@@ -430,8 +498,10 @@ var brandsByCity={
   ],
   SF:[
   ],
+  PDX:[
+  ],
 };
-
+ 
 var partnerMap={};
 function buildPartnerMap(){
   Object.keys(all).forEach(function(c){
@@ -442,9 +512,9 @@ buildPartnerMap();
 if(document.readyState==='loading'){
   document.addEventListener('DOMContentLoaded', function(){ buildPartnerMap(); });
 }
-
+ 
 var SHEET_CSV_URL = "";
-
+ 
 function parseCSV(text){
   var rows=[]; var row=[]; var field=''; var inQuotes=false;
   for(var i=0;i<text.length;i++){
@@ -464,7 +534,7 @@ function parseCSV(text){
   if(field.length||row.length){ row.push(field); rows.push(row); }
   return rows;
 }
-
+ 
 function csvToPartnerData(csvText){
   var rows=parseCSV(csvText);
   if(!rows.length) return null;
@@ -476,7 +546,7 @@ function csvToPartnerData(csvText){
     var obj={};
     headers.forEach(function(h,idx){ obj[h]=(cells[idx]||'').trim(); });
     if(!obj.city||!obj.name) continue;
-
+ 
     function daySlots(dayKey,dayLabel){
       if(!obj[dayKey]) return [];
       return obj[dayKey].split(',').map(function(t){ return t.trim(); }).filter(Boolean).map(function(tm){ return {day:dayLabel,tm:tm}; });
@@ -484,7 +554,7 @@ function csvToPartnerData(csvText){
     var sl=[].concat(
       daySlots('mon','Mon'), daySlots('tue','Tue'), daySlots('wed','Wed'), daySlots('thu','Thu')
     );
-
+ 
     var partner={
       n: obj.name,
       h: obj.neighborhood||'',
@@ -502,13 +572,13 @@ function csvToPartnerData(csvText){
     if(obj.dealPrice) partner.dealPrice=parseInt(obj.dealPrice,10);
     if(obj.weeklysignupurl) partner.weeklySignupUrl=obj.weeklysignupurl;
     if(obj.weeklysignuplabel) partner.weeklySignupLabel=obj.weeklysignuplabel;
-
+ 
     if(!data[obj.city]) data[obj.city]=[];
     data[obj.city].push(partner);
   }
   return data;
 }
-
+ 
 function loadSheetData(){
   if(!SHEET_CSV_URL) return;
   fetch(SHEET_CSV_URL)
@@ -530,10 +600,10 @@ function loadSheetData(){
     });
 }
 loadSheetData();
-
+ 
 function getList(){
   var items=(all[city]||[]).filter(function(p){ return cat==='deals'?p.deal:!p.dealOnly; });
-  if(cat==='book') items=items.filter(function(p){ return p.t==='Restaurant'||p.t==='Event'; });
+  if(cat==='book') items=items.filter(function(p){ if(p.hideFromMeals) return false; return p.t==='Restaurant'||p.t==='Event'||p.mealsFeature; });
   if(cat==='wellness') items=items.filter(function(p){ return p.t==='Wellness'; });
   else if(cat==='order') items=items.filter(function(p){ return p.t==='Restaurant'||p.t==='Bakery'; });
   if(curatedFilter==='neighborhood') items=items.slice().sort(function(a,b){ return a.h.localeCompare(b.h); });
@@ -544,17 +614,17 @@ function getList(){
   });
   return items;
 }
-
+ 
 function renderCard(p,container){
   var isR=p.t==='Restaurant'||p.t==='Bakery';
   var isG=p.t==='Grocery';
   var isE=p.t==='Event';
   var isActive=p.active||p.deal;
-
+ 
   var card=document.createElement('div');
   card.className='card'+(isActive?'':' coming-soon');
   card.style.background=p.bg;
-
+ 
   var bookBtns='';
   if(p.deal){
     bookBtns='<button class="icon-btn" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#f59e0b;">Claim deal</button>';
@@ -564,27 +634,30 @@ function renderCard(p,container){
       '<button class="icon-btn notlive-btn" data-label="Redeem">Redeem</button>'+
       '<button class="icon-btn checkin-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'">Check In</button>'+
       (p.weeklySignupUrl
-        ? '<a class="icon-btn" href="'+p.weeklySignupUrl+'" target="_blank" onclick="event.stopPropagation()">'+(p.weeklySignupLabel||'Weekly meals sign up')+' \u2197</a>'
+        ? '<a class="icon-btn" href="'+p.weeklySignupUrl+'" target="_blank" onclick="event.stopPropagation()">'+(p.weeklySignupLabel||'Weekly meals sign up')+'</a>'
         : '');
   } else if(isR){
     bookBtns='<span class="cs-badge">Coming soon</span>';
   }
-
+ 
   var secondaryBtn='';
   if(isG) secondaryBtn='<a class="icon-btn" href="#" target="_blank" onclick="event.stopPropagation()">Shop \u2197</a>';
   else if(isE&&isActive) secondaryBtn='<button class="icon-btn">Reserve</button>';
-
+ 
   var claimBtn='';
   if(p.deal){
     var face=p.dealFace||40, price=p.dealPrice||25;
     claimBtn='<a class="icon-btn claim-btn" href="#" target="_blank" onclick="event.stopPropagation()">Claim $'+face+' for $'+price+' \u2197</a>';
   }
-
+ 
   card.innerHTML=
     '<div class="card-strip" style="background:'+p.strip+'"></div>'+
     '<div class="card-body">'+
       (p.f?'<div class="feat-dot"></div>':'')+
       '<div class="card-top"><span class="card-name">'+p.n+'</span></div>'+
+      (p.pickupOrderUrl
+        ? '<a class="pickup-link" href="'+p.pickupOrderUrl+'" target="_blank" onclick="event.stopPropagation()" style="display:block;margin:2px 0 4px;font-size:11px;color:rgba(255,255,255,.7);text-decoration:underline;">333 Curations & Pickup Order \u2197</a>'
+        : '')+
       '<div class="card-mid">'+p.d+'</div>'+
       (function(){
         var accessory = p.dineIn ? 'Specific menu coming soon' : (p.deal ? 'Redeemed at checkout · One per customer · No expiration' : '');
@@ -596,7 +669,7 @@ function renderCard(p,container){
       '</div>'+
     '</div>'+
     '<div class="card-right-edge-strip"></div>';
-
+ 
   card.addEventListener('click',function(e){
     var notliveBtn=e.target.closest('.notlive-btn');
     if(notliveBtn){
@@ -620,24 +693,24 @@ function renderCard(p,container){
     if(e.target.closest('.icon-btn')) return;
     openInfoModal(p);
   });
-
+ 
   container.appendChild(card);
 }
-
+ 
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
-
+ 
 function openInfoModal(p){
   document.getElementById('modalTitle').textContent=p.n;
   document.getElementById('modalMeta').textContent=p.h+' \xb7 '+p.t;
+  var pickupEl=document.getElementById('modalPickup');
+  if(p.pickupOrderUrl){
+    pickupEl.innerHTML='<a href="'+p.pickupOrderUrl+'" target="_blank" style="display:block;background:'+p.bg+';border-radius:8px;padding:9px 12px;color:#fff;font-size:12.5px;text-decoration:none;font-weight:600;">333 Curations & Pickup Order \u2197</a>';
+    pickupEl.style.display='block';
+  } else { pickupEl.style.display='none'; }
   document.getElementById('modalDesc').textContent=p.d;
   document.getElementById('modalContext').textContent='333 context and editorial notes coming soon \u2014 we personally vet every partner before they appear here.';
   document.getElementById('modalPhotoBg').style.background=p.bg;
-  var dishesEl=document.getElementById('modalDishes');
   var isActive=p.active||p.deal;
-  if(isActive){
-    dishesEl.innerHTML='<div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px;">333 top picks</div><div style="font-size:12px;color:rgba(255,255,255,.3);font-style:italic;">Coming soon \u2014 curated dishes from this partner</div>';
-    dishesEl.style.display='block';
-  } else { dishesEl.style.display='none'; }
   var actions=document.getElementById('modalActions');
   actions.innerHTML='';
   var isR=p.t==='Restaurant'||p.t==='Bakery';
@@ -660,13 +733,13 @@ function openInfoModal(p){
     actions.appendChild(checkinBtn);
     if(p.weeklySignupUrl){
       var weeklyBtn=document.createElement('a'); weeklyBtn.className='modal-btn'; weeklyBtn.href=p.weeklySignupUrl; weeklyBtn.target='_blank';
-      weeklyBtn.textContent=(p.weeklySignupLabel||'Weekly meals sign up')+' \u2197';
+      weeklyBtn.textContent=(p.weeklySignupLabel||'Weekly meals sign up');
       actions.appendChild(weeklyBtn);
     }
   }
   document.getElementById('infoModal').classList.add('open');
 }
-
+ 
 function openBookModal(p,location){
   if(!p) return;
   var title=location?p.n+' \xb7 '+location:p.n;
@@ -693,14 +766,14 @@ function openBookModal(p,location){
   }
   document.getElementById('bookModal').classList.add('open');
 }
-
+ 
 document.addEventListener('click',function(e){
   if(e.target.id==='infoModal') closeModal('infoModal');
   if(e.target.id==='bookModal') closeModal('bookModal');
 });
-
+ 
 var heroCity='', heroCat='book';
-
+ 
 function setHeroCity(btn,c,e){ if(e){e.stopPropagation();e.preventDefault();}
   document.querySelectorAll('.city').forEach(function(b){b.classList.remove('on');});
   btn.classList.add('on'); heroCity=c; city=c;
@@ -735,14 +808,21 @@ document.addEventListener('click',function(e){
   var wrap=document.querySelector('.hf-sort');
   if(wrap&&!wrap.contains(e.target)) document.getElementById('sortDrop').classList.remove('open');
 });
-
+ 
 function setViewMode(mode){
   document.getElementById('dirList').classList.toggle('grid-mode', mode==='grid');
   document.getElementById('listViewBtn').classList.toggle('on', mode==='list');
   document.getElementById('gridViewBtn').classList.toggle('on', mode==='grid');
 }
-
+ 
 var dirShowingAll=false;
+function closeDir(){
+  document.getElementById('dirSection').classList.remove('open');
+  document.querySelectorAll('.city').forEach(function(b){b.classList.remove('on');});
+  heroCity='';
+  dirShowingAll=false;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 function showDir(){
   var sec=document.getElementById('dirSection');
   var listEl=document.getElementById('dirList');
@@ -766,7 +846,7 @@ function showDir(){
   }
   sec.scrollIntoView({behavior:'smooth',block:'start'});
 }
-
+ 
 (function(){
   function mv(){
     var p=document.getElementById('three33-portal');
