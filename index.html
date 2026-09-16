@@ -114,18 +114,27 @@
 <style>
 .card{width:100%;min-height:150px;border-radius:6px;margin-bottom:36px;cursor:pointer;position:relative;overflow:hidden;display:flex;align-items:stretch;transition:transform .2s cubic-bezier(.34,1.4,.64,1),box-shadow .2s ease;box-shadow:2px 2px 14px rgba(0,0,0,.35);}
 .brand-card{
-  padding:22px 4px;border-bottom:1px solid rgba(0,0,0,.1);cursor:pointer;
-  transition:opacity .15s ease;
+  padding:20px 4px;border-bottom:1px solid rgba(0,0,0,.1);cursor:pointer;
 }
-.brand-card:hover{opacity:.55;}
+.brand-card-head{display:flex;justify-content:space-between;align-items:center;}
 .brand-card-name{
   font-family:Georgia,serif;font-size:clamp(22px,4vw,32px);font-weight:400;
   color:#111;letter-spacing:-.01em;line-height:1.15;
 }
+.brand-card-arrow{
+  font-size:14px;color:rgba(0,0,0,.35);transition:transform .2s ease;
+  flex-shrink:0;margin-left:12px;
+}
+.brand-card.open .brand-card-arrow{transform:rotate(180deg);}
 .brand-card-tags{
   font-size:11px;color:rgba(0,0,0,.4);margin-top:4px;letter-spacing:.02em;
   text-transform:uppercase;
 }
+.brand-card-expand{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.brand-card.open .brand-card-expand{max-height:220px;}
+.brand-card-expand-inner{padding-top:14px;}
+.brand-card-desc{font-size:13px;color:rgba(0,0,0,.6);line-height:1.65;margin:0 0 10px;}
+.brand-card-link{font-size:12px;color:#e25036;text-decoration:underline;}
 #dirList.grid-mode .brand-card{grid-column:1/-1;padding:14px 4px;}
 .card:hover{transform:translateX(5px);box-shadow:4px 4px 22px rgba(0,0,0,.45);}
 .card-strip{width:4px;flex-shrink:0;}
@@ -252,7 +261,7 @@
 <section class="search-section">
   <div style="width:100%;max-width:600px;text-align:center;">
   <div class="hero__search-panel">
-    <p class="hero__sub" style="margin-bottom:20px;"><strong>Member booking, redemption, and local brand stock-ups coming soon.</strong><br>For now explore sponsor dinner bookings &amp; check-in when at partners for perks.</p>
+    <p class="hero__sub" style="margin-bottom:20px;"><strong>Meal booking, dine-in credits, and local brand stock-ups coming soon.</strong><br>For now explore sponsor dinners &amp; check-in perks.</p>
     <div class="hero__search">
       <span class="hero__search-icon">⌕</span>
       <input class="hero__search-input" id="heroSearch" type="text"
@@ -425,193 +434,193 @@ var cur=null;
 
 var all={
   LA:[
-    {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#2d5a3d",active:true,locations:["Larchmont","Venice"],strip:"#4a9460",d:"Craveable plant based food made with best quality ingredients.",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
-    {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#8b4513",strip:"#c46020",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options",monthly:true,active:true,weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
-    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#4a6a3a",strip:"#6a8a50",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and salads.",sl:[],dineIn:true,active:true,dineCredits:4,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP"},
-    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Vegan friendly Italian. Housemade pasta.",sl:[],dineIn:true,active:true,dineCredits:5,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK",pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK"},
-    {n:"Butcher's Daughter",h:"WeHo · Venice",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",active:true,weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",sl:[]},
-    {n:"Woon",h:"Echo Park",t:"Restaurant",f:false,bg:"#1a3a5c",strip:"#2a5a8c",d:"Beloved LA Chinese",active:true,pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK",sl:[]},
-    {n:"Sweetgreen",h:"Hollywood La Brea",t:"Restaurant",f:false,bg:"#3a6644",strip:"#5a9060",d:"Seasonal salads, wraps, and protein plates. Hollywood La Brea as initial 333 hub.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
-    {n:"Peace Pies × 333",h:"SD original · Los Feliz pickup & dinners",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients",monthly:true,sl:[]},
-    {n:"Gracias Madre",h:"WeHo",t:"Restaurant",f:false,bg:"#7b3f00",strip:"#b06020",d:"Plant based mexican with whole organic ingredients.",sl:[]},
-    {n:"Alfalfa",h:"Larchmont · Santa Monica",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Health-forward fast casual. Wraps, bowls, and smoothies.",sl:[]},
-    {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Award winning vegan artisan bakery.",monthly:true,sl:[]},
-    {n:"Lazy Acres",h:"Los Feliz · SM",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"Widest selection in CA of high quality niche products.",sl:[]},
-    {n:"Loqui",h:"Culver City · DTLA",t:"Deal",f:false,bg:"#2a4a3a",strip:"#3a6a4a",d:"Exceptional Mexican-inspired tacos and bowls. Clean ingredients, bold flavors.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
-    {n:"Home State",h:"Multiple locations · LA",t:"Deal",f:false,bg:"#8a4a2a",strip:"#aa6a3a",d:"Intentional Tex Mex with quality sourcing .",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
-    {n:"Awan",h:"LA",t:"Deal",f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Premium vegan ice cream.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
-    {n:"Besties Vegan Paradise",h:"East Hollywood · LA",t:"Grocery",f:false,bg:"#c45a8a",strip:"#e07aaa",d:"LA's beloved fully vegan grocery and deli.",sl:[]},
-    {n:"Jimbo's",h:"San Diego · LA",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"Beloved San Diego natural grocer. Delivered to the LA area.",sl:[]},
-    {n:"Hip Vegan",h:"Ojai original · Los Feliz pickup & dinners",t:"Restaurant",f:false,bg:"#7a4a6a",strip:"#9a6a8a",d:"Ojai-rooted plant-based kitchen bringing its way to LA. Creative, colorful, feel-good food.",sl:[]},
-    {n:"Kitchen Mouse",h:"Highland Park",t:"Restaurant",f:false,bg:"#5a3a6a",strip:"#7a5a8a",d:"Carefully sourced vegetarian favorite",sl:[]},
-    {n:"Be You",h:"Silver Lake",t:"Restaurant",f:false,bg:"#3a5a7a",strip:"#5a7a9a",d:"Local Vietnamese favorite",sl:[]},
-    {n:"Joy",h:"Highland Park · LA",t:"Restaurant",f:false,bg:"#3a5a6a",strip:"#5a7a8a",d:"Taiwanese favorites",sl:[]},
-    {n:"Salaya Thai",h:"Thai Town · Los Feliz",t:"Restaurant",f:false,bg:"#6a3a5a",strip:"#8a5a7a",d:"Thai cuisine with a health-conscious approach.",sl:[]},
-    {n:"Old Gold Pizza",h:"Los Feliz · Barnsdall Park",t:"Restaurant",f:false,bg:"#8a6a2a",strip:"#aa8a3a",d:"Chef-driven pizza, salads and more.",sl:[]},
-    {n:"Magpies Softserve",h:"Highland Park · Silver Lake",t:"Restaurant",f:false,bg:"#c4607a",strip:"#e0809a",d:"DF Soft serve sourced with freshest & cleanest ingredients",sl:[],monthly:true},
-    {n:"Erewhon",h:"Multiple locations · LA",t:"Restaurant",f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"LA's iconic wellness grocer. Exceptional vegan prepared options — curated for 333 group dinners.",hideFromMeals:true,sl:[]},
-    {n:"Rascals × 333",h:"SB original · LA pop-ups & events",t:"Restaurant",f:false,bg:"#4a6a5a",strip:"#6a8a7a",d:"Santa Barbara's beloved vegan kitchen. Bringing creative plant-based dishes to LA pop-ups and events.",sl:[]},
-    {n:"Veggie Grill × 333",h:"Parks & community spaces · LA",t:"Event",f:false,bg:"#5a7a2a",strip:"#7a9a3a",d:"Custom 333 × Veggie Grill menu. Pop-ups at parks, coffee shops, and community spaces around LA.",sl:[]},
-    {n:"Usal Project",h:"Los Feliz",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
-    {n:"333 × Hosts",h:"Los Angeles",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
-    {n:"Layla's",h:"Brentwood · Santa Monica · Beverly Hills",t:"Bakery",f:false,bg:"#8a6a4a",strip:"#aa8a60",d:"Sourdough bagels made with farmers market ingredients.",mealsFeature:true,sl:[]},
-    {n:"Sqirl",h:"Silver Lake",t:"Restaurant",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"Plant-forward bowls and cafe fare.",sl:[]},
-    {n:"Men & Beasts",h:"Echo Park",t:"Restaurant",f:false,bg:"#3a4a5a",strip:"#5a6a7a",d:"Plant forward from scratch Chinese.",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsor Dinners RSVP",sl:[]},
-    {n:"Vibe Kitchen × 333",h:"OC original · Coming to LA",t:"Restaurant",f:false,bg:"#6a4a7a",strip:"#8a6a9a",d:"Beloved Orange County kitchen, bringing their menu to LA.",sl:[]},
-    {n:"LA Grocery",h:"Melrose Hill · near Larchmont",t:"Restaurant",f:false,bg:"#5a7a4a",strip:"#7a9a60",d:"Gourmet hot bar and produce.",sl:[]},
-    {n:"Nuts For Cheese",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Treeline",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Madly Hadley",h:"Los Angeles",t:"Brand",categories:["Salad Toppings","Clean Proteins"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Foodies Vegan/Pumfu",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Taco Night"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Abbott\'s",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Taco Night","Burger Night"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Pacha",h:"Los Angeles",t:"Brand",categories:["Gluten Free"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Bandit",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Cheeze and thank you",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Cadia",h:"Los Angeles",t:"Brand",categories:["Pantry","Pasta Night","Taco Night"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Jovial Organics",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Woodstock Organics",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Muir Glen",h:"Los Angeles",t:"Brand",categories:["Pantry","Pasta Night"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Regrocery",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Rummo",h:"Los Angeles",t:"Brand",categories:["Clean Pasta","Clean Proteins"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"SD Tempeh",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Taco Night","Breakfast Bowls"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Plant Provisions",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Clean Deli","Veg Charcuterie"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Actual Veggies",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Burger Night"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Monty\'s",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Bagel Brunch"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Kooshy\'s",h:"Los Angeles",t:"Brand",categories:["Salad Toppings"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Amy\'s",h:"Los Angeles",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Figg & Fogg",h:"Los Angeles",t:"Brand",categories:["Clean Spreads"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Um Yum",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Hodo Organic",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Salad Toppings"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Just Tea",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Leisure Project",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Sunny\'s",h:"Los Angeles",t:"Brand",categories:["Dairy Free Dressings/Spreads","Veg Charcuterie"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Forager Project",h:"Los Angeles",t:"Brand",categories:["Dairy Free"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Little Sesame",h:"Los Angeles",t:"Brand",categories:["Dairy Free Spreads","Veg Charcuterie"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Truvani",h:"Los Angeles",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Graza",h:"Los Angeles",t:"Brand",categories:["Olive Oils","Pantry"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Primal Kitchen",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Taco Night","Pasta Night"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Ghia",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Simpli",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Sobo Dumplings",h:"Los Angeles",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Gato\'s Dates",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"French Squirrel",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Sauz",h:"Los Angeles",t:"Brand",categories:["Clean Sauces","Pasta Night"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Malk",h:"Los Angeles",t:"Brand",categories:["Dairy Free"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Erewhon Dressings",h:"Los Angeles",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Green Girl Bake Shop",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Clean Ice Cream"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Yobe",h:"Los Angeles",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Solti",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Hot Girl Pickles",h:"Los Angeles",t:"Brand",categories:["Clean Condiments","Clean Deli","Veg Charcuterie"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Grindstone Bakery",h:"Los Angeles",t:"Brand",categories:["Gluten Free"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Vafels",h:"Los Angeles",t:"Brand",categories:["Gluten Free","Clean Sexy Snacks"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Vita Coco",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Organic Oren Sauces",h:"Los Angeles",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Parch",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Urban Remedy",h:"Los Angeles",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Kin",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Swoon",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Zab\'s",h:"Los Angeles",t:"Brand",categories:["Condiments","Hot Sauce"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Hone",h:"Los Angeles",t:"Brand",categories:["Clean Caffeine","Mushroom Tea"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Daring",h:"Los Angeles",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"TCHO",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Snacks"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Four Sigmatic",h:"Los Angeles",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Laird Superfood",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Clean Caffeine"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Groundwork Coffee",h:"Los Angeles",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Elmhurst Organics",h:"Los Angeles",t:"Brand",categories:["Dairy Free"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Cafe Gratitude",h:"Larchmont · Venice",t:"Restaurant",f:true,bg:"#688f76",active:true,locations:["Larchmont","Venice"],strip:"#99b5a1",d:"Craveable plant based food made with best quality ingredients.",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsored Series RSVP",pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}],picks:["Sacred","Bountiful","Sublime"]},
+    {n:"Maciel's",h:"Highland Park",t:"Restaurant",f:true,bg:"#b3805b",strip:"#c7a48d",d:"Voted best sandwiches in LA. Vegan deli, house-made proteins, GF options",monthly:true,active:true,weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsored Series RSVP",sl:[{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
+    {n:"Pura Vita",h:"WeHo",t:"Restaurant",f:false,bg:"#859b7a",strip:"#a4b19a",d:"Italian plant-based. Housemade pasta, wood-fired pizza, and salads.",sl:[],dineIn:true,active:true,dineCredits:4,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsored Series RSVP"},
+    {n:"Civico 2064",h:"Los Feliz",t:"Restaurant",f:false,bg:"#667687",strip:"#7c909e",d:"Vegan friendly Italian. Housemade pasta.",sl:[],dineIn:true,active:true,dineCredits:5,resyUrl:"#REPLACE_WITH_REAL_RESY_LINK",pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK"},
+    {n:"Butcher's Daughter",h:"WeHo · Venice",t:"Restaurant",f:false,bg:"#917669",strip:"#ae988c",d:"Plant-based cafe and juice bar.",active:true,weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsored Series RSVP",sl:[]},
+    {n:"Woon",h:"Echo Park",t:"Restaurant",f:false,bg:"#547292",strip:"#7793af",d:"Beloved LA Chinese",active:true,pickupOrderUrl:"#REPLACE_WITH_REAL_PICKUP_LINK",sl:[]},
+    {n:"Sweetgreen",h:"Hollywood La Brea",t:"Restaurant",f:false,bg:"#789880",strip:"#a4b6a6",d:"Seasonal salads, wraps, and protein plates. Hollywood La Brea as initial 333 hub.",sl:[{day:"Mon",tm:"3:30 PM"},{day:"Mon",tm:"5:00 PM"},{day:"Mon",tm:"6:30 PM"},{day:"Tue",tm:"3:30 PM"},{day:"Tue",tm:"5:00 PM"},{day:"Tue",tm:"6:30 PM"},{day:"Wed",tm:"3:30 PM"},{day:"Wed",tm:"5:00 PM"},{day:"Wed",tm:"6:30 PM"},{day:"Thu",tm:"3:30 PM"},{day:"Thu",tm:"5:00 PM"},{day:"Thu",tm:"6:30 PM"}]},
+    {n:"Peace Pies × 333",h:"SD original · Los Feliz pickup & dinners",t:"Restaurant",f:true,bg:"#8b9c6e",strip:"#a9b68e",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients",monthly:true,sl:[]},
+    {n:"Gracias Madre",h:"WeHo",t:"Restaurant",f:false,bg:"#ae773d",strip:"#c09d81",d:"Plant based mexican with whole organic ingredients.",sl:[]},
+    {n:"Alfalfa",h:"Larchmont · Santa Monica",t:"Restaurant",f:false,bg:"#7d9b89",strip:"#a4b6a6",d:"Health-forward fast casual. Wraps, bowls, and smoothies.",sl:[]},
+    {n:"Bakers Bench",h:"Los Angeles",t:"Bakery",f:false,bg:"#c6b7a9",strip:"#ccb8a3",d:"Award winning vegan artisan bakery.",monthly:true,sl:[]},
+    {n:"Lazy Acres",h:"Los Feliz · SM",t:"Grocery",f:false,bg:"#b1beb1",strip:"#afc0af",d:"Widest selection in CA of high quality niche products.",sl:[]},
+    {n:"Loqui",h:"Culver City · DTLA",t:"Deal",f:false,bg:"#638172",strip:"#7a9b85",d:"Exceptional Mexican-inspired tacos and bowls. Clean ingredients, bold flavors.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Home State",h:"Multiple locations · LA",t:"Deal",f:false,bg:"#ae8976",strip:"#bea796",d:"Intentional Tex Mex with quality sourcing .",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Awan",h:"LA",t:"Deal",f:false,bg:"#75758f",strip:"#9b9ba9",d:"Premium vegan ice cream.",sl:[],deal:true,dealOnly:true,dealFace:40,dealPrice:25},
+    {n:"Besties Vegan Paradise",h:"East Hollywood · LA",t:"Grocery",f:false,bg:"#c8a7b6",strip:"#cda2b6",d:"LA's beloved fully vegan grocery and deli.",sl:[]},
+    {n:"Jimbo's",h:"San Diego · LA",t:"Grocery",f:false,bg:"#8ea68e",strip:"#b1beb1",d:"Beloved San Diego natural grocer. Delivered to the LA area.",sl:[]},
+    {n:"Hip Vegan",h:"Ojai original · Los Feliz pickup & dinners",t:"Restaurant",f:false,bg:"#a68e9e",strip:"#beb1ba",d:"Ojai-rooted plant-based kitchen bringing its way to LA. Creative, colorful, feel-good food.",sl:[]},
+    {n:"Kitchen Mouse",h:"Highland Park",t:"Restaurant",f:false,bg:"#907a9b",strip:"#ada2b3",d:"Carefully sourced vegetarian favorite",sl:[]},
+    {n:"Be You",h:"Silver Lake",t:"Restaurant",f:false,bg:"#8092a5",strip:"#a8b2bc",d:"Local Vietnamese favorite",sl:[]},
+    {n:"Joy",h:"Highland Park · LA",t:"Restaurant",f:false,bg:"#7a909b",strip:"#a2adb3",d:"Taiwanese favorites",sl:[]},
+    {n:"Salaya Thai",h:"Thai Town · Los Feliz",t:"Restaurant",f:false,bg:"#9b7a90",strip:"#b3a2ad",d:"Thai cuisine with a health-conscious approach.",sl:[]},
+    {n:"Old Gold Pizza",h:"Los Feliz · Barnsdall Park",t:"Restaurant",f:false,bg:"#ae9b76",strip:"#beb396",d:"Chef-driven pizza, salads and more.",sl:[]},
+    {n:"Magpies Softserve",h:"Highland Park · Silver Lake",t:"Restaurant",f:false,bg:"#c7a8b0",strip:"#cca3ae",d:"DF Soft serve sourced with freshest & cleanest ingredients",sl:[],monthly:true},
+    {n:"Erewhon",h:"Multiple locations · LA",t:"Restaurant",f:false,bg:"#8f8165",strip:"#a59b80",d:"LA's iconic wellness grocer. Exceptional vegan prepared options — curated for 333 group dinners.",hideFromMeals:true,sl:[]},
+    {n:"Rascals × 333",h:"SB original · LA pop-ups & events",t:"Restaurant",f:false,bg:"#899b92",strip:"#adb7b2",d:"Santa Barbara's beloved vegan kitchen. Bringing creative plant-based dishes to LA pop-ups and events.",sl:[]},
+    {n:"Veggie Grill × 333",h:"Parks & community spaces · LA",t:"Event",f:false,bg:"#90a56f",strip:"#a9b68e",d:"Custom 333 × Veggie Grill menu. Pop-ups at parks, coffee shops, and community spaces around LA.",sl:[]},
+    {n:"Usal Project",h:"Los Feliz",t:"Event",f:false,bg:"#725987",strip:"#a296ba",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
+    {n:"333 × Hosts",h:"Los Angeles",t:"Event",f:false,bg:"#555571",strip:"#9696ba",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+    {n:"Layla's",h:"Brentwood · Santa Monica · Beverly Hills",t:"Bakery",f:false,bg:"#b0a295",strip:"#c2b9ad",d:"Sourdough bagels made with farmers market ingredients.",mealsFeature:true,sl:[]},
+    {n:"Sqirl",h:"Silver Lake",t:"Restaurant",f:false,bg:"#89a580",strip:"#a9baa1",d:"Plant-forward bowls and cafe fare.",sl:[]},
+    {n:"Men & Beasts",h:"Echo Park",t:"Restaurant",f:false,bg:"#75828f",strip:"#9ba2a9",d:"Plant forward from scratch Chinese.",weeklySignupUrl:"#REPLACE_WITH_REAL_RSVP_LINK",weeklySignupLabel:"Sponsored Series RSVP",sl:[]},
+    {n:"Vibe Kitchen × 333",h:"OC original · Coming to LA",t:"Restaurant",f:false,bg:"#9e8ea6",strip:"#bab1be",d:"Beloved Orange County kitchen, bringing their menu to LA.",sl:[]},
+    {n:"LA Grocery",h:"Melrose Hill · near Larchmont",t:"Restaurant",f:false,bg:"#96a68e",strip:"#b4bdad",d:"Gourmet hot bar and produce.",sl:[]},
+    {n:"Nuts For Cheese",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Treeline",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Madly Hadley",h:"Los Angeles",t:"Brand",categories:["Salad Toppings","Clean Proteins"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Foodies Vegan/Pumfu",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Taco Night"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Abbott\'s",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Taco Night","Burger Night"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Pacha",h:"Los Angeles",t:"Brand",categories:["Gluten Free"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Bandit",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Cheeze and thank you",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Cadia",h:"Los Angeles",t:"Brand",categories:["Pantry","Pasta Night","Taco Night"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Jovial Organics",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Woodstock Organics",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Muir Glen",h:"Los Angeles",t:"Brand",categories:["Pantry","Pasta Night"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Regrocery",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Rummo",h:"Los Angeles",t:"Brand",categories:["Clean Pasta","Clean Proteins"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"SD Tempeh",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Taco Night","Breakfast Bowls"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Plant Provisions",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Clean Deli","Veg Charcuterie"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Actual Veggies",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Burger Night"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Monty\'s",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Bagel Brunch"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Kooshy\'s",h:"Los Angeles",t:"Brand",categories:["Salad Toppings"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Amy\'s",h:"Los Angeles",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Figg & Fogg",h:"Los Angeles",t:"Brand",categories:["Clean Spreads"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Um Yum",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Hodo Organic",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Salad Toppings"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Just Tea",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Leisure Project",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Sunny\'s",h:"Los Angeles",t:"Brand",categories:["Dairy Free Dressings/Spreads","Veg Charcuterie"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Forager Project",h:"Los Angeles",t:"Brand",categories:["Dairy Free"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Little Sesame",h:"Los Angeles",t:"Brand",categories:["Dairy Free Spreads","Veg Charcuterie"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Truvani",h:"Los Angeles",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Graza",h:"Los Angeles",t:"Brand",categories:["Olive Oils","Pantry"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Primal Kitchen",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Taco Night","Pasta Night"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Ghia",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Simpli",h:"Los Angeles",t:"Brand",categories:["Pantry"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Sobo Dumplings",h:"Los Angeles",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Gato\'s Dates",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"French Squirrel",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Sauz",h:"Los Angeles",t:"Brand",categories:["Clean Sauces","Pasta Night"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Malk",h:"Los Angeles",t:"Brand",categories:["Dairy Free"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Erewhon Dressings",h:"Los Angeles",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Green Girl Bake Shop",h:"Los Angeles",t:"Brand",categories:["Dairy Free","Clean Ice Cream"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Yobe",h:"Los Angeles",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Solti",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Hot Girl Pickles",h:"Los Angeles",t:"Brand",categories:["Clean Condiments","Clean Deli","Veg Charcuterie"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Grindstone Bakery",h:"Los Angeles",t:"Brand",categories:["Gluten Free"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Vafels",h:"Los Angeles",t:"Brand",categories:["Gluten Free","Clean Sexy Snacks"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Vita Coco",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Organic Oren Sauces",h:"Los Angeles",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Parch",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Urban Remedy",h:"Los Angeles",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Kin",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Swoon",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Zab\'s",h:"Los Angeles",t:"Brand",categories:["Condiments","Hot Sauce"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Hone",h:"Los Angeles",t:"Brand",categories:["Clean Caffeine","Mushroom Tea"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Daring",h:"Los Angeles",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"TCHO",h:"Los Angeles",t:"Brand",categories:["Clean Sexy Snacks"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Four Sigmatic",h:"Los Angeles",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Laird Superfood",h:"Los Angeles",t:"Brand",categories:["Clean Proteins","Clean Caffeine"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Groundwork Coffee",h:"Los Angeles",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Elmhurst Organics",h:"Los Angeles",t:"Brand",categories:["Dairy Free"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
   ],
   NYC:[
-    {n:"Jajaja",h:"6 locations · NYC",t:"Restaurant",f:true,bg:"#b35c1e",strip:"#d4782a",d:"Plant-based Mexican food with killer cocktails or mocktails.",sl:[]},
-    {n:"By Chloe",h:"Soho",t:"Restaurant",f:true,bg:"#e8a0a0",strip:"#d07070",d:"Fast-casual plant-based comfort food. Burgers, bowls, salads and baked goods.",sl:[]},
-    {n:"Peace Food Cafe",h:"2 locations · NYC",t:"Restaurant",f:false,bg:"#6b8e6b",strip:"#8aaa8a",d:"Some of the best vegan sandwiches & desserts on earth.",sl:[]},
-    {n:"Divya's Kitchen",h:"East Village",t:"Restaurant",f:false,bg:"#8b6914",strip:"#b08a20",d:"Ayurvedic plant-based cooking. ",sl:[]},
-    {n:"Le Botaniste",h:"Multiple locations",t:"Restaurant",f:false,bg:"#3a5a2a",strip:"#5a7a3a",d:"Organic plant-based restaurant",sl:[]},
-    {n:"Elbow Bread",h:"New York",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Artisan bakery. Sourdough, pastries, and seasonal specials.",sl:[]},
-    {n:"Matchaful",h:"Multiple locations",t:"Restaurant",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"The best overnight oats & veg deserts we have found. Limited edition 333 product drops.",sl:[]},
-    {n:"Butcher's Daughter",h:"West Village",t:"Restaurant",f:false,bg:"#5c3d2e",strip:"#8a5a40",d:"Plant-based cafe and juice bar.",sl:[]},
-    {n:"Orchard Grocer",h:"Lower East Side",t:"Restaurant",f:false,bg:"#5a7a3a",strip:"#7a9a50",d:"NYC's fully plant-based deli. Exceptional sandwiches and prepared foods.",sl:[]},
-    {n:"Happier Grocery",h:"Multiple locations · NYC",t:"Grocery",f:false,bg:"#4a7a3a",strip:"#6a9a50",d:"Plant-forward grocery and hot bar. Fresh prepared foods, pantry staples, and daily specials.",sl:[]},
-    {n:"Springbone",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a6a3a",strip:"#aa8a50",d:"Intentionally sourced fast casual with solid vegan options",sl:[]},
-    {n:"Paulie Gee's",h:"Greenpoint · Brooklyn",t:"Restaurant",f:false,bg:"#5a3a2a",strip:"#7a5a3a",d:"Legendary pizza that is probably the best vegan pizza on earth.",sl:[]},
-    {n:"Spicy Moon",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#8a2a2a",strip:"#aa4a4a",d:"NYC's beloved Sichuan vegan restaurant. ",sl:[]},
-    {n:"Usal Project",h:"New York",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
-    {n:"333 × Hosts",h:"New York",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
-    {n:"Nuts For Cheese",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Treeline",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Madly Hadley",h:"New York",t:"Brand",categories:["Salad Toppings","Clean Proteins"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Foodies Vegan/Pumfu",h:"New York",t:"Brand",categories:["Clean Proteins","Taco Night"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Abbott\'s",h:"New York",t:"Brand",categories:["Clean Proteins","Taco Night","Burger Night"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Pacha",h:"New York",t:"Brand",categories:["Gluten Free"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Bandit",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Cheeze and thank you",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Cadia",h:"New York",t:"Brand",categories:["Pantry","Pasta Night","Taco Night"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Jovial Organics",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Woodstock Organics",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Muir Glen",h:"New York",t:"Brand",categories:["Pantry","Pasta Night"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Regrocery",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Rummo",h:"New York",t:"Brand",categories:["Clean Pasta","Clean Proteins"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"SD Tempeh",h:"New York",t:"Brand",categories:["Clean Proteins","Taco Night","Breakfast Bowls"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Plant Provisions",h:"New York",t:"Brand",categories:["Clean Proteins","Clean Deli","Veg Charcuterie"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Actual Veggies",h:"New York",t:"Brand",categories:["Clean Proteins","Burger Night"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Monty\'s",h:"New York",t:"Brand",categories:["Dairy Free","Bagel Brunch"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Kooshy\'s",h:"New York",t:"Brand",categories:["Salad Toppings"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Amy\'s",h:"New York",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Figg & Fogg",h:"New York",t:"Brand",categories:["Clean Spreads"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Um Yum",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Hodo Organic",h:"New York",t:"Brand",categories:["Clean Proteins","Salad Toppings"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Just Tea",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Leisure Project",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Sunny\'s",h:"New York",t:"Brand",categories:["Dairy Free Dressings/Spreads","Veg Charcuterie"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Forager Project",h:"New York",t:"Brand",categories:["Dairy Free"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Little Sesame",h:"New York",t:"Brand",categories:["Dairy Free Spreads","Veg Charcuterie"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Truvani",h:"New York",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Graza",h:"New York",t:"Brand",categories:["Olive Oils","Pantry"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Primal Kitchen",h:"New York",t:"Brand",categories:["Dairy Free","Taco Night","Pasta Night"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Ghia",h:"New York",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Simpli",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Sobo Dumplings",h:"New York",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Gato\'s Dates",h:"New York",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"French Squirrel",h:"New York",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Sauz",h:"New York",t:"Brand",categories:["Clean Sauces","Pasta Night"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Malk",h:"New York",t:"Brand",categories:["Dairy Free"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Erewhon Dressings",h:"New York",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Green Girl Bake Shop",h:"New York",t:"Brand",categories:["Dairy Free","Clean Ice Cream"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Yobe",h:"New York",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Solti",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Hot Girl Pickles",h:"New York",t:"Brand",categories:["Clean Condiments","Clean Deli","Veg Charcuterie"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Grindstone Bakery",h:"New York",t:"Brand",categories:["Gluten Free"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Vafels",h:"New York",t:"Brand",categories:["Gluten Free","Clean Sexy Snacks"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Vita Coco",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Organic Oren Sauces",h:"New York",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Parch",h:"New York",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Urban Remedy",h:"New York",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#4a4a2a",strip:"#6a6a40",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Kin",h:"New York",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#2a3a5a",strip:"#3a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Swoon",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Zab\'s",h:"New York",t:"Brand",categories:["Condiments","Hot Sauce"],f:false,bg:"#5a3a3a",strip:"#7a5a5a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Hone",h:"New York",t:"Brand",categories:["Clean Caffeine","Mushroom Tea"],f:false,bg:"#3a3a5a",strip:"#5a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Daring",h:"New York",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#5a4a2a",strip:"#7a6a3a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"TCHO",h:"New York",t:"Brand",categories:["Clean Sexy Snacks"],f:false,bg:"#2a4a4a",strip:"#3a6a6a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Four Sigmatic",h:"New York",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#4a3a5a",strip:"#6a5a7a",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Laird Superfood",h:"New York",t:"Brand",categories:["Clean Proteins","Clean Caffeine"],f:false,bg:"#5a2a3a",strip:"#7a4050",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Groundwork Coffee",h:"New York",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#3a5a4a",strip:"#5a7a60",d:"Curated local stock-up brand.",sl:[]},
-    {n:"Elmhurst Organics",h:"New York",t:"Brand",categories:["Dairy Free"],f:false,bg:"#3a5a3a",strip:"#5a7a5a",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Jajaja",h:"6 locations · NYC",t:"Restaurant",f:true,bg:"#c19b80",strip:"#ceb5a0",d:"Plant-based Mexican food with killer cocktails or mocktails.",sl:[]},
+    {n:"By Chloe",h:"Soho",t:"Restaurant",f:true,bg:"#cda3a3",strip:"#c9a6a6",d:"Fast-casual plant-based comfort food. Burgers, bowls, salads and baked goods.",sl:[]},
+    {n:"Peace Food Cafe",h:"2 locations · NYC",t:"Restaurant",f:false,bg:"#b0bab0",strip:"#b2bdb2",d:"Some of the best vegan sandwiches & desserts on earth.",sl:[]},
+    {n:"Divya's Kitchen",h:"East Village",t:"Restaurant",f:false,bg:"#b29a5d",strip:"#c0af81",d:"Ayurvedic plant-based cooking. ",sl:[]},
+    {n:"Le Botaniste",h:"Multiple locations",t:"Restaurant",f:false,bg:"#738f65",strip:"#92a580",d:"Organic plant-based restaurant",sl:[]},
+    {n:"Elbow Bread",h:"New York",t:"Bakery",f:false,bg:"#c6b7a9",strip:"#ccb8a3",d:"Artisan bakery. Sourdough, pastries, and seasonal specials.",sl:[]},
+    {n:"Matchaful",h:"Multiple locations",t:"Restaurant",f:false,bg:"#89a580",strip:"#a9baa1",d:"The best overnight oats & veg deserts we have found. Limited edition 333 product drops.",sl:[]},
+    {n:"Butcher's Daughter",h:"West Village",t:"Restaurant",f:false,bg:"#917669",strip:"#ae988c",d:"Plant-based cafe and juice bar.",sl:[]},
+    {n:"Orchard Grocer",h:"Lower East Side",t:"Restaurant",f:false,bg:"#92a580",strip:"#afbaa1",d:"NYC's fully plant-based deli. Exceptional sandwiches and prepared foods.",sl:[]},
+    {n:"Happier Grocery",h:"Multiple locations · NYC",t:"Grocery",f:false,bg:"#89a580",strip:"#a9baa1",d:"Plant-forward grocery and hot bar. Fresh prepared foods, pantry staples, and daily specials.",sl:[]},
+    {n:"Springbone",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#ae9e86",strip:"#c2b9a8",d:"Intentionally sourced fast casual with solid vegan options",sl:[]},
+    {n:"Paulie Gee's",h:"Greenpoint · Brooklyn",t:"Restaurant",f:false,bg:"#8f7365",strip:"#a59280",d:"Legendary pizza that is probably the best vegan pizza on earth.",sl:[]},
+    {n:"Spicy Moon",h:"Multiple locations · NYC",t:"Restaurant",f:false,bg:"#ae7676",strip:"#c1a4a4",d:"NYC's beloved Sichuan vegan restaurant. ",sl:[]},
+    {n:"Usal Project",h:"New York",t:"Event",f:false,bg:"#725987",strip:"#a296ba",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
+    {n:"333 × Hosts",h:"New York",t:"Event",f:false,bg:"#555571",strip:"#9696ba",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+    {n:"Nuts For Cheese",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Treeline",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Madly Hadley",h:"New York",t:"Brand",categories:["Salad Toppings","Clean Proteins"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Foodies Vegan/Pumfu",h:"New York",t:"Brand",categories:["Clean Proteins","Taco Night"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Abbott\'s",h:"New York",t:"Brand",categories:["Clean Proteins","Taco Night","Burger Night"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Pacha",h:"New York",t:"Brand",categories:["Gluten Free"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Bandit",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Cheeze and thank you",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Cadia",h:"New York",t:"Brand",categories:["Pantry","Pasta Night","Taco Night"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Jovial Organics",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Woodstock Organics",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Muir Glen",h:"New York",t:"Brand",categories:["Pantry","Pasta Night"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Regrocery",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Rummo",h:"New York",t:"Brand",categories:["Clean Pasta","Clean Proteins"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"SD Tempeh",h:"New York",t:"Brand",categories:["Clean Proteins","Taco Night","Breakfast Bowls"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Plant Provisions",h:"New York",t:"Brand",categories:["Clean Proteins","Clean Deli","Veg Charcuterie"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Actual Veggies",h:"New York",t:"Brand",categories:["Clean Proteins","Burger Night"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Monty\'s",h:"New York",t:"Brand",categories:["Dairy Free","Bagel Brunch"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Kooshy\'s",h:"New York",t:"Brand",categories:["Salad Toppings"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Amy\'s",h:"New York",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Figg & Fogg",h:"New York",t:"Brand",categories:["Clean Spreads"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Um Yum",h:"New York",t:"Brand",categories:["Dairy Free","Veg Charcuterie"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Hodo Organic",h:"New York",t:"Brand",categories:["Clean Proteins","Salad Toppings"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Just Tea",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Leisure Project",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Sunny\'s",h:"New York",t:"Brand",categories:["Dairy Free Dressings/Spreads","Veg Charcuterie"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Forager Project",h:"New York",t:"Brand",categories:["Dairy Free"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Little Sesame",h:"New York",t:"Brand",categories:["Dairy Free Spreads","Veg Charcuterie"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Truvani",h:"New York",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Graza",h:"New York",t:"Brand",categories:["Olive Oils","Pantry"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Primal Kitchen",h:"New York",t:"Brand",categories:["Dairy Free","Taco Night","Pasta Night"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Ghia",h:"New York",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Simpli",h:"New York",t:"Brand",categories:["Pantry"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Sobo Dumplings",h:"New York",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Gato\'s Dates",h:"New York",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"French Squirrel",h:"New York",t:"Brand",categories:["Clean Sexy Snacks","Gifts"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Sauz",h:"New York",t:"Brand",categories:["Clean Sauces","Pasta Night"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Malk",h:"New York",t:"Brand",categories:["Dairy Free"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Erewhon Dressings",h:"New York",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Green Girl Bake Shop",h:"New York",t:"Brand",categories:["Dairy Free","Clean Ice Cream"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Yobe",h:"New York",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Solti",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Hot Girl Pickles",h:"New York",t:"Brand",categories:["Clean Condiments","Clean Deli","Veg Charcuterie"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Grindstone Bakery",h:"New York",t:"Brand",categories:["Gluten Free"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Vafels",h:"New York",t:"Brand",categories:["Gluten Free","Clean Sexy Snacks"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Vita Coco",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Organic Oren Sauces",h:"New York",t:"Brand",categories:["Dairy Free Dressings/Spreads","Salad Toppings"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Parch",h:"New York",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Urban Remedy",h:"New York",t:"Brand",categories:["Clean Proteins"],f:false,bg:"#818163",strip:"#9b9b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Kin",h:"New York",t:"Brand",categories:["Clean Sexy Drinks","NA Drinks"],f:false,bg:"#65738f",strip:"#8092a5",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Swoon",h:"New York",t:"Brand",categories:["Clean Sexy Drinks"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Zab\'s",h:"New York",t:"Brand",categories:["Condiments","Hot Sauce"],f:false,bg:"#8f7575",strip:"#a99b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Hone",h:"New York",t:"Brand",categories:["Clean Caffeine","Mushroom Tea"],f:false,bg:"#75758f",strip:"#9b9ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Daring",h:"New York",t:"Brand",categories:["Frozen Meals"],f:false,bg:"#8f8165",strip:"#a59b80",d:"Curated local stock-up brand.",sl:[]},
+    {n:"TCHO",h:"New York",t:"Brand",categories:["Clean Sexy Snacks"],f:false,bg:"#638181",strip:"#7a9b9b",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Four Sigmatic",h:"New York",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#82758f",strip:"#a29ba9",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Laird Superfood",h:"New York",t:"Brand",categories:["Clean Proteins","Clean Caffeine"],f:false,bg:"#8f6573",strip:"#a5858e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Groundwork Coffee",h:"New York",t:"Brand",categories:["Clean Caffeine"],f:false,bg:"#758f82",strip:"#9ba99e",d:"Curated local stock-up brand.",sl:[]},
+    {n:"Elmhurst Organics",h:"New York",t:"Brand",categories:["Dairy Free"],f:false,bg:"#758f75",strip:"#9ba99b",d:"Curated local stock-up brand.",sl:[]},
   ],
   Bay:[
-    {n:"Usal Project",h:"Bay Area",t:"Event",f:false,bg:"#3a2050",strip:"#6040a0",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
-    {n:"333 × Hosts",h:"Bay Area",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+    {n:"Usal Project",h:"Bay Area",t:"Event",f:false,bg:"#725987",strip:"#a296ba",d:"Communal dining rooted in seasonal, conscious eating.",sl:[]},
+    {n:"333 × Hosts",h:"Bay Area",t:"Event",f:false,bg:"#555571",strip:"#9696ba",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
   ],
   SD:[
-    {n:"Peace Pies",h:"Multiple locations · SD",t:"Restaurant",f:true,bg:"#556b2f",strip:"#7a9a3a",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients. The San Diego original.",sl:[]},
-    {n:"Donna Jean",h:"North Park · SD",t:"Restaurant",f:true,bg:"#8b3a3a",strip:"#b05050",d:"Beloved plant-based Italian-inspired restaurant. The best salad & heathen pizza are what dreams are made of",sl:[]},
-    {n:"Kindred",h:"South Park · SD",t:"Restaurant",f:true,bg:"#2a2a4a",strip:"#4a4a80",d:"Vegan heavy metal bar and restaurant.",sl:[]},
-    {n:"Civico 2045",h:"Little Italy · SD",t:"Restaurant",f:false,bg:"#2c3e50",strip:"#3a5a70",d:"Sister spot to Civico 2064 in LA. Italian plant forward",sl:[]},
-    {n:"Trilogy Sanctuary",h:"La Jolla · SD",t:"Restaurant",f:false,bg:"#3d6b4f",strip:"#5a9060",d:"Rooftop plant-based cafe and yoga studio. Juices, bowls, and stunning ocean views.",sl:[]},
-    {n:"New Wave Bagels",h:"San Diego",t:"Bakery",f:false,bg:"#4a6a8a",strip:"#6a8aaa",d:"The best in SD, sourdough bagels with gorumet options.",sl:[]},
-    {n:"Hazel & Jade",h:"San Diego",t:"Bakery",f:false,bg:"#c4956a",strip:"#e0b080",d:"Artisan vegan bakery.",sl:[]},
-    {n:"People's Market",h:"San Diego",t:"Grocery",f:false,bg:"#5a6a3a",strip:"#7a8a50",d:"Vegeterian market & vegan deli founded in 1970's.",sl:[]},
-    {n:"People's Market Deli",h:"San Diego",t:"Restaurant",f:false,bg:"#6a7a4a",strip:"#8a9a60",d:"The deli counter inside People's Market. Fresh, plant-forward prepared foods daily.",sl:[]},
-    {n:"Jimbo's",h:"Multiple locations · SD",t:"Grocery",f:false,bg:"#4a7a4a",strip:"#6a9a6a",d:"San Diego's beloved strictly organic grocer. The original home base.",sl:[]},
-    {n:"Lazy Acres",h:"San Diego",t:"Grocery",f:false,bg:"#6a9a6a",strip:"#8aba8a",d:"The favorite natural grocer of many.",sl:[]},
-    {n:"333 × Hosts",h:"San Diego",t:"Event",f:false,bg:"#1e1e38",strip:"#4040a0",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
+    {n:"Peace Pies",h:"Multiple locations · SD",t:"Restaurant",f:true,bg:"#8b9c6e",strip:"#a9b68e",d:"The best raw vegan restaurant perhaps in the US. Wraps, salads, kelp noodles & deserts all made with the cleanest ingredients. The San Diego original.",sl:[]},
+    {n:"Donna Jean",h:"North Park · SD",t:"Restaurant",f:true,bg:"#ae8787",strip:"#c5abab",d:"Beloved plant-based Italian-inspired restaurant. The best salad & heathen pizza are what dreams are made of",sl:[]},
+    {n:"Kindred",h:"South Park · SD",t:"Restaurant",f:true,bg:"#636381",strip:"#9191aa",d:"Vegan heavy metal bar and restaurant.",sl:[]},
+    {n:"Civico 2045",h:"Little Italy · SD",t:"Restaurant",f:false,bg:"#667687",strip:"#7c909e",d:"Sister spot to Civico 2064 in LA. Italian plant forward",sl:[]},
+    {n:"Trilogy Sanctuary",h:"La Jolla · SD",t:"Restaurant",f:false,bg:"#7d9b89",strip:"#a4b6a6",d:"Rooftop plant-based cafe and yoga studio. Juices, bowls, and stunning ocean views.",sl:[]},
+    {n:"New Wave Bagels",h:"San Diego",t:"Bakery",f:false,bg:"#95a2b0",strip:"#aeb8c1",d:"The best in SD, sourdough bagels with gorumet options.",sl:[]},
+    {n:"Hazel & Jade",h:"San Diego",t:"Bakery",f:false,bg:"#c6b7a9",strip:"#ccb8a3",d:"Artisan vegan bakery.",sl:[]},
+    {n:"People's Market",h:"San Diego",t:"Grocery",f:false,bg:"#909b7a",strip:"#aab19a",d:"Vegeterian market & vegan deli founded in 1970's.",sl:[]},
+    {n:"People's Market Deli",h:"San Diego",t:"Restaurant",f:false,bg:"#9ea68e",strip:"#b9bdad",d:"The deli counter inside People's Market. Fresh, plant-forward prepared foods daily.",sl:[]},
+    {n:"Jimbo's",h:"Multiple locations · SD",t:"Grocery",f:false,bg:"#8ea68e",strip:"#b1beb1",d:"San Diego's beloved strictly organic grocer. The original home base.",sl:[]},
+    {n:"Lazy Acres",h:"San Diego",t:"Grocery",f:false,bg:"#b1beb1",strip:"#afc0af",d:"The favorite natural grocer of many.",sl:[]},
+    {n:"333 × Hosts",h:"San Diego",t:"Event",f:false,bg:"#555571",strip:"#9696ba",d:"333-curated dinners with guest chefs and tastemakers.",sl:[]},
   ],
   SF:[
   ],
@@ -760,11 +769,25 @@ function renderCard(p,container){
     var bcard=document.createElement('div');
     bcard.className='brand-card';
     bcard.innerHTML=
-      '<div class="brand-card-name">'+p.n+'</div>'+
+      '<div class="brand-card-head">'+
+        '<span class="brand-card-name">'+p.n+'</span>'+
+        '<span class="brand-card-arrow">\u25be</span>'+
+      '</div>'+
       (p.categories && p.categories.length
         ? '<div class="brand-card-tags">'+p.categories.join(' · ')+'</div>'
-        : '');
-    bcard.addEventListener('click',function(){ openInfoModal(p); });
+        : '')+
+      '<div class="brand-card-expand"><div class="brand-card-expand-inner">'+
+        '<p class="brand-card-desc">'+p.d+
+        (p.recommend && p.recommend.length ? ' We recommend their ' + p.recommend.join(', ') + '.' : '')+
+        '</p>'+
+        (p.pickupOrderUrl
+          ? '<a href="'+p.pickupOrderUrl+'" target="_blank" onclick="event.stopPropagation()" class="brand-card-link">Shop '+p.n+' \u2197</a>'
+          : '')+
+      '</div></div>';
+    bcard.addEventListener('click',function(e){
+      if(e.target.closest('.brand-card-link')) return;
+      bcard.classList.toggle('open');
+    });
     container.appendChild(bcard);
     return;
   }
@@ -784,7 +807,6 @@ function renderCard(p,container){
     bookBtns =
       '<button class="icon-btn notlive-btn" data-label="Booking">Book</button>'+
       '<button class="icon-btn notlive-btn" data-label="Redeem">Redeem</button>'+
-      '<button class="icon-btn checkin-btn" data-name="'+p.n.replace(/"/g,'&quot;')+'">Check In</button>'+
       (p.weeklySignupUrl
         ? '<a class="icon-btn" href="'+p.weeklySignupUrl+'" target="_blank" onclick="event.stopPropagation()">'+(p.weeklySignupLabel||'Weekly meals sign up')+'</a>'
         : '');
@@ -807,20 +829,15 @@ function renderCard(p,container){
     '<div class="card-body">'+
       (p.f?'<div class="feat-dot"></div>':'')+
       '<div class="card-top"><span class="card-name">'+p.n+'</span></div>'+
-      (p.categories && p.categories.length
-        ? '<div style="display:flex;flex-wrap:wrap;gap:4px;margin:5px 0;">'+p.categories.map(function(c){
-            return '<span style="font-size:9.5px;background:rgba(255,255,255,.18);color:#fff;padding:2px 8px;border-radius:99px;">'+c+'</span>';
-          }).join('')+'</div>'
-        : '')+
-      '<div class="card-mid">'+p.d+'</div>'+
-      (p.recommend && p.recommend.length
-        ? '<div style="font-size:10.5px;color:rgba(255,255,255,.7);margin-top:4px;font-style:italic;">We recommend their '+p.recommend.join(', ')+'</div>'
-        : '')+
       (function(){
-        var accessory = p.deal ? 'Redeemed at checkout · One per customer · No expiration' : '';
-        var hoodLine = p.h + (accessory ? ', ' + accessory : '');
-        return '<div class="card-hood-under">'+hoodLine+'</div>';
+        var tags=[p.h];
+        if(p.categories && p.categories.length) tags=tags.concat(p.categories);
+        if(p.deal) tags.push('Redeemed at checkout · One per customer · No expiration');
+        return '<div style="display:flex;flex-wrap:wrap;gap:4px;margin:6px 0 2px;">'+tags.map(function(t){
+          return '<span style="font-size:9.5px;background:rgba(255,255,255,.18);color:#fff;padding:2px 8px;border-radius:99px;">'+t+'</span>';
+        }).join('')+'</div>';
       })()+
+      '<div class="card-mid">'+p.d+'</div>'+
       '<div class="card-bottom-row">'+
         '<div class="card-right-row">'+(p.deal?claimBtn:bookBtns+secondaryBtn)+'</div>'+
       '</div>'+
@@ -832,19 +849,6 @@ function renderCard(p,container){
     if(notliveBtn){
       e.stopPropagation();
       alert(notliveBtn.getAttribute('data-label')+' isn\'t live yet \u2014 check back soon.');
-      return;
-    }
-    var checkinBtn=e.target.closest('.checkin-btn');
-    if(checkinBtn){
-      e.stopPropagation();
-      var nm=checkinBtn.getAttribute('data-name');
-      // TODO: point this at your Google Sheets / Zapier webhook once set up.
-      // Logs silently — no code shown to the guest, staff/back-end can consolidate and flag as needed.
-      fetch('YOUR_CHECKIN_WEBHOOK_URL', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({partner:nm, timestamp:new Date().toISOString()})
-      }).catch(function(){ /* fail silently for now */ });
       return;
     }
     if(e.target.closest('.icon-btn')) return;
@@ -866,7 +870,7 @@ function openInfoModal(p){
     pickupEl.innerHTML='<a href="'+p.pickupOrderUrl+'" target="_blank" style="display:block;background:'+p.bg+';border-radius:8px;padding:9px 12px;color:#fff;font-size:12.5px;text-decoration:none;font-weight:600;">333 Curations & Pickup Order \u2197</a>';
     pickupEl.style.display='block';
   } else { pickupEl.style.display='none'; }
-  document.getElementById('modalDesc').textContent=p.d;
+  document.getElementById('modalDesc').textContent = p.d + (p.recommend && p.recommend.length ? ' We recommend their ' + p.recommend.join(', ') + '.' : '');
   document.getElementById('modalContext').textContent='333 context and editorial notes coming soon \u2014 we personally vet every partner before they appear here.';
   document.getElementById('modalPhotoBg').style.background = p.t==='Brand' ? '#f2ecdb' : p.bg;
   var isActive=p.active||p.deal;
